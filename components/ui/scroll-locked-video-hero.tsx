@@ -82,16 +82,18 @@ export default function MetroHero({
 
     const onSeeked = () => {
       isSeeking = false
-      if (pendingTime !== null) {
+      if (pendingTime !== null && video) {
         const t = pendingTime
         pendingTime = null
         isSeeking = true
         video.currentTime = t
       }
     }
+    video.addEventListener("loadeddata", onLoadedData)
     video.addEventListener("seeked", onSeeked)
 
     function seekTo(t: number) {
+      if (!video) return
       if (isSeeking) {
         pendingTime = t
         return

@@ -77,6 +77,7 @@ export default function ScrollLockedFrameHero({
           }
         }
       }
+      if (!canvas || !ctx) return
       if (!img || !img.complete || img.naturalWidth === 0) return
 
       const cw = canvas.width
@@ -95,6 +96,7 @@ export default function ScrollLockedFrameHero({
     }
 
     function resizeCanvas() {
+      if (!canvas || !section || !ctx) return
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       const rect = section.getBoundingClientRect()
       const targetW = Math.round(rect.width * dpr)
