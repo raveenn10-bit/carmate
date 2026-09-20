@@ -102,9 +102,13 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center py-1 group focus:outline-none">
             <img
-              src="/assets/carmate-logo.png"
+              src={isDark ? "/assets/carmate-logo.png" : "/assets/carmate-logo-light.png"}
               alt="Carmate Modifications"
-              className="h-8 sm:h-10 md:h-11 w-auto max-w-[140px] sm:max-w-none object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] group-hover:brightness-110 transition-all"
+              className={`h-8 sm:h-10 md:h-11 w-auto max-w-[140px] sm:max-w-none object-contain transition-all ${
+                isDark
+                  ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] group-hover:brightness-110"
+                  : "drop-shadow-sm group-hover:opacity-90"
+              }`}
             />
           </Link>
 

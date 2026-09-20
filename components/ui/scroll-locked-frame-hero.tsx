@@ -613,7 +613,7 @@ export default function ScrollLockedFrameHero({
               textTransform: "uppercase",
             }}
           >
-            Automotive Masterpiece · 2K QHD
+            CARMATE BESPOKE WORKSHOP · GALLE · 2K SPEC
           </span>
         </div>
 

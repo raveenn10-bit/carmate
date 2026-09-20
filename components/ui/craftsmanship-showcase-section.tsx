@@ -162,15 +162,15 @@ export function CraftsmanshipShowcaseSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Top Section: Matching Spyker Cars Minimalist Layout */}
         <div className="max-w-2xl mb-16 lg:mb-24">
-          <span className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-[#ea1c24] uppercase mb-3 flex items-center gap-2">
-            <Sparkles size={13} />
-            THE MAKING OF
+          <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.25em] text-[#ea1c24] uppercase mb-3 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#ea1c24] animate-pulse" />
+            WORKSHOP BENCHMARK // MAKULUWA, GALLE
           </span>
           <h2 className="text-4xl xs:text-5xl sm:text-6xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-            PURE PASSION
+            HANDCRAFTED PRECISION. ZERO COMPROMISE.
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-zinc-400 leading-relaxed max-w-xl">
-            The bespoke craft of Carmate was born from a circle of dedicated automotive artisans, fabricators, and aerodynamic perfectionists. United around one conviction: to sculpt Sri Lanka’s most striking, aggressive, and individualized road builds.
+            Born inside our Makuluwa bays from a tight-knit crew of fabricators, auto electricians, and paint masters. We build Sri Lanka’s sharpest road machines — engineered for highway aerodynamics, laser illumination, and unmistakable stance.
           </p>
         </div>
 
@@ -210,7 +210,7 @@ export function CraftsmanshipShowcaseSection() {
             </div>
             <div className="mt-4 sm:mt-5 max-w-md">
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                Sculpted aero dynamics, custom splitters, and carbon GT wings crafted to reduce weight without sacrificing aerodynamic downforce. On the road, air intakes, pedestals, and glides are designed to optimize air stream.
+                Prius 30/50 Modellista, Aqua G’s, and Civic FD aero packages. Molded in high-flex polyurethane with OEM mounting points, front splitters, and diffuser fins engineered for high-speed stability on the Southern Expressway without vibration or cracking.
               </p>
             </div>
           </div>
@@ -249,7 +249,7 @@ export function CraftsmanshipShowcaseSection() {
             </div>
             <div className="mt-4 sm:mt-5 max-w-md">
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                Bi-LED projector retrofits with app-controlled multi-color RGB halos and animated flowing DRL light bars engineered to carve through the night with unmatched presence.
+                Custom multi-lens Bi-LED projector retrofits with razor-sharp laser cutoffs, smoked housing blackouts, dynamic sequential flowing DRLs, and smartphone-controlled RGB demon eyes. Calibrated for zero oncoming glare and maximum Southern Expressway throw.
               </p>
             </div>
           </div>
@@ -288,7 +288,7 @@ export function CraftsmanshipShowcaseSection() {
             </div>
             <div className="mt-4 sm:mt-5 max-w-lg">
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                Hand-stitched leather appointments, precision panel alignment, custom exhaust tips, and 64-color fiber-optic cabin illumination engineered to reflect the driver's pure individuality.
+                Flush stance wheel fitment, quad burnt exhaust tips, carbon steering upgrades, and integrated 64-color fiber-optic ambient cabin channeling. Every millimeter tailored with genuine Galle workshop pride.
               </p>
             </div>
           </div>

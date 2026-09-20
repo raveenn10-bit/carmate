@@ -193,7 +193,7 @@ export function BuiltDifferentStatement() {
               color: "transparent",
             }}
           >
-            PERFORMANCE • PRECISION • IDENTITY • AERODYNAMICS • PERFORMANCE • PRECISION
+            PRIUS 30/50 MODELLISTA • AQUA G'S AERO • CIVIC FD MUGEN • BI-LED OPTICS • 2K BAKED ENAMEL • ZERO TOLERANCE
           </div>
           <div
             ref={kineticRow2Ref}
@@ -204,7 +204,7 @@ export function BuiltDifferentStatement() {
               color: "transparent",
             }}
           >
-            ENGINEERED TO STAND OUT • BESPOKE CULTURE • COMMAND THE ROAD • 2026 SPEC
+            MAKULUWA GALLE WORKSHOP • SOUTHERN EXPRESSWAY TESTED • URETHANE AERO FITMENT • LASER CUTOFFS • CARMATE LK
           </div>
         </div>
 
@@ -212,10 +212,12 @@ export function BuiltDifferentStatement() {
         <div className="relative z-30 w-full flex items-center justify-between text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-zinc-500">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#ea1c24] animate-pulse" />
-            <span className="text-zinc-400 font-bold">CARMATE / MODIFICATION CULTURE / 2026</span>
+            <span className="text-zinc-300 font-bold tracking-[0.2em]">CARMATE / MAKULUWA WORKSHOP BAYS / GALLE</span>
           </div>
-          <div className="hidden sm:block text-zinc-500">
-            ENGINEERED TO STAND OUT
+          <div className="hidden sm:flex items-center gap-3 text-zinc-500">
+            <span>E01 HIGH-SPEED STABILITY</span>
+            <span className="text-zinc-700">//</span>
+            <span className="text-zinc-400 font-bold text-[#ea1c24]">0.5MM GAP SPEC</span>
           </div>
         </div>
 
@@ -245,7 +247,7 @@ export function BuiltDifferentStatement() {
                 <img
                   ref={carImageRef}
                   src="/assets/carmate-prius-lineup.jpg"
-                  alt="Carmate Custom Modified Prius Fleet Lineup"
+                  alt="Carmate Custom Prius 30 & 50 Modellista Fleet - Makuluwa Workshop"
                   className="w-full h-auto object-cover max-h-[50vh] sm:max-h-[58vh] transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 {/* Soft Edge Gradient Masks to melt seamlessly into #030508 */}
@@ -285,25 +287,43 @@ export function BuiltDifferentStatement() {
             ref={supportingTextRef}
             className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 text-left will-change-transform"
           >
-            {/* Supporting Line */}
-            <div className="space-y-1.5 max-w-md">
-              <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.3em] text-[#ea1c24] block">
-                PRECISION • PERFORMANCE • PERSONALITY
-              </span>
-              <p className="text-xs sm:text-sm text-zinc-300 font-medium leading-relaxed">
-                We don’t just modify cars.
-                <br className="hidden sm:inline" />
-                We transform the way they feel, look and command the road.
+            {/* Supporting Line & Workshop Craftsmanship Specs */}
+            <div className="space-y-2.5 max-w-xl">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded bg-[#ea1c24]/15 border border-[#ea1c24]/30 text-[10px] font-mono font-bold uppercase tracking-wider text-[#ea1c24]">
+                  MAKULUWA GARAGE SPEC
+                </span>
+                <span className="text-zinc-600 text-xs hidden sm:inline">•</span>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+                  OEM+ URETHANE AERO & OPTICS
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-300 font-normal leading-relaxed">
+                Zero fragile fiberglass or rushed wiring. Every Prius Modellista lip, Aqua G’s aero bumper, and custom Bi-LED projector retrofit is hand-prepped, baked in 2K enamel, and calibrated for high-speed Southern Expressway cruising right here in Galle.
               </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-mono text-zinc-400">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Zero-Gap Tolerance
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Dual Laser Cutoff
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Oven-Cured 2K Clear
+                </span>
+              </div>
             </div>
 
             {/* Quick Link Action */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 shrink-0">
               <Link
                 href="/gallery"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-[#ea1c24] border border-white/15 hover:border-[#ea1c24] text-xs font-bold uppercase tracking-wider text-white transition-all shadow-md group"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.08] hover:bg-[#ea1c24] border border-white/15 hover:border-[#ea1c24] text-xs font-black uppercase tracking-wider text-white transition-all shadow-md hover:shadow-[0_0_25px_rgba(234,28,36,0.4)] group"
               >
-                <span>Explore Builds</span>
+                <span>INSPECT COMPLETED BUILDS</span>
                 <ArrowUpRight size={14} className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
@@ -317,8 +337,8 @@ export function BuiltDifferentStatement() {
             isHoveringCar ? "opacity-100 scale-100" : "opacity-0 scale-75"
           }`}
         >
-          <div className="px-3.5 py-1.5 rounded-full bg-[#ea1c24] text-white text-[10px] font-black uppercase tracking-wider shadow-[0_4px_25px_rgba(234,28,36,0.8)] border border-white/30 flex items-center gap-1">
-            <span>EXPLORE BUILD</span>
+          <div className="px-3.5 py-1.5 rounded-full bg-[#ea1c24] text-white text-[10px] font-black uppercase tracking-wider shadow-[0_4px_25px_rgba(234,28,36,0.8)] border border-white/30 flex items-center gap-1.5">
+            <span>INSPECT BUILD // GALLE SPEC</span>
             <ArrowUpRight size={12} />
           </div>
         </div>

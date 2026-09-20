@@ -17,10 +17,10 @@ const ScrollLockedFrameHero = dynamic(
 
 export default function HomePage() {
   const stats = [
-    { value: 30, suffix: "+", label: "PROJECTS COMPLETED" },
-    { value: 50, suffix: "+", label: "HAPPY CUSTOMERS" },
-    { value: 4, suffix: "+", label: "YEARS EXPERIENCE" },
-    { value: 15, suffix: "+", label: "SPECIALIZED SERVICES" },
+    { value: 350, suffix: "+", label: "CUSTOM BUILDS DELIVERED", spec: "Prius, Aqua & Civic" },
+    { value: 100, suffix: "%", label: "ZERO-GAP URETHANE FITMENT", spec: "High-flex · No fiberglass" },
+    { value: 5, suffix: "+", label: "YEARS WORKSHOP HERITAGE", spec: "Makuluwa, Galle" },
+    { value: 180, suffix: "+", label: "BI-LED RETROFITS CRAFTED", spec: "Laser cutoffs & flowing DRLs" },
   ];
 
   return (
@@ -28,9 +28,9 @@ export default function HomePage() {
       {/* 250-Frame Scroll-Locked Hero Scrubbing Component */}
       <ScrollLockedFrameHero
         frameCount={250}
-        title="TRANSFORMING CARS INTO PERSONALIZED MASTERPIECES"
-        scrollHint="SCROLL TO SCRUB CARMATE DIODES"
-        tagline="At Carmate we're passionate about transforming cars into personalized masterpieces!"
+        title="PRECISION AERO. BESPOKE LIGHTING. ZERO COMPROMISE."
+        scrollHint="SCRUB TO INSPECT CHASSIS & DIODE ILLUMINATION"
+        tagline="Prius 30/50 Modellista conversions, Bi-LED projector retrofits & baked 2K paintwork — handcrafted in Makuluwa, Galle."
         signature={{ name: "carmate.lk", url: "https://wa.me/94777177452" }}
       />
 
@@ -41,7 +41,7 @@ export default function HomePage() {
           <div className="gsap-stagger grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
             {stats.map((st) => (
               <div key={st.label} className="p-3">
-                <div className="text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight mb-2 flex items-center justify-center">
+                <div className="text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight mb-2 flex items-center justify-center font-heading">
                   <span
                     className="gsap-stat-number text-white"
                     data-target={st.value}
@@ -50,9 +50,14 @@ export default function HomePage() {
                   </span>
                   <span className="text-[#ea1c24] ml-0.5">{st.suffix}</span>
                 </div>
-                <p className="text-[10px] sm:text-xs font-bold tracking-wider sm:tracking-widest text-zinc-400 uppercase">
+                <p className="text-[10px] sm:text-xs font-bold tracking-wider sm:tracking-widest text-zinc-300 uppercase">
                   {st.label}
                 </p>
+                {st.spec && (
+                  <p className="text-[10px] font-mono text-zinc-500 mt-1 uppercase tracking-wider hidden sm:block">
+                    {st.spec}
+                  </p>
+                )}
               </div>
             ))}
           </div>
