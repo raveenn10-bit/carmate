@@ -1,0 +1,19 @@
+{
+  "name": "carmate-website",
+  "version": "1.0.0",
+  "description": "Carmate luxury vehicle modification & styling website",
+  "scripts": {
+    "dev": "npx live-server --port=3000 --no-browser",
+    "start": "npx live-server --port=3000"
+  },
+  "keywords": [
+    "carmate",
+    "automotive",
+    "vehicle-modification"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.35.4"
+  }
+}
