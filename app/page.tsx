@@ -4,7 +4,9 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ProjectAlbumsSection } from "@/components/ui/project-albums-section";
 import { VideoReelsSection } from "@/components/ui/video-reels-section";
-import { ArrowRight, Flame, Star } from "lucide-react";
+import { CraftsmanshipShowcaseSection } from "@/components/ui/craftsmanship-showcase-section";
+import { CinematicPriusCta } from "@/components/ui/cinematic-prius-cta";
+import { Star } from "lucide-react";
 
 const ScrollLockedFrameHero = dynamic(
   () => import("@/components/ui/scroll-locked-frame-hero"),
@@ -18,27 +20,6 @@ export default function HomePage() {
     { value: 1200, suffix: "+", label: "HAPPY CUSTOMERS" },
     { value: 5, suffix: "+", label: "YEARS EXPERIENCE" },
     { value: 15, suffix: "+", label: "SPECIALIZED SERVICES" },
-  ];
-
-  const services = [
-    {
-      title: "Aerodynamic Body Kits",
-      desc: "Custom front & rear bumpers, side splitters, and high-downforce GT wings tailored to your chassis.",
-      img: "/assets/carmate-project-1.jpg",
-      tag: "STYLING",
-    },
-    {
-      title: "Precision Lighting & DRL",
-      desc: "Bi-LED projector retrofits, app-controlled multi-color RGB DRLs, and dynamic sequential signal flows.",
-      img: "/assets/cac-8260-front-lights.jpg",
-      tag: "LIGHTING",
-    },
-    {
-      title: "Custom Cockpit & Trim",
-      desc: "Hand-stitched leather steering wheels, 64-color fiber-optic cabin ambience, and diamond upholstery.",
-      img: "/assets/black-beast-front.webp",
-      tag: "INTERIOR",
-    },
   ];
 
   const testimonialsRow1 = [
@@ -155,62 +136,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Passion & Craftsmanship Highlights with GSAP Split-Heading & Clip-Reveal */}
-      <section className="py-16 sm:py-24 bg-[#05070a] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12 sm:mb-16">
-            <div className="gsap-fade-up inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-3">
-              <Flame size={14} />
-              <span>Automotive Body Shop · Makuluwa, Galle</span>
-            </div>
-            <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white mb-4 sm:mb-6 leading-tight">
-              Pure Passion. Precision Execution.
-            </h2>
-            <p className="gsap-fade-in-out text-xs sm:text-sm md:text-base text-zinc-400 leading-relaxed">
-              At Carmate we're passionate about transforming cars into personalized masterpieces! Whether you're looking to enhance performance, elevate style, or customize your ride to reflect your unique taste, we've got you covered.
-            </p>
-          </div>
-
-          {/* 3 Featured Build Cards with GSAP Clip-Reveal & Stagger */}
-          <div className="gsap-stagger grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
-            {services.map((svc) => (
-              <div
-                key={svc.title}
-                className="group relative bg-[#090d14] rounded-2xl overflow-hidden border border-white/10 hover:border-[#ea1c24]/50 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
-              >
-                <div className="gsap-clip-reveal relative h-52 sm:h-64 overflow-hidden">
-                  <img
-                    src={svc.img}
-                    alt={svc.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090d14] via-transparent to-black/30 pointer-events-none" />
-                  <span className="absolute top-4 left-4 text-[10px] font-extrabold uppercase tracking-widest text-white bg-[#ea1c24] px-3 py-1 rounded-full shadow-md z-10">
-                    {svc.tag}
-                  </span>
-                </div>
-                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-[#ea1c24] transition-colors">
-                      {svc.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 leading-relaxed mb-5">
-                      {svc.desc}
-                    </p>
-                  </div>
-                  <Link
-                    href="/services"
-                    className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white group-hover:text-[#ea1c24] transition-colors"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Second Section: Craftsmanship & Pure Passion Showcase (Spyker-Style Asymmetric 3-Video ScrollTrigger Parallax) */}
+      <CraftsmanshipShowcaseSection />
 
 
       {/* Project Albums Section */}
@@ -297,33 +224,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final Call to Action with GSAP Fade-In-Out Entrance */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#070a0f] to-[#05070a] border-t border-white/10 text-center overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight mb-4 leading-tight">
-            Ready to Build Your Masterpiece?
-          </h2>
-          <p className="gsap-fade-in-out text-xs sm:text-sm md:text-base text-zinc-400 max-w-xl mx-auto mb-8 leading-relaxed">
-            Send us your vehicle model and photos on WhatsApp to get instant consultation, compatibility checks, and pricing.
-          </p>
-          <div className="gsap-fade-up flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto min-h-[48px] flex items-center justify-center bg-[#ea1c24] hover:bg-[#ff2d36] text-white font-bold text-xs uppercase tracking-wider px-8 py-3.5 rounded-full shadow-[0_4px_20px_rgba(234,28,36,0.4)] transition-all active:scale-95 text-center"
-            >
-              Calculate Quote ↗
-            </Link>
-            <a
-              href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20consult%20about%20a%20build."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto min-h-[48px] flex items-center justify-center bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-8 py-3.5 rounded-full border border-white/15 transition-all active:scale-95 text-center"
-            >
-              WhatsApp Us: 077 717 7452
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Final Cinematic CTA: Dark Full-Screen Prius Shot with Headlights Ignition, YOUR CAR. YOUR STYLE. and WhatsApp Action */}
+      <CinematicPriusCta />
     </div>
   );
 }
