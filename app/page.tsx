@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { ProjectAlbumsSection } from "@/components/ui/project-albums-section";
 import { VideoReelsSection } from "@/components/ui/video-reels-section";
 import { CraftsmanshipShowcaseSection } from "@/components/ui/craftsmanship-showcase-section";
+import { BuiltDifferentStatement } from "@/components/ui/built-different-statement";
 import { CinematicPriusCta } from "@/components/ui/cinematic-prius-cta";
 import { Star } from "lucide-react";
 
@@ -139,6 +140,8 @@ export default function HomePage() {
       {/* Second Section: Craftsmanship & Pure Passion Showcase (Spyker-Style Asymmetric 3-Video ScrollTrigger Parallax) */}
       <CraftsmanshipShowcaseSection />
 
+      {/* Standalone Cinematic Statement: BUILT DIFFERENT. (3D Kinetic Typography & Parallax Car Layering) */}
+      <BuiltDifferentStatement />
 
       {/* Project Albums Section */}
       <ProjectAlbumsSection />
