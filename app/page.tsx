@@ -75,7 +75,6 @@ export default function HomePage() {
         scrollHint="SCROLL TO SCRUB CARMATE DIODES"
         tagline="At Carmate we're passionate about transforming cars into personalized masterpieces!"
         signature={{ name: "carmate.lk", url: "https://wa.me/94777177452" }}
-        scrubDistance={4500}
       />
 
       {/* Stats Bar */}

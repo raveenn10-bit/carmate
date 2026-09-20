@@ -28,22 +28,22 @@ function clamp(v: number, min: number, max: number): number {
 
 /**
  * Dynamically compute device-tailored scrub distance:
- * - Desktop (> 1024px): 550vh - 650vh (~4800px)
- * - Tablet (768px - 1024px): 400vh - 500vh (~3200px)
- * - Mobile (< 768px): 300vh - 400vh (~1800px - 2200px)
+ * - Desktop (> 1024px): ~600vh
+ * - Tablet (768px - 1024px): ~460vh
+ * - Mobile (< 768px): ~340vh
  */
 function calculateDeviceScrubDistance(customScrub?: number): number {
-  if (typeof window === "undefined") return customScrub || 4800
+  if (customScrub) return customScrub
+  if (typeof window === "undefined") return 4800
   const w = window.innerWidth
   const h = window.innerHeight
 
   if (w > 1024) {
-    if (customScrub && customScrub >= 4000) return customScrub
-    return Math.round(clamp(h * 6.0, 4600, 5200))
+    return Math.round(clamp(h * 6.0, 4800, 7200))
   } else if (w >= 768) {
-    return Math.round(clamp(h * 4.5, 3000, 3600))
+    return Math.round(clamp(h * 4.6, 3200, 4800))
   } else {
-    return Math.round(clamp(h * 3.5, 1800, 2200))
+    return Math.round(clamp(h * 3.4, 1800, 3000))
   }
 }
 
