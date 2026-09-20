@@ -252,7 +252,7 @@ export default function ContactPage() {
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Workshop</div>
                   <a 
-                    href="https://www.google.com/maps/search/?api=1&query=197%20Hotel%20Suniru%20Lanka%20Makuluwa%20Galle%20Sri%20Lanka"
+                    href="https://maps.app.goo.gl/7bRAnS2v1Tb8iWMh7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-base font-semibold hover:text-[#ea1c24] transition-colors"
@@ -264,30 +264,49 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Content */}
-          <div className="hero-right relative h-[500px] w-full rounded-2xl overflow-hidden border border-white/5 bg-[#090d14] group">
-            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#ea1c24]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative">
-                <div className="w-32 h-32 rounded-full border border-[#ea1c24]/30 animate-ping absolute -inset-12"></div>
-                <div className="w-32 h-32 rounded-full border border-[#ea1c24]/20 animate-ping absolute -inset-12 delay-300"></div>
-                <div className="w-16 h-16 rounded-full bg-[#ea1c24]/10 border border-[#ea1c24] flex items-center justify-center relative z-10 backdrop-blur-md shadow-[0_0_30px_rgba(234,28,36,0.3)]">
-                  <MapPin className="w-8 h-8 text-[#ea1c24]" />
-                </div>
-              </div>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 p-6 bg-black/40 backdrop-blur-md border border-white/10 rounded-xl">
-              <div className="flex justify-between items-center">
+          {/* Right Content: Live Interactive Google Map */}
+          <div className="hero-right relative h-[500px] w-full rounded-2xl overflow-hidden border border-white/15 bg-[#090d14] group shadow-2xl">
+            {/* Embedded Google Map */}
+            <iframe
+              src="https://maps.google.com/maps?q=Hotel+Suniru+Lanka,+Makuluwa,+Galle&t=m&z=16&output=embed&iwloc=near"
+              className="w-full h-full border-0 filter invert-[90%] hue-rotate-[180deg] contrast-[120%] brightness-[95%] opacity-85 group-hover:opacity-100 transition-opacity duration-500"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Carmate Workshop Location - Hotel Suniru Lanka, Makuluwa, Galle"
+            />
+
+            {/* Subtle Vignette Overlays for Seamless Dark Integration */}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#090d14] via-transparent to-transparent opacity-80" />
+
+            {/* Top Badge: Open Direct Link */}
+            <a
+              href="https://maps.app.goo.gl/7bRAnS2v1Tb8iWMh7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono font-bold tracking-wider text-white hover:text-[#ea1c24] hover:border-[#ea1c24]/50 transition-all shadow-md"
+            >
+              <MapPin className="w-3 h-3 text-[#ea1c24]" />
+              <span>Google Maps ↗</span>
+            </a>
+
+            {/* Floating Destination Badge */}
+            <div className="absolute bottom-6 left-6 right-6 p-5 sm:p-6 bg-black/75 backdrop-blur-md border border-white/15 rounded-2xl shadow-2xl z-10">
+              <div className="flex justify-between items-center gap-4">
                 <div>
-                  <div className="text-xs font-bold text-[#ea1c24] uppercase tracking-widest mb-1">Destination</div>
-                  <div className="font-semibold text-lg">Carmate Workshop</div>
+                  <div className="text-xs font-bold text-[#ea1c24] uppercase tracking-widest mb-1 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ea1c24] animate-pulse" />
+                    <span>Destination</span>
+                  </div>
+                  <div className="font-semibold text-base sm:text-lg text-white">Carmate Workshop</div>
+                  <p className="text-[11px] text-zinc-400 font-mono mt-0.5">197 Hotel Suniru, Makuluwa, Galle</p>
                 </div>
                 <a 
-                  href="https://www.google.com/maps/search/?api=1&query=197%20Hotel%20Suniru%20Lanka%20Makuluwa%20Galle%20Sri%20Lanka"
+                  href="https://maps.app.goo.gl/7bRAnS2v1Tb8iWMh7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center hover:bg-[#ea1c24] hover:text-white transition-colors duration-300"
+                  aria-label="Open Carmate Workshop on Google Maps"
+                  className="w-12 h-12 shrink-0 bg-white text-black rounded-full flex items-center justify-center hover:bg-[#ea1c24] hover:text-white transition-all duration-300 shadow-lg active:scale-95"
                 >
                   <ArrowUp className="w-5 h-5 rotate-45" />
                 </a>

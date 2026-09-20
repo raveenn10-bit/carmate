@@ -29,16 +29,11 @@ export function BuiltDifferentStatement() {
   // Custom magnetic cursor movement (Desktop only)
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!cursorBadgeRef.current || window.innerWidth < 1024) return;
-    const bounds = containerRef.current?.getBoundingClientRect();
-    if (!bounds) return;
     
-    const x = e.clientX - bounds.left;
-    const y = e.clientY - bounds.top;
-
     gsap.to(cursorBadgeRef.current, {
-      x,
-      y,
-      duration: 0.35,
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.2,
       ease: "power2.out",
     });
   };
@@ -55,111 +50,111 @@ export function BuiltDifferentStatement() {
     if (prefersReducedMotion || !containerRef.current || !pinWrapperRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Create original scrubbed pinned timeline
+      // Cinematic scrubbed pinned timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "carmate-built-different",
           trigger: containerRef.current,
           start: "top top",
-          end: "+=160%", // pinned distance for smooth cinematic scrub
+          end: "+=120%", // pinned distance for smooth cinematic scrub
           pin: pinWrapperRef.current,
           pinSpacing: true,
-          scrub: 1.2,
+          scrub: 1,
           anticipatePin: 1,
         },
       });
 
-      // 1. Initial lock-in phase (0% - 40%)
+      // 1. Initial lock-in phase (0% - 35%)
       tl.fromTo(
         builtTextRef.current,
-        { xPercent: -50, opacity: 0.1 },
+        { xPercent: -10, opacity: 0.85 },
         { xPercent: 0, opacity: 1, ease: "power2.out" },
         0
       )
         .fromTo(
           differentTextRef.current,
-          { xPercent: 50, opacity: 0.1 },
+          { xPercent: 10, opacity: 0.85 },
           { xPercent: 0, opacity: 1, ease: "power2.out" },
           0
         )
         .fromTo(
           carWrapperRef.current,
-          { clipPath: "inset(15% 10% 15% 10%)", scale: 1.12, opacity: 0.3 },
-          { clipPath: "inset(0% 0% 0% 0%)", scale: 1.0, opacity: 1, ease: "power2.out" },
+          { scale: 1.04, opacity: 0.9, y: 15 },
+          { scale: 1.0, opacity: 1, y: 0, ease: "power2.out" },
           0
         )
         .fromTo(
           kineticRow1Ref.current,
-          { xPercent: 15, opacity: 0.05 },
-          { xPercent: -15, opacity: 0.15, ease: "none" },
+          { xPercent: 8, opacity: 0.08 },
+          { xPercent: -8, opacity: 0.15, ease: "none" },
           0
         )
         .fromTo(
           kineticRow2Ref.current,
-          { xPercent: -15, opacity: 0.05 },
-          { xPercent: 15, opacity: 0.15, ease: "none" },
+          { xPercent: -8, opacity: 0.08 },
+          { xPercent: 8, opacity: 0.15, ease: "none" },
           0
         )
         .fromTo(
           techLinesRef.current,
-          { scaleX: 0, opacity: 0 },
+          { scaleX: 0.6, opacity: 0.6 },
           { scaleX: 1, opacity: 1, ease: "power2.out" },
-          0.1
+          0.05
         )
         .fromTo(
           supportingTextRef.current,
-          { y: 40, opacity: 0 },
+          { y: 15, opacity: 0.8 },
           { y: 0, opacity: 1, ease: "power2.out" },
-          0.2
+          0.1
         );
 
-      // 2. Parallax deep drift while pinned (40% - 80%)
+      // 2. Parallax deep drift while pinned (35% - 75%)
       tl.to(
         builtTextRef.current,
-        { xPercent: 12, ease: "none" },
-        0.4
+        { xPercent: 6, ease: "none" },
+        0.35
       )
         .to(
           differentTextRef.current,
-          { xPercent: -12, ease: "none" },
-          0.4
+          { xPercent: -6, ease: "none" },
+          0.35
         )
         .to(
           carImageRef.current,
-          { yPercent: -6, scale: 1.03, ease: "none" },
-          0.4
+          { yPercent: -4, scale: 1.03, ease: "none" },
+          0.35
         )
         .to(
           kineticRow1Ref.current,
-          { xPercent: -35, ease: "none" },
-          0.4
+          { xPercent: -20, ease: "none" },
+          0.35
         )
         .to(
           kineticRow2Ref.current,
-          { xPercent: 35, ease: "none" },
-          0.4
+          { xPercent: 20, ease: "none" },
+          0.35
         );
 
-      // 3. Cinematic transition out (80% - 100%)
+      // 3. Cinematic transition out (75% - 100%)
       tl.to(
         builtTextRef.current,
-        { yPercent: -25, opacity: 0.4, ease: "power1.in" },
-        0.8
+        { yPercent: -15, opacity: 0.6, ease: "power1.in" },
+        0.75
       )
         .to(
           differentTextRef.current,
-          { yPercent: 25, opacity: 0.4, ease: "power1.in" },
-          0.8
+          { yPercent: 15, opacity: 0.6, ease: "power1.in" },
+          0.75
         )
         .to(
           carWrapperRef.current,
-          { scale: 1.06, opacity: 0.7, ease: "power1.in" },
-          0.8
+          { scale: 1.04, opacity: 0.8, ease: "power1.in" },
+          0.75
         )
         .to(
           supportingTextRef.current,
-          { opacity: 0.3, y: -20, ease: "power1.in" },
-          0.8
+          { opacity: 0.6, y: -10, ease: "power1.in" },
+          0.75
         );
     }, containerRef);
 
@@ -177,7 +172,7 @@ export function BuiltDifferentStatement() {
       {/* Pinned Viewport Frame */}
       <div
         ref={pinWrapperRef}
-        className="relative w-full h-screen min-h-[700px] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 py-10 sm:py-14"
+        className="relative w-full min-h-[100vh] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 pt-20 sm:pt-24 pb-8 sm:pb-10"
       >
         {/* Ambient Dark Automotive Lighting & Ground Grid */}
         <div className="absolute inset-0 pointer-events-none">
@@ -231,33 +226,36 @@ export function BuiltDifferentStatement() {
           <div className="w-full flex justify-start lg:pl-[6vw]">
             <h2
               ref={builtTextRef}
-              className="text-[20vw] sm:text-[18vw] lg:text-[17vw] font-black uppercase tracking-tighter leading-[0.82] text-white will-change-transform drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)]"
+              className="whitespace-nowrap text-[15vw] sm:text-[14vw] lg:text-[12vw] font-black uppercase tracking-tighter leading-[0.82] text-white will-change-transform drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)]"
               style={{ fontFamily: "'Oswald', 'Barlow Condensed', sans-serif" }}
             >
               BUILT
             </h2>
           </div>
 
-          {/* LAYER 2: High-Quality Modified Vehicle (Studio Presentation with Depth Overlap) */}
+          {/* LAYER 2: High-Quality Modified Vehicle Lineup (Studio Presentation with Depth Overlap) */}
           <div
             ref={carWrapperRef}
             onMouseEnter={() => setIsHoveringCar(true)}
             onMouseLeave={() => setIsHoveringCar(false)}
-            className="relative -my-[8vw] sm:-my-[10vw] lg:-my-[12vw] z-20 w-[92%] sm:w-[80%] lg:w-[64%] max-w-4xl cursor-pointer will-change-transform"
+            className="relative -my-[4vw] sm:-my-[5vw] lg:-my-[6vw] z-20 w-[94%] sm:w-[84%] lg:w-[70%] max-w-5xl cursor-pointer will-change-transform"
           >
-            <Link href="/gallery" className="block focus:outline-none" aria-label="View build in gallery">
-              {/* Under-chassis shadow & ambient red floor glow */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[85%] h-12 bg-black/90 blur-xl rounded-full" />
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-8 bg-[#ea1c24]/20 blur-lg rounded-full" />
-
-              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
+            <Link href="/gallery" className="block focus:outline-none group" aria-label="View build in gallery">
+              {/* Widescreen Cinematic Frame with Smooth Vignette Overlays */}
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#030508] shadow-[0_30px_90px_rgba(0,0,0,0.95)] group-hover:border-[#ea1c24]/50 transition-colors duration-500">
                 <img
                   ref={carImageRef}
                   src="/assets/carmate-prius-lineup.jpg"
                   alt="Carmate Custom Prius 30 & 50 Modellista Fleet - Makuluwa Workshop"
-                  className="w-full h-auto object-cover max-h-[50vh] sm:max-h-[58vh] transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="w-full h-auto object-cover max-h-[46vh] sm:max-h-[52vh] transition-transform duration-700 group-hover:scale-[1.02]"
                 />
+                {/* Soft Edge Gradient Masks to melt seamlessly into #030508 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030508]/85 via-transparent to-[#030508]/60 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/50 via-transparent to-[#030508]/50 pointer-events-none" />
               </div>
+
+              {/* Ambient Underbody Red Floor Glow */}
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[85%] h-10 bg-[#ea1c24]/20 blur-2xl rounded-full pointer-events-none" />
             </Link>
           </div>
 
@@ -265,7 +263,7 @@ export function BuiltDifferentStatement() {
           <div className="w-full flex justify-end lg:pr-[6vw] relative z-25">
             <h2
               ref={differentTextRef}
-              className="text-[17vw] sm:text-[16vw] lg:text-[15vw] font-black uppercase tracking-tighter leading-[0.82] text-transparent bg-clip-text bg-gradient-to-r from-[#ea1c24] via-[#ff3b44] to-[#ea1c24] will-change-transform drop-shadow-[0_0_35px_rgba(234,28,36,0.45)]"
+              className="whitespace-nowrap text-[13.5vw] sm:text-[12.5vw] lg:text-[10.5vw] font-black uppercase tracking-tighter leading-[0.82] text-transparent bg-clip-text bg-gradient-to-r from-[#ea1c24] via-[#ff3b44] to-[#ea1c24] will-change-transform drop-shadow-[0_0_35px_rgba(234,28,36,0.45)]"
               style={{
                 fontFamily: "'Oswald', 'Barlow Condensed', sans-serif",
                 WebkitTextStroke: "1px rgba(255,255,255,0.25)",

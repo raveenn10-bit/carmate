@@ -46,20 +46,21 @@ export function CinematicPriusCta() {
     >
       {/* Background Prius Atmosphere */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {/* Dark Cherry Metallic Prius Shot */}
+        {/* Dark Cherry Metallic Prius Shot - enhanced clarity & brightness */}
         <img
           src="/assets/carmate-prius-cherry.jpg"
           alt="Carmate Custom Stanced Prius 30 Modellista Cherry Edition - Makuluwa Workshop"
           className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out ${
             headlightsOn
-              ? "opacity-60 scale-100 brightness-105 contrast-105"
-              : "opacity-35 scale-105 brightness-75 contrast-95"
+              ? "opacity-90 scale-100 brightness-115 contrast-110"
+              : "opacity-80 scale-105 brightness-100 contrast-105"
           }`}
         />
 
-        {/* Deep Vignette Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030508] via-[#030508]/60 to-[#030508]/85" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/85 via-transparent to-[#030508]/85" />
+        {/* Lightweight Edge & Floor Vignette Overlays for crisp car visibility with solid text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030508] via-transparent to-[#030508]/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/60 via-transparent to-[#030508]/60" />
+        <div className="absolute inset-0 bg-black/20" />
 
         {/* Dynamic Headlight Lit Ambience & Volumetric Cones */}
         <div
