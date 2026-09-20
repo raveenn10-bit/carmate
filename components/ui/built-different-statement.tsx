@@ -44,7 +44,9 @@ export function BuiltDifferentStatement() {
   };
 
   React.useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -53,34 +55,37 @@ export function BuiltDifferentStatement() {
     if (prefersReducedMotion || !containerRef.current || !pinWrapperRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Smooth in-view scrubbed timeline (no invasive pin so it never overlaps other sections)
+      // Create original scrubbed pinned timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "carmate-built-different",
           trigger: containerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1,
+          start: "top top",
+          end: "+=160%", // pinned distance for smooth cinematic scrub
+          pin: pinWrapperRef.current,
+          pinSpacing: true,
+          scrub: 1.2,
+          anticipatePin: 1,
         },
       });
 
-      // 1. Reveal phase as section scrolls into view
+      // 1. Initial lock-in phase (0% - 40%)
       tl.fromTo(
         builtTextRef.current,
-        { xPercent: -35, opacity: 0 },
+        { xPercent: -50, opacity: 0.1 },
         { xPercent: 0, opacity: 1, ease: "power2.out" },
         0
       )
         .fromTo(
           differentTextRef.current,
-          { xPercent: 35, opacity: 0 },
+          { xPercent: 50, opacity: 0.1 },
           { xPercent: 0, opacity: 1, ease: "power2.out" },
           0
         )
         .fromTo(
           carWrapperRef.current,
-          { scale: 1.08, opacity: 0.2, y: 35 },
-          { scale: 1.0, opacity: 1, y: 0, ease: "power2.out" },
+          { clipPath: "inset(15% 10% 15% 10%)", scale: 1.12, opacity: 0.3 },
+          { clipPath: "inset(0% 0% 0% 0%)", scale: 1.0, opacity: 1, ease: "power2.out" },
           0
         )
         .fromTo(
@@ -169,10 +174,10 @@ export function BuiltDifferentStatement() {
       className="relative bg-[#030508] text-white w-full overflow-hidden border-t border-b border-white/10 select-none"
       style={{ minHeight: "100vh" }}
     >
-      {/* Cinematic Frame */}
+      {/* Pinned Viewport Frame */}
       <div
         ref={pinWrapperRef}
-        className="relative w-full min-h-[85vh] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 py-16 sm:py-24"
+        className="relative w-full h-screen min-h-[700px] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 py-10 sm:py-14"
       >
         {/* Ambient Dark Automotive Lighting & Ground Grid */}
         <div className="absolute inset-0 pointer-events-none">
@@ -233,29 +238,26 @@ export function BuiltDifferentStatement() {
             </h2>
           </div>
 
-          {/* LAYER 2: High-Quality Modified Vehicle Lineup (Studio Presentation with Depth Overlap) */}
+          {/* LAYER 2: High-Quality Modified Vehicle (Studio Presentation with Depth Overlap) */}
           <div
             ref={carWrapperRef}
             onMouseEnter={() => setIsHoveringCar(true)}
             onMouseLeave={() => setIsHoveringCar(false)}
-            className="relative -my-[5vw] sm:-my-[7vw] lg:-my-[8vw] z-20 w-[94%] sm:w-[84%] lg:w-[72%] max-w-5xl cursor-pointer will-change-transform"
+            className="relative -my-[8vw] sm:-my-[10vw] lg:-my-[12vw] z-20 w-[92%] sm:w-[80%] lg:w-[64%] max-w-4xl cursor-pointer will-change-transform"
           >
-            <Link href="/gallery" className="block focus:outline-none group" aria-label="View build in gallery">
-              {/* Widescreen Cinematic Frame with Smooth Vignette Overlays */}
-              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#030508] shadow-[0_30px_90px_rgba(0,0,0,0.95)] group-hover:border-[#ea1c24]/50 transition-colors duration-500">
+            <Link href="/gallery" className="block focus:outline-none" aria-label="View build in gallery">
+              {/* Under-chassis shadow & ambient red floor glow */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[85%] h-12 bg-black/90 blur-xl rounded-full" />
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[70%] h-8 bg-[#ea1c24]/20 blur-lg rounded-full" />
+
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
                 <img
                   ref={carImageRef}
                   src="/assets/carmate-prius-lineup.jpg"
                   alt="Carmate Custom Prius 30 & 50 Modellista Fleet - Makuluwa Workshop"
                   className="w-full h-auto object-cover max-h-[50vh] sm:max-h-[58vh] transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                {/* Soft Edge Gradient Masks to melt seamlessly into #030508 */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030508]/85 via-transparent to-[#030508]/60 pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/50 via-transparent to-[#030508]/50 pointer-events-none" />
               </div>
-
-              {/* Ambient Underbody Red Floor Glow */}
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-[85%] h-10 bg-[#ea1c24]/20 blur-2xl rounded-full pointer-events-none" />
             </Link>
           </div>
 

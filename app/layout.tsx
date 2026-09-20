@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { InitialLoader } from "@/components/ui/initial-loader";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
@@ -104,6 +105,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#05070a] text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-[#ea1c24] selection:text-white transition-colors duration-300">
+        <InitialLoader />
         <ThemeProvider defaultTheme="dark">
           <SmoothScrollProvider>
             <Navbar />
