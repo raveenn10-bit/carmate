@@ -72,18 +72,18 @@ export function Footer() {
 
       {/* Main Container - Full-Width Fluid Container up to 1720px (Eliminates empty black voids on 1440p/4K/Ultrawide) */}
       <div className="relative w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
-        {/* Main 5-Column Responsive Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 pb-14 sm:pb-16 border-b ${
+        {/* Main Responsive Grid - Split into 2 columns on mobile */}
+        <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-8 xl:gap-12 pb-14 sm:pb-16 border-b ${
           isDark ? "border-white/10" : "border-[#6b111e]/20"
         }`}>
           
-          {/* Column 1: Brand & Automotive Statement (spans 4 cols on lg/xl) */}
-          <div className="flex flex-col items-start space-y-4 lg:col-span-4 xl:col-span-4 pr-0 lg:pr-6">
+          {/* Column 1: Brand & Automotive Statement (spans 2 cols on mobile, 4 cols on lg/xl) */}
+          <div className="col-span-2 md:col-span-2 lg:col-span-4 xl:col-span-4 flex flex-col items-start space-y-4 pr-0 lg:pr-6">
             <Link href="/" className="inline-block group focus:outline-none">
               <img
                 src={isDark ? "/assets/carmate-logo.png" : "/assets/carmate-logo-light.png"}
                 alt="Carmate Modifications Galle"
-                className={`h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-102 ${
+                className={`h-9 sm:h-12 w-auto object-contain transition-transform group-hover:scale-102 ${
                   isDark
                     ? "drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
                     : "drop-shadow-sm"
@@ -199,8 +199,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (spans 2 cols on lg/xl) */}
-          <div className="lg:col-span-2 xl:col-span-2">
+          {/* Column 2: Quick Links (1 col on mobile, 2 cols on lg/xl) */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-2">
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
               <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
@@ -212,10 +212,10 @@ export function Footer() {
             <ul className="space-y-3 text-xs sm:text-sm">
               {[
                 { label: "Home", href: "/" },
-                { label: "About Our Workshop", href: "/about" },
-                { label: "Modification Services", href: "/services" },
-                { label: "Build Gallery & Reels", href: "/gallery" },
-                { label: "Instant Quote Builder", href: "/contact" },
+                { label: "About Workshop", href: "/about" },
+                { label: "Services", href: "/services" },
+                { label: "Build Gallery", href: "/gallery" },
+                { label: "Quote Builder", href: "/contact" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -234,8 +234,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Specialized Workshop Services (spans 3 cols on lg/xl) */}
-          <div className="lg:col-span-3 xl:col-span-3">
+          {/* Column 3: Specialized Workshop Services (1 col on mobile, 3 cols on lg/xl) */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-3 xl:col-span-3">
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
               <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
@@ -246,12 +246,12 @@ export function Footer() {
             </div>
             <ul className="space-y-3 text-xs sm:text-sm">
               {[
-                "Modellista, TRD & Mugen Body Kits",
-                "Bi-LED Projector Headlights & Devil Eyes",
-                "Carbon GT Wings & Rear Diffusers",
-                "Factory 2K Baked Paint & Touch-ups",
-                "Custom Seat Upholstery & Door Cards",
-                "Socket-to-Socket Wiring Harnesses",
+                "Modellista Body Kits",
+                "Bi-LED Projectors",
+                "Carbon GT Wings",
+                "2K Baked Paint",
+                "Custom Upholstery",
+                "Wiring Harnesses",
               ].map((service) => (
                 <li key={service}>
                   <Link
@@ -263,15 +263,15 @@ export function Footer() {
                     }`}
                   >
                     <span className="text-[#ea1c24]">▪</span>
-                    <span>{service}</span>
+                    <span className="truncate">{service}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Newsletter & Instant WhatsApp Consultation Card (spans 3 cols on lg/xl) */}
-          <div className={`flex flex-col justify-between space-y-4 lg:col-span-3 xl:col-span-3 border rounded-2xl p-5 sm:p-6 shadow-xl transition-colors ${
+          {/* Column 4: Newsletter & Instant WhatsApp Consultation Card (spans 2 cols on mobile, 3 cols on lg/xl) */}
+          <div className={`col-span-2 md:col-span-2 lg:col-span-3 xl:col-span-3 flex flex-col justify-between space-y-4 border rounded-2xl p-5 sm:p-6 shadow-xl transition-colors ${
             isDark
               ? "bg-white/[0.02] border-white/10"
               : "bg-white border-[#6b111e]/20 shadow-[0_8px_30px_rgba(10,10,12,0.06)]"
@@ -359,72 +359,72 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Middle Command Center: 4 Contact Cards Grid (Full Width Human-Crafted Workshop Hub) */}
+        {/* Middle Command Center: 4 Contact Cards Grid - 2 columns on mobile */}
         <div className="pt-10 sm:pt-12 pb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-5 w-full">
             {/* Card 1: Workshop Address */}
             <a
               href="https://www.google.com/maps/search/?api=1&query=197%20Hotel%20Suniru%20Lanka%20Makuluwa%20Galle%20Sri%20Lanka"
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
                   : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#6b111e] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
-                <MapPin size={20} />
+              <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                <p className={`text-[9px] sm:text-[10px] font-mono uppercase font-bold tracking-wider ${
                   isDark ? "text-zinc-500" : "text-[#222227]/80"
                 }`}>
-                  Workshop Coordinates
+                  Workshop
                 </p>
-                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                <p className={`text-[11px] sm:text-xs md:text-sm font-semibold truncate ${
                   isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#ea1c24]"
                 }`}>
-                  197 Hotel Suniru, Makuluwa
+                  197 Hotel Suniru
                 </p>
-                <span className="text-[10px] text-[#ea1c24] flex items-center gap-1 font-mono mt-0.5">
-                  Galle 80000, Sri Lanka <ExternalLink size={10} />
+                <span className="text-[9px] sm:text-[10px] text-[#ea1c24] flex items-center gap-1 font-mono mt-0.5">
+                  Galle <ExternalLink size={9} />
                 </span>
               </div>
             </a>
 
             {/* Card 2: Dedicated Workshop Operating Hours */}
             <div
-              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] border-white/10"
                   : "bg-white border-[#6b111e]/20 shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] shrink-0">
-                <Clock size={20} />
+              <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] shrink-0">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between">
-                  <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                <div className="flex items-center justify-between gap-1">
+                  <p className={`text-[9px] sm:text-[10px] font-mono uppercase font-bold tracking-wider ${
                     isDark ? "text-zinc-500" : "text-[#222227]/80"
                   }`}>
-                    Workshop Hours
+                    Hours
                   </p>
-                  <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-500 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Open Mon-Sat
+                  <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-emerald-500 uppercase bg-emerald-500/10 px-1 py-0.2 rounded">
+                    <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                    Open
                   </span>
                 </div>
-                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                <p className={`text-[11px] sm:text-xs md:text-sm font-semibold truncate ${
                   isDark ? "text-zinc-100" : "text-[#0a0a0c]"
                 }`}>
-                  Mon - Sat: 8:30 AM – 6:30 PM
+                  Mon-Sat: 8:30-6:30
                 </p>
-                <span className={`text-[10px] font-mono mt-0.5 block ${
+                <span className={`text-[9px] sm:text-[10px] font-mono mt-0.5 block truncate ${
                   isDark ? "text-zinc-400" : "text-[#222227]"
                 }`}>
-                  Sunday: By Prior Appointment
+                  Sunday: Appt only
                 </span>
               </div>
             </div>
@@ -432,30 +432,30 @@ export function Footer() {
             {/* Card 3: Direct Phone Line & Email */}
             <a
               href="tel:+94777177452"
-              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
                   : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#6b111e] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
-                <Phone size={20} />
+              <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                <p className={`text-[9px] sm:text-[10px] font-mono uppercase font-bold tracking-wider ${
                   isDark ? "text-zinc-500" : "text-[#222227]/80"
                 }`}>
-                  Direct Hotline
+                  Hotline
                 </p>
-                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                <p className={`text-[11px] sm:text-xs md:text-sm font-semibold truncate ${
                   isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#ea1c24]"
                 }`}>
                   +94 77 717 7452
                 </p>
-                <span className={`text-[10px] font-mono mt-0.5 block ${
+                <span className={`text-[9px] sm:text-[10px] font-mono mt-0.5 block truncate ${
                   isDark ? "text-zinc-400" : "text-[#222227]"
                 }`}>
-                  info@carmate.lk • Inquiries
+                  info@carmate.lk
                 </span>
               </div>
             </a>
@@ -465,34 +465,34 @@ export function Footer() {
               href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20consult%20about%20a%20vehicle%20modification."
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-[#25d366]/50"
                   : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#25d366] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#25d366]/10 border border-[#25d366]/30 flex items-center justify-center text-[#25d366] group-hover:scale-105 transition-transform shrink-0">
-                <MessageSquare size={20} />
+              <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-[#25d366]/10 border border-[#25d366]/30 flex items-center justify-center text-[#25d366] group-hover:scale-105 transition-transform shrink-0">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between">
-                  <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                <div className="flex items-center justify-between gap-1">
+                  <p className={`text-[9px] sm:text-[10px] font-mono uppercase font-bold tracking-wider ${
                     isDark ? "text-zinc-500" : "text-[#222227]/80"
                   }`}>
-                    WhatsApp Direct
+                    WhatsApp
                   </p>
-                  <span className="inline-flex items-center gap-1 text-[9px] font-bold text-[#25d366] uppercase bg-[#25d366]/10 px-1.5 py-0.5 rounded">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#25d366] animate-ping" />
-                    Online
+                  <span className="inline-flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-[#25d366] uppercase bg-[#25d366]/10 px-1 py-0.2 rounded">
+                    <span className="w-1 h-1 rounded-full bg-[#25d366] animate-ping" />
+                    Live
                   </span>
                 </div>
-                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                <p className={`text-[11px] sm:text-xs md:text-sm font-semibold truncate ${
                   isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#25d366]"
                 }`}>
-                  +94 77 717 7452
+                  Instant Quote
                 </p>
-                <span className="text-[10px] text-[#25d366] font-mono mt-0.5 block">
-                  Send car photos for instant quote ↗
+                <span className="text-[9px] sm:text-[10px] text-[#25d366] font-mono mt-0.5 block truncate">
+                  Send car photos ↗
                 </span>
               </div>
             </a>

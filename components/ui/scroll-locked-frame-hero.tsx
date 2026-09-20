@@ -410,6 +410,7 @@ export default function ScrollLockedFrameHero({
   return (
     <div
       ref={containerRef}
+      data-preserve-dark="true"
       className={className}
       style={{
         position: "relative",
@@ -420,6 +421,7 @@ export default function ScrollLockedFrameHero({
     >
       <div
         ref={sectionRef}
+        data-preserve-dark="true"
         style={{
           position: "sticky",
           top: 0,

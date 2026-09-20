@@ -41,6 +41,7 @@ export function CinematicPriusCta() {
   return (
     <section
       ref={sectionRef}
+      data-preserve-dark="true"
       className="relative min-h-[90vh] lg:min-h-screen w-full bg-[#030508] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 py-16 sm:py-20"
     >
       {/* Background Prius Atmosphere */}

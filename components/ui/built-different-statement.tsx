@@ -53,29 +53,27 @@ export function BuiltDifferentStatement() {
     if (prefersReducedMotion || !containerRef.current || !pinWrapperRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Create scrubbed pinned timeline
+      // Smooth in-view scrubbed timeline (no invasive pin so it never overlaps other sections)
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "carmate-built-different",
           trigger: containerRef.current,
-          start: "top top",
-          end: "+=160%", // pinned distance for smooth cinematic scrub
-          pin: pinWrapperRef.current,
-          scrub: 1.2,
-          anticipatePin: 1,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1,
         },
       });
 
-      // 1. Initial lock-in phase (0% - 40%)
+      // 1. Reveal phase as section scrolls into view
       tl.fromTo(
         builtTextRef.current,
-        { xPercent: -50, opacity: 0.1 },
+        { xPercent: -35, opacity: 0 },
         { xPercent: 0, opacity: 1, ease: "power2.out" },
         0
       )
         .fromTo(
           differentTextRef.current,
-          { xPercent: 50, opacity: 0.1 },
+          { xPercent: 35, opacity: 0 },
           { xPercent: 0, opacity: 1, ease: "power2.out" },
           0
         )
@@ -166,14 +164,15 @@ export function BuiltDifferentStatement() {
   return (
     <section
       ref={containerRef}
+      data-preserve-dark="true"
       onMouseMove={handleMouseMove}
       className="relative bg-[#030508] text-white w-full overflow-hidden border-t border-b border-white/10 select-none"
       style={{ minHeight: "100vh" }}
     >
-      {/* Pinned Viewport Frame */}
+      {/* Cinematic Frame */}
       <div
         ref={pinWrapperRef}
-        className="relative w-full h-screen min-h-[700px] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 py-10 sm:py-14"
+        className="relative w-full min-h-[85vh] flex flex-col justify-between overflow-hidden px-4 sm:px-8 lg:px-12 py-16 sm:py-24"
       >
         {/* Ambient Dark Automotive Lighting & Ground Grid */}
         <div className="absolute inset-0 pointer-events-none">

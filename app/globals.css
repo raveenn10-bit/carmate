@@ -303,8 +303,9 @@ html.light [data-keep-white] * {
   color: #FFFFFF !important;
 }
 
-/* Image overlay captions and badges retain crisp white text */
+/* Image overlay captions, hero canvas, and dark cinematic sections retain crisp white text */
 html.light [data-preserve-dark],
+html.light [data-preserve-dark] *,
 html.light [data-preserve-dark] h1,
 html.light [data-preserve-dark] h2,
 html.light [data-preserve-dark] h3,

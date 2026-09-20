@@ -1,18 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CARMATE_ALBUMS } from "@/lib/albums-data";
 import {
   Gallery,
-  GalleryGrid,
-  GalleryImage,
+  useGallery,
 } from "@/components/ui/shared-element-gallery";
 import {
   Camera,
   MessageSquareQuote,
   CheckCircle2,
   ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
 } from "lucide-react";
 
 interface PhotoItem {
@@ -26,6 +28,116 @@ interface PhotoItem {
   badge: string;
 }
 
+function AlbumsHorizontalTrack({ photos }: { photos: PhotoItem[] }) {
+  const { setSelectedImage } = useGallery();
+  const [isHovered, setIsHovered] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Duplicate photos so the horizontal reel loops seamlessly
+  const repeatedPhotos = useMemo(() => {
+    if (photos.length === 0) return [];
+    if (photos.length < 8) {
+      return [...photos, ...photos, ...photos, ...photos];
+    }
+    return [...photos, ...photos, ...photos];
+  }, [photos]);
+
+  const handleManualScroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = direction === "left" ? -400 : 400;
+    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
+  };
+
+  return (
+    <div
+      className="relative w-full overflow-hidden group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Edge Vignettes */}
+      <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#05070a] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#05070a] to-transparent z-10 pointer-events-none" />
+
+      {/* Floating Manual Controls */}
+      <div className="absolute top-3 right-4 z-20 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <button
+          onClick={() => handleManualScroll("left")}
+          aria-label="Scroll left"
+          className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-[#ea1c24] hover:border-[#ea1c24] flex items-center justify-center transition-all active:scale-95 shadow-lg"
+        >
+          <ChevronLeft size={16} />
+        </button>
+        <button
+          onClick={() => handleManualScroll("right")}
+          aria-label="Scroll right"
+          className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-[#ea1c24] hover:border-[#ea1c24] flex items-center justify-center transition-all active:scale-95 shadow-lg"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar px-4 sm:px-8 py-4 scroll-smooth"
+      >
+        <div
+          className={`flex gap-4 sm:gap-6 shrink-0 ${
+            isHovered ? "[animation-play-state:paused]" : ""
+          }`}
+          style={{
+            animation: "albumsScrollLtr 42s linear infinite",
+          }}
+        >
+          {repeatedPhotos.map((photo, idx) => (
+            <div
+              key={`${photo.id}-${idx}`}
+              onClick={() => setSelectedImage(photo)}
+              className="group/item relative w-[280px] xs:w-[320px] sm:w-[380px] md:w-[420px] aspect-[4/3] shrink-0 rounded-2xl overflow-hidden bg-[#0a0d14] border border-white/10 hover:border-[#ea1c24]/60 shadow-xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(234,28,36,0.2)] select-none"
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-700 will-change-transform"
+              />
+
+              {/* Gradient Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
+
+              {/* Badge */}
+              <div className="absolute top-3 left-3 z-10">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-white bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 shadow-sm">
+                  {photo.badge}
+                </span>
+              </div>
+
+              {/* Zoom Icon */}
+              <div className="absolute top-3 right-3 z-10 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                <span className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md">
+                  <ZoomIn size={14} />
+                </span>
+              </div>
+
+              {/* Bottom Caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 pointer-events-none">
+                <span className="text-[10px] font-mono text-[#ea1c24] font-bold uppercase tracking-wider block mb-0.5">
+                  {photo.category}
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-white leading-tight truncate">
+                  {photo.title}
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-mono">
+                  {photo.vehicle}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ProjectAlbumsSection() {
   const [filter, setFilter] = useState<string>("all");
 
@@ -37,7 +149,7 @@ export function ProjectAlbumsSection() {
     { id: "interior-cockpit", label: "Bespoke Interior" },
   ];
 
-  // Photos displayed: exactly 5 photos per project when "all" is active, or all photos for a selected project
+  // Photos displayed
   const filteredPhotos = useMemo<PhotoItem[]>(() => {
     if (filter === "all") {
       return CARMATE_ALBUMS.flatMap((album) =>
@@ -86,7 +198,8 @@ export function ProjectAlbumsSection() {
 
   return (
     <section
-      className="relative py-16 sm:py-28 bg-[#05070a] text-white border-y border-white/10"
+      data-preserve-dark="true"
+      className="relative py-16 sm:py-28 bg-[#05070a] text-white border-y border-white/10 overflow-hidden"
       id="albums"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,7 +216,7 @@ export function ProjectAlbumsSection() {
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <p className="gsap-fade-in-out text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
-              High-resolution documentation of completed builds from our Makuluwa bays. Select any frame to inspect urethane panel fitment, paint clarity, and custom headlight retrofits.
+              High-resolution documentation of completed builds from our Makuluwa bays. Auto-scrolling left-to-right reel. Click any photo to view full details.
             </p>
             <a
               href={whatsappInquiryUrl}
@@ -231,7 +344,7 @@ export function ProjectAlbumsSection() {
               <div className="flex items-center gap-2">
                 <Camera size={15} className="text-[#ea1c24]" />
                 <span>
-                  Browsing <strong>{filteredPhotos.length}</strong> featured Carmate modification photographs (5 per project). Click any project tab above to view its full photo chronicle.
+                  Browsing <strong>{filteredPhotos.length}</strong> featured Carmate modification photographs. Click any photo to view full screen.
                 </span>
               </div>
               <a
@@ -247,24 +360,9 @@ export function ProjectAlbumsSection() {
           )}
         </AnimatePresence>
 
-        {/* Shared Element Gallery Component */}
+        {/* Shared Element Gallery with Left-to-Right Auto-Scroll Track */}
         <Gallery key={filter}>
-          <GalleryGrid>
-            <AnimatePresence mode="popLayout">
-              {filteredPhotos.map((photo) => (
-                <GalleryImage
-                  key={photo.id}
-                  id={photo.id}
-                  src={photo.src}
-                  alt={photo.alt}
-                  title={photo.title}
-                  vehicle={photo.vehicle}
-                  category={photo.category}
-                  badge={photo.badge}
-                />
-              ))}
-            </AnimatePresence>
-          </GalleryGrid>
+          <AlbumsHorizontalTrack photos={filteredPhotos} />
         </Gallery>
 
         {/* Bottom Callout Bar */}
@@ -288,6 +386,18 @@ export function ProjectAlbumsSection() {
           </a>
         </div>
       </div>
+
+      {/* Global CSS for Albums Left-to-Right Marquee */}
+      <style jsx global>{`
+        @keyframes albumsScrollLtr {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+      `}</style>
     </section>
   );
 }
