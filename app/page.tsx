@@ -11,10 +11,6 @@ const ScrollLockedFrameHero = dynamic(
   { ssr: false }
 );
 
-const TransformationSlider = dynamic(
-  () => import("@/components/ui/transformation-slider").then((m) => m.TransformationSlider),
-  { ssr: false }
-);
 
 export default function HomePage() {
   const stats = [
@@ -216,26 +212,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Before & After Interactive Transformation Slider with GSAP Entrance */}
-      <section className="py-16 sm:py-24 bg-[#070a0f] border-t border-white/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="gsap-fade-in-out text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-            <span className="text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2 block">
-              Interactive Comparison
-            </span>
-            <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl font-black uppercase text-white tracking-tight mb-3">
-              See the Transformation
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Drag the center slider horizontally to compare factory OEM styling with Carmate's custom aero &amp; lighting build.
-            </p>
-          </div>
-
-          <div className="gsap-fade-up max-w-4xl mx-auto">
-            <TransformationSlider />
-          </div>
-        </div>
-      </section>
 
       {/* Project Albums Section */}
       <ProjectAlbumsSection />

@@ -1,29 +1,37 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { CARMATE_REELS, VideoReel } from "@/lib/reels-data";
+import { useState, useRef, useEffect } from "react";
+import { CARMATE_REELS } from "@/lib/reels-data";
 import { Play, Pause, Volume2, VolumeX, Sparkles } from "lucide-react";
 
 export function VideoReelsSection() {
-  const [playingId, setPlayingId] = useState<string | null>(null);
+  const [pausedMap, setPausedMap] = useState<{ [key: string]: boolean }>({});
   const [muted, setMuted] = useState(true);
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
-  const togglePlay = (id: string) => {
-    Object.entries(videoRefs.current).forEach(([k, v]) => {
-      if (!v) return;
-      if (k === id) {
-        if (v.paused) {
-          v.play().catch(() => {});
-          setPlayingId(id);
-        } else {
-          v.pause();
-          setPlayingId(null);
-        }
-      } else {
-        v.pause();
+  // Auto-play all 4 videos simultaneously on mount and maintain looping
+  useEffect(() => {
+    Object.values(videoRefs.current).forEach((video) => {
+      if (video) {
+        video.muted = true;
+        video.play().catch(() => {
+          // Autoplay policy fallback: muted autoplay is permitted on all modern browsers
+        });
       }
     });
+  }, []);
+
+  const togglePlay = (id: string) => {
+    const video = videoRefs.current[id];
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch(() => {});
+      setPausedMap((prev) => ({ ...prev, [id]: false }));
+    } else {
+      video.pause();
+      setPausedMap((prev) => ({ ...prev, [id]: true }));
+    }
   };
 
   const toggleSound = (e: React.MouseEvent) => {
@@ -43,36 +51,40 @@ export function VideoReelsSection() {
           <div>
             <div className="gsap-fade-up flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
               <Sparkles size={14} />
-              <span>9:16 Portrait Reels</span>
+              <span>9:16 Portrait Reels · Auto Play</span>
             </div>
             <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
               Build Footage &amp; DRL Sound
             </h2>
           </div>
           <p className="gsap-fade-in-out text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
-            Experience our dynamic lighting sequences, exhaust notes, and body transformations in native 9:16 vertical video format.
+            Experience our dynamic lighting sequences, exhaust notes, and body transformations in native 9:16 vertical video format with automatic playback.
           </p>
         </div>
 
-        {/* Video Track Grid with Responsive Portrait Cards */}
+        {/* Video Track Grid with Responsive 9:16 Portrait Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-6 max-w-sm sm:max-w-none mx-auto">
           {CARMATE_REELS.map((reel) => {
-            const isPlaying = playingId === reel.id;
+            const isManuallyPaused = !!pausedMap[reel.id];
 
             return (
               <div
                 key={reel.id}
                 onClick={() => togglePlay(reel.id)}
-                className="group relative rounded-2xl overflow-hidden bg-black border border-white/10 hover:border-[#ea1c24]/50 shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(234,28,36,0.2)] select-none"
+                className="group relative rounded-2xl overflow-hidden bg-black border border-white/10 hover:border-[#ea1c24]/60 shadow-2xl cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(234,28,36,0.25)] select-none"
               >
                 {/* 9:16 Video Wrapper */}
                 <div className="relative w-full aspect-[9/16] bg-zinc-950 overflow-hidden">
                   <video
-                    ref={(el) => { videoRefs.current[reel.id] = el; }}
+                    ref={(el) => {
+                      videoRefs.current[reel.id] = el;
+                    }}
                     src={reel.src}
+                    autoPlay
                     loop
                     playsInline
                     muted={muted}
+                    preload="auto"
                     className="w-full h-full object-cover"
                   />
 
@@ -81,8 +93,9 @@ export function VideoReelsSection() {
 
                   {/* Top Bar Badges & Sound Toggle */}
                   <div className="absolute top-3.5 left-3.5 right-3.5 sm:top-4 sm:left-4 sm:right-4 flex justify-between items-center z-10">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 shadow-sm pointer-events-none">
-                      {reel.badge}
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-white bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 shadow-sm pointer-events-none flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ea1c24] animate-pulse" />
+                      <span>{reel.badge}</span>
                     </span>
 
                     {/* Sound Toggle Button with >=44px touch target */}
@@ -90,27 +103,27 @@ export function VideoReelsSection() {
                       type="button"
                       onClick={toggleSound}
                       className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/70 hover:bg-[#ea1c24] active:bg-[#ea1c24] text-white rounded-full backdrop-blur-md transition-all active:scale-95 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#ea1c24]"
-                      aria-label={muted ? "Unmute video audio" : "Mute video audio"}
+                      aria-label={muted ? "Unmute audio" : "Mute audio"}
                     >
                       {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
                     </button>
                   </div>
 
-                  {/* Center Play/Pause Button with >=44px touch target */}
+                  {/* Center Play/Pause Cue */}
                   <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        togglePlay(reel.id);
-                      }}
-                      className={`pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 min-w-[44px] min-h-[44px] rounded-full bg-[#ea1c24]/90 hover:bg-[#ea1c24] text-white flex items-center justify-center shadow-[0_0_25px_rgba(234,28,36,0.6)] backdrop-blur-md transition-all duration-300 active:scale-95 ${
-                        isPlaying ? "opacity-0 scale-75 pointer-events-none" : "opacity-100 scale-100 group-hover:scale-110"
+                    <div
+                      className={`w-14 h-14 sm:w-16 sm:h-16 min-w-[44px] min-h-[44px] rounded-full bg-[#ea1c24]/90 text-white flex items-center justify-center shadow-[0_0_25px_rgba(234,28,36,0.6)] backdrop-blur-md transition-all duration-300 ${
+                        isManuallyPaused
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-75 group-hover:opacity-80 group-hover:scale-100"
                       }`}
-                      aria-label={isPlaying ? "Pause video" : "Play video"}
                     >
-                      <Play size={26} className="ml-1 fill-current" />
-                    </button>
+                      {isManuallyPaused ? (
+                        <Play size={24} className="ml-0.5 fill-current" />
+                      ) : (
+                        <Pause size={24} className="fill-current" />
+                      )}
+                    </div>
                   </div>
 
                   {/* Bottom Info Overlay */}

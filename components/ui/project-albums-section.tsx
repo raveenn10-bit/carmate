@@ -37,26 +37,36 @@ export function ProjectAlbumsSection() {
     { id: "interior-cockpit", label: "Bespoke Interior" },
   ];
 
-  // Flatten all verified Carmate photos with their project context
-  const allPhotos = useMemo<PhotoItem[]>(() => {
-    return CARMATE_ALBUMS.flatMap((album) =>
-      album.photos.map((photoUrl, idx) => ({
-        id: `${album.id}-${idx}`,
-        src: photoUrl,
-        alt: `${album.name} - ${album.vehicle} photo ${idx + 1}`,
-        albumId: album.id,
-        title: album.name,
-        vehicle: album.vehicle,
-        category: album.category,
-        badge: album.name.replace("Project ", ""),
-      }))
-    );
-  }, []);
+  // Photos displayed: exactly 5 photos per project when "all" is active, or all photos for a selected project
+  const filteredPhotos = useMemo<PhotoItem[]>(() => {
+    if (filter === "all") {
+      return CARMATE_ALBUMS.flatMap((album) =>
+        album.photos.slice(0, 5).map((photoUrl, idx) => ({
+          id: `${album.id}-${idx}`,
+          src: photoUrl,
+          alt: `${album.name} - ${album.vehicle} photo ${idx + 1}`,
+          albumId: album.id,
+          title: album.name,
+          vehicle: album.vehicle,
+          category: album.category,
+          badge: album.name.replace("Project ", ""),
+        }))
+      );
+    }
 
-  const filteredPhotos = useMemo(() => {
-    if (filter === "all") return allPhotos;
-    return allPhotos.filter((p) => p.albumId === filter);
-  }, [filter, allPhotos]);
+    const album = CARMATE_ALBUMS.find((a) => a.id === filter);
+    if (!album) return [];
+    return album.photos.map((photoUrl, idx) => ({
+      id: `${album.id}-${idx}`,
+      src: photoUrl,
+      alt: `${album.name} - ${album.vehicle} photo ${idx + 1}`,
+      albumId: album.id,
+      title: album.name,
+      vehicle: album.vehicle,
+      category: album.category,
+      badge: album.name.replace("Project ", ""),
+    }));
+  }, [filter]);
 
   const activeProject = useMemo(() => {
     if (filter === "all") return null;
@@ -112,7 +122,7 @@ export function ProjectAlbumsSection() {
           {filterTabs.map((tab) => {
             const count =
               tab.id === "all"
-                ? allPhotos.length
+                ? CARMATE_ALBUMS.length * 5
                 : CARMATE_ALBUMS.find((a) => a.id === tab.id)?.photos.length || 0;
 
             const isActive = filter === tab.id;
@@ -221,7 +231,7 @@ export function ProjectAlbumsSection() {
               <div className="flex items-center gap-2">
                 <Camera size={15} className="text-[#ea1c24]" />
                 <span>
-                  Browsing <strong>{allPhotos.length}</strong> verified Carmate modification photographs across all 4 flagship build chronicles. Click any photo to inspect in full-screen with drag-to-dismiss.
+                  Browsing <strong>{filteredPhotos.length}</strong> featured Carmate modification photographs (5 per project). Click any project tab above to view its full photo chronicle.
                 </span>
               </div>
               <a

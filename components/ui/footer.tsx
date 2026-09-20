@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin, ChevronRight, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 
 export function Footer() {
   return (
@@ -141,17 +141,28 @@ export function Footer() {
         </div>
       </div>
 
-      {/* WhatsApp Floating Button - Safe Area & Touch Friendly */}
+      {/* Official WhatsApp Floating Button - Safe Area & Touch Friendly */}
       <a
         href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20discuss%20a%20vehicle%20modification."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-[#25d366] hover:bg-[#2ee672] active:bg-[#20b858] text-white font-bold p-3 sm:p-3.5 min-w-[48px] min-h-[48px] rounded-full shadow-[0_4px_24px_rgba(37,211,102,0.45)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group focus:outline-none focus:ring-2 focus:ring-white"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 bg-[#25d366] hover:bg-[#20bd5a] active:bg-[#1caa50] text-white font-bold p-3 sm:px-5 sm:py-3.5 min-w-[50px] min-h-[50px] rounded-full shadow-[0_6px_28px_rgba(37,211,102,0.55)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-white border border-white/20"
         aria-label="Chat with Carmate on WhatsApp"
       >
-        <MessageCircle size={22} className="fill-current text-white flex-shrink-0" />
-        <span className="hidden sm:inline-block pr-1 text-white text-xs font-bold uppercase tracking-wider">
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-6 h-6 shrink-0 fill-white drop-shadow-sm"
+          aria-hidden="true"
+        >
+          <path d="M12.031 0C5.397 0 .007 5.385.007 12.018a11.97 11.97 0 0 0 1.636 6.077L0 24l6.093-1.6a11.97 11.97 0 0 0 5.938 1.57h.005c6.634 0 12.023-5.385 12.023-12.018A12.01 12.01 0 0 0 12.031 0zm-.005 21.99a9.99 9.99 0 0 1-5.093-1.39l-.365-.216-3.784.993 1.01-3.69-.238-.378a9.96 9.96 0 0 1-1.542-5.291c0-5.522 4.496-10.016 10.017-10.016a9.97 9.97 0 0 1 7.086 2.935 9.97 9.97 0 0 1 2.936 7.084c0 5.523-4.494 10.018-10.027 10.018zm5.492-7.5c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.495-.896-.799-1.5-1.787-1.676-2.088-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.101-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.586-.492-.507-.677-.516l-.577-.01c-.2 0-.527.075-.802.376s-1.053 1.029-1.053 2.509 1.078 2.909 1.229 3.11c.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.23 1.378.197 1.897.12.578-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.125-.276-.201-.577-.351z" />
+        </svg>
+        <span className="hidden sm:inline-block pr-0.5 text-white text-xs font-bold uppercase tracking-wider">
           WhatsApp
+        </span>
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
         </span>
       </a>
     </footer>
