@@ -73,38 +73,54 @@ export function Footer() {
       {/* Main Container - Full-Width Fluid Container up to 1720px (Eliminates empty black voids on 1440p/4K/Ultrawide) */}
       <div className="relative w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
         {/* Main 5-Column Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 pb-14 sm:pb-16 border-b border-white/10">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 pb-14 sm:pb-16 border-b ${
+          isDark ? "border-white/10" : "border-[#62B6CB]/30"
+        }`}>
           
           {/* Column 1: Brand & Automotive Statement (spans 4 cols on lg/xl) */}
           <div className="flex flex-col items-start space-y-4 lg:col-span-4 xl:col-span-4 pr-0 lg:pr-6">
             <Link href="/" className="inline-block group focus:outline-none">
               <img
-                src="/assets/carmate-logo.png"
+                src={isDark ? "/assets/carmate-logo.png" : "/assets/carmate-logo-light.png"}
                 alt="Carmate Modifications Galle"
-                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-102 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+                className={`h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-102 ${
+                  isDark
+                    ? "drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+                    : "drop-shadow-sm"
+                }`}
               />
             </Link>
 
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#ea1c24] uppercase">
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] uppercase transition-colors ${
+              isDark
+                ? "bg-white/[0.04] border-white/10 text-[#ea1c24]"
+                : "bg-[#BEE9E8]/70 border-[#62B6CB]/40 text-[#0B1F3B]"
+            }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#ea1c24] animate-pulse" />
               <span>SOUTHERN CEYLON AUTOMOTIVE ATELIER</span>
             </div>
 
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-md">
+            <p className={`text-xs sm:text-sm leading-relaxed max-w-md transition-colors ${
+              isDark ? "text-zinc-400" : "text-[#1B4965]"
+            }`}>
               Galle's premier automotive styling workshop. Engineered body kit fitting, custom Bi-LED projector retrofits, 2K baked paint perfection, and bespoke vehicle transformations.
             </p>
 
             {/* Red Slogan Accent */}
             <div className="pt-1">
               <div className="h-[2px] w-12 bg-gradient-to-r from-[#ea1c24] to-transparent mb-2" />
-              <p className="text-[11px] sm:text-xs font-black tracking-[0.22em] text-white uppercase">
+              <p className={`text-[11px] sm:text-xs font-black tracking-[0.22em] uppercase transition-colors ${
+                isDark ? "text-white" : "text-[#0B1F3B]"
+              }`}>
                 BUILT DIFFERENT. ALWAYS.
               </p>
             </div>
 
             {/* Social Channels Pill Bar */}
             <div className="pt-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2">
+              <span className={`text-[10px] font-mono uppercase tracking-widest block mb-2 transition-colors ${
+                isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+              }`}>
                 Connect With Workshop
               </span>
               <div className="flex flex-wrap items-center gap-2.5">
@@ -136,7 +152,7 @@ export function Footer() {
                   </svg>
                 </a>
 
-                {/* TikTok - Official Black #010101 with Cyan/Magenta Shadow */}
+                {/* TikTok - Official Black #010101 */}
                 <a
                   href="https://www.facebook.com/profile.php?id=61561763061849"
                   target="_blank"
@@ -187,41 +203,34 @@ export function Footer() {
           <div className="lg:col-span-2 xl:col-span-2">
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
-              <h4 className="text-xs sm:text-sm font-bold tracking-wider text-white uppercase">
+              <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
+                isDark ? "text-white" : "text-[#0B1F3B]"
+              }`}>
                 Explore Carmate
               </h4>
             </div>
-            <ul className="space-y-3 text-xs sm:text-sm text-zinc-400">
-              <li>
-                <Link href="/" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all">
-                  <ChevronRight size={13} className="text-[#ea1c24]" />
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all">
-                  <ChevronRight size={13} className="text-[#ea1c24]" />
-                  <span>About Our Workshop</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all">
-                  <ChevronRight size={13} className="text-[#ea1c24]" />
-                  <span>Modification Services</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all">
-                  <ChevronRight size={13} className="text-[#ea1c24]" />
-                  <span>Build Gallery & Reels</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all">
-                  <ChevronRight size={13} className="text-[#ea1c24]" />
-                  <span>Instant Quote Builder</span>
-                </Link>
-              </li>
+            <ul className="space-y-3 text-xs sm:text-sm">
+              {[
+                { label: "Home", href: "/" },
+                { label: "About Our Workshop", href: "/about" },
+                { label: "Modification Services", href: "/services" },
+                { label: "Build Gallery & Reels", href: "/gallery" },
+                { label: "Instant Quote Builder", href: "/contact" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className={`inline-flex items-center gap-1.5 transition-all hover:translate-x-1 ${
+                      isDark
+                        ? "text-zinc-400 hover:text-white"
+                        : "text-[#1B4965] hover:text-[#ea1c24]"
+                    }`}
+                  >
+                    <ChevronRight size={13} className="text-[#ea1c24]" />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -229,62 +238,58 @@ export function Footer() {
           <div className="lg:col-span-3 xl:col-span-3">
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
-              <h4 className="text-xs sm:text-sm font-bold tracking-wider text-white uppercase">
+              <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
+                isDark ? "text-white" : "text-[#0B1F3B]"
+              }`}>
                 Workshop Services
               </h4>
             </div>
-            <ul className="space-y-3 text-xs sm:text-sm text-zinc-400">
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Modellista, TRD & Mugen Body Kits</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Bi-LED Projector Headlights & Devil Eyes</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Carbon GT Wings & Rear Diffusers</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Factory 2K Baked Paint & Touch-ups</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Custom Seat Upholstery & Door Cards</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group">
-                  <span className="text-zinc-600 group-hover:text-[#ea1c24] transition-colors">▪</span>
-                  <span>Socket-to-Socket Wiring Harnesses</span>
-                </Link>
-              </li>
+            <ul className="space-y-3 text-xs sm:text-sm">
+              {[
+                "Modellista, TRD & Mugen Body Kits",
+                "Bi-LED Projector Headlights & Devil Eyes",
+                "Carbon GT Wings & Rear Diffusers",
+                "Factory 2K Baked Paint & Touch-ups",
+                "Custom Seat Upholstery & Door Cards",
+                "Socket-to-Socket Wiring Harnesses",
+              ].map((service) => (
+                <li key={service}>
+                  <Link
+                    href="/services"
+                    className={`inline-flex items-center gap-1.5 transition-all hover:translate-x-1 group ${
+                      isDark
+                        ? "text-zinc-400 hover:text-white"
+                        : "text-[#1B4965] hover:text-[#ea1c24]"
+                    }`}
+                  >
+                    <span className="text-[#ea1c24]">▪</span>
+                    <span>{service}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Column 4: Newsletter & Instant WhatsApp Consultation Card (spans 3 cols on lg/xl) */}
-          <div className="flex flex-col justify-between space-y-4 lg:col-span-3 xl:col-span-3 bg-white/[0.02] border border-white/10 rounded-2xl p-5 sm:p-6 shadow-xl">
+          <div className={`flex flex-col justify-between space-y-4 lg:col-span-3 xl:col-span-3 border rounded-2xl p-5 sm:p-6 shadow-xl transition-colors ${
+            isDark
+              ? "bg-white/[0.02] border-white/10"
+              : "bg-white/95 border-[#62B6CB]/35 shadow-[0_8px_30px_rgba(11,31,59,0.06)]"
+          }`}>
             <div>
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-xs sm:text-sm font-bold tracking-wider text-white uppercase">
+                <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
+                  isDark ? "text-white" : "text-[#0B1F3B]"
+                }`}>
                   VIP Build Updates
                 </h4>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#ea1c24]/20 text-[#ea1c24] font-bold">
                   UPDATES
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+              <p className={`text-xs leading-relaxed mb-4 transition-colors ${
+                isDark ? "text-zinc-400" : "text-[#1B4965]"
+              }`}>
                 Be the first to see fresh project rollouts, body kit arrivals and special seasonal offers.
               </p>
 
@@ -302,7 +307,11 @@ export function Footer() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your email address"
-                      className="flex-1 min-w-0 bg-white/[0.04] border border-white/15 focus:border-[#ea1c24] focus:outline-none text-xs text-white placeholder:text-zinc-500 px-3.5 py-2.5 rounded-xl transition-colors"
+                      className={`flex-1 min-w-0 border focus:outline-none text-xs px-3.5 py-2.5 rounded-xl transition-colors ${
+                        isDark
+                          ? "bg-white/[0.04] border-white/15 text-white placeholder:text-zinc-500 focus:border-[#ea1c24]"
+                          : "bg-white border-[#62B6CB]/45 text-[#0B1F3B] placeholder:text-[#1B4965]/60 focus:border-[#62B6CB] shadow-inner"
+                      }`}
                     />
                     <button
                       type="submit"
@@ -321,7 +330,9 @@ export function Footer() {
                       required
                       className="mt-0.5 rounded border-white/20 bg-white/[0.05] text-[#ea1c24] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#ea1c24]"
                     />
-                    <span className="text-[11px] text-zinc-400 group-hover:text-zinc-300 select-none leading-tight">
+                    <span className={`text-[11px] select-none leading-tight transition-colors ${
+                      isDark ? "text-zinc-400 group-hover:text-zinc-300" : "text-[#1B4965] group-hover:text-[#0B1F3B]"
+                    }`}>
                       I agree to receive automotive project updates.
                     </span>
                   </label>
@@ -330,12 +341,16 @@ export function Footer() {
             </div>
 
             {/* Quick WhatsApp Action Banner inside the card */}
-            <div className="pt-3 border-t border-white/10">
+            <div className={`pt-3 border-t ${isDark ? "border-white/10" : "border-[#62B6CB]/20"}`}>
               <a
                 href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20vehicle%20build."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#25d366]/10 hover:bg-[#25d366] text-[#25d366] hover:text-black border border-[#25d366]/30 hover:border-[#25d366] text-xs font-bold uppercase tracking-wider transition-all duration-200"
+                className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                  isDark
+                    ? "bg-[#25d366]/10 hover:bg-[#25d366] text-[#25d366] hover:text-black border border-[#25d366]/30 hover:border-[#25d366]"
+                    : "bg-[#25d366]/15 hover:bg-[#25d366] text-[#0B1F3B] hover:text-black border border-[#25d366]/40 hover:border-[#25d366]"
+                }`}
               >
                 <MessageSquare size={14} />
                 <span>Instant WhatsApp Quote</span>
@@ -344,7 +359,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Middle Command Center: 4 Contact Cards Grid (Spans Full Width across all screen sizes) */}
+        {/* Middle Command Center: 4 Contact Cards Grid (Full Width Human-Crafted Workshop Hub) */}
         <div className="pt-10 sm:pt-12 pb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
             {/* Card 1: Workshop Address */}
@@ -352,62 +367,95 @@ export function Footer() {
               href="https://www.google.com/maps/search/?api=1&query=197%20Hotel%20Suniru%20Lanka%20Makuluwa%20Galle%20Sri%20Lanka"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-lg"
+              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+                isDark
+                  ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
+                  : "bg-white hover:bg-[#BEE9E8]/20 border-[#62B6CB]/35 hover:border-[#62B6CB] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+              }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
                 <MapPin size={20} />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-mono uppercase font-bold text-zinc-500 tracking-wider">
-                  Workshop Location
+                <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                  isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                }`}>
+                  Workshop Coordinates
                 </p>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-100 group-hover:text-white truncate">
-                  Makuluwa, Galle, Sri Lanka
+                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#ea1c24]"
+                }`}>
+                  197 Hotel Suniru, Makuluwa
                 </p>
                 <span className="text-[10px] text-[#ea1c24] flex items-center gap-1 font-mono mt-0.5">
-                  View on Google Maps <ExternalLink size={10} />
+                  Galle 80000, Sri Lanka <ExternalLink size={10} />
                 </span>
               </div>
             </a>
 
-            {/* Card 2: Direct Phone Line */}
+            {/* Card 2: Dedicated Workshop Operating Hours */}
+            <div
+              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+                isDark
+                  ? "bg-white/[0.02] border-white/10"
+                  : "bg-white border-[#62B6CB]/35 shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+              }`}
+            >
+              <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] shrink-0">
+                <Clock size={20} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between">
+                  <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                    isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                  }`}>
+                    Workshop Hours
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-500 uppercase bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Open Mon-Sat
+                  </span>
+                </div>
+                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                  isDark ? "text-zinc-100" : "text-[#0B1F3B]"
+                }`}>
+                  Mon - Sat: 8:30 AM – 6:30 PM
+                </p>
+                <span className={`text-[10px] font-mono mt-0.5 block ${
+                  isDark ? "text-zinc-400" : "text-[#1B4965]"
+                }`}>
+                  Sunday: By Prior Appointment
+                </span>
+              </div>
+            </div>
+
+            {/* Card 3: Direct Phone Line & Email */}
             <a
               href="tel:+94777177452"
-              className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-lg"
+              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+                isDark
+                  ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
+                  : "bg-white hover:bg-[#BEE9E8]/20 border-[#62B6CB]/35 hover:border-[#62B6CB] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+              }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
                 <Phone size={20} />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-mono uppercase font-bold text-zinc-500 tracking-wider">
-                  Hotline & Call
+                <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                  isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                }`}>
+                  Direct Hotline
                 </p>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-100 group-hover:text-white truncate">
+                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#ea1c24]"
+                }`}>
                   +94 77 717 7452
                 </p>
-                <span className="text-[10px] text-zinc-400 flex items-center gap-1 font-mono mt-0.5">
-                  <Clock size={10} /> Mon - Sat: 8:30 AM - 6:30 PM
-                </span>
-              </div>
-            </a>
-
-            {/* Card 3: Email Inquiries */}
-            <a
-              href="mailto:info@carmate.lk"
-              className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-white/20 transition-all duration-200 group shadow-lg"
-            >
-              <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
-                <Mail size={20} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-mono uppercase font-bold text-zinc-500 tracking-wider">
-                  Email Inquiries
-                </p>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-100 group-hover:text-white truncate">
-                  info@carmate.lk
-                </p>
-                <span className="text-[10px] text-zinc-400 font-mono mt-0.5 block">
-                  Estimates & Project Specs
+                <span className={`text-[10px] font-mono mt-0.5 block ${
+                  isDark ? "text-zinc-400" : "text-[#1B4965]"
+                }`}>
+                  info@carmate.lk • Inquiries
                 </span>
               </div>
             </a>
@@ -417,26 +465,34 @@ export function Footer() {
               href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20consult%20about%20a%20vehicle%20modification."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-[#25d366]/50 transition-all duration-200 group shadow-lg"
+              className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
+                isDark
+                  ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-[#25d366]/50"
+                  : "bg-white hover:bg-[#BEE9E8]/25 border-[#62B6CB]/35 hover:border-[#25d366] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+              }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#25d366]/10 border border-[#25d366]/30 flex items-center justify-center text-[#25d366] group-hover:scale-105 transition-transform shrink-0">
                 <MessageSquare size={20} />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-mono uppercase font-bold text-zinc-500 tracking-wider">
-                    WhatsApp Chat
+                  <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                    isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                  }`}>
+                    WhatsApp Direct
                   </p>
                   <span className="inline-flex items-center gap-1 text-[9px] font-bold text-[#25d366] uppercase bg-[#25d366]/10 px-1.5 py-0.5 rounded">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#25d366] animate-ping" />
                     Online
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-100 group-hover:text-white truncate">
+                <p className={`text-xs sm:text-sm font-semibold truncate ${
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#25d366]"
+                }`}>
                   +94 77 717 7452
                 </p>
                 <span className="text-[10px] text-[#25d366] font-mono mt-0.5 block">
-                  Send car photos for instant quote
+                  Send car photos for instant quote ↗
                 </span>
               </div>
             </a>
@@ -471,51 +527,49 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright, Designer Credit & Motorsport Manifesto */}
-        <div className="pt-2 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-zinc-400 text-center lg:text-left">
+        <div className={`pt-2 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-center lg:text-left transition-colors ${
+          isDark ? "text-zinc-400" : "text-[#1B4965]"
+        }`}>
           {/* Left: Copyright & Designer */}
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
-            <p>© 2026 Carmate Modifications. All rights reserved.</p>
-            <span className="hidden sm:inline text-zinc-700">•</span>
-            <p className="text-zinc-400">
+            <p>© 2026 Carmate Modifications (Pvt) Ltd. All rights reserved.</p>
+            <span className="hidden sm:inline opacity-40">•</span>
+            <p>
               Designed by{" "}
               <a
                 href="https://www.harshapex.com.lk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-[#ea1c24] font-semibold transition-colors underline-offset-4 hover:underline"
+                className={`font-semibold transition-colors underline-offset-4 hover:underline ${
+                  isDark ? "text-white hover:text-[#ea1c24]" : "text-[#0B1F3B] hover:text-[#ea1c24]"
+                }`}
               >
                 Harsh Apex
-              </a>{" "}
-              <span className="text-zinc-500 text-[11px]">
-                (
-                <a
-                  href="https://www.harshapex.com.lk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-zinc-300"
-                >
-                  www.harshapex.com.lk
-                </a>
-                )
-              </span>
+              </a>
             </p>
           </div>
 
           {/* Center: Sri Lanka Pride Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400">
+          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] sm:text-[11px] font-mono transition-colors ${
+            isDark
+              ? "bg-white/[0.03] border-white/10 text-zinc-400"
+              : "bg-[#BEE9E8]/60 border-[#62B6CB]/40 text-[#0B1F3B]"
+          }`}>
             <ShieldCheck size={12} className="text-[#ea1c24]" />
             <span>Southern Province • Makuluwa, Galle, Sri Lanka</span>
           </div>
 
           {/* Right: Slogan Motto Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-2.5 font-mono font-bold tracking-widest text-zinc-400 text-[10px] sm:text-[11px]">
+          <div className={`flex flex-wrap justify-center items-center gap-2 sm:gap-2.5 font-mono font-bold tracking-widest text-[10px] sm:text-[11px] transition-colors ${
+            isDark ? "text-zinc-400" : "text-[#1B4965]"
+          }`}>
             <span>CARS</span>
             <span className="text-[#ea1c24]">/</span>
             <span>PEOPLE</span>
             <span className="text-[#ea1c24]">/</span>
             <span>PASSION</span>
             <span className="text-[#ea1c24]">/</span>
-            <span className="text-white">FOREVER</span>
+            <span className={isDark ? "text-white" : "text-[#0B1F3B]"}>FOREVER</span>
           </div>
         </div>
       </div>

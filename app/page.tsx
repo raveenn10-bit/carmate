@@ -7,7 +7,6 @@ import { VideoReelsSection } from "@/components/ui/video-reels-section";
 import { CraftsmanshipShowcaseSection } from "@/components/ui/craftsmanship-showcase-section";
 import { BuiltDifferentStatement } from "@/components/ui/built-different-statement";
 import { CinematicPriusCta } from "@/components/ui/cinematic-prius-cta";
-import { SriLankanFeedbackSection } from "@/components/ui/sri-lankan-feedback-section";
 
 const ScrollLockedFrameHero = dynamic(
   () => import("@/components/ui/scroll-locked-frame-hero"),
@@ -75,9 +74,6 @@ export default function HomePage() {
 
       {/* 9:16 Video Reels Section */}
       <VideoReelsSection />
-
-      {/* Authentic Sri Lankan Customer Feedback Section (Google, WhatsApp, FB Reviews with Filtered Categories) */}
-      <SriLankanFeedbackSection />
 
       {/* Final Cinematic CTA: Dark Full-Screen Prius Shot with Headlights Ignition, YOUR CAR. YOUR STYLE. and WhatsApp Action */}
       <CinematicPriusCta />
