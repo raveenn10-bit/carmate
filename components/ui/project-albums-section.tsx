@@ -83,16 +83,16 @@ export function ProjectAlbumsSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
+            <div className="gsap-fade-up flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
               <span className="w-2 h-2 rounded-full bg-[#ea1c24] animate-ping" />
               <span>Full Build Chronicles</span>
             </div>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
               Project Albums
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
+            <p className="gsap-fade-in-out text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
               Shared element photo gallery featuring our authentic build chronicles. Click any photo to inspect in high definition with drag-to-dismiss physics.
             </p>
             <a

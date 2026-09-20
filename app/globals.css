@@ -70,3 +70,76 @@ h1, h2, h3, h4, h5, h6 {
 .animate-bounce-slow {
   animation: bounceSlow 2s ease-in-out infinite;
 }
+
+/* GSAP Motion & ScrollTrigger Utility Classes */
+.motion-ready {
+  scroll-behavior: auto;
+}
+
+.motion-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.motion-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.motion-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.stats-accent-line {
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ea1c24, #ff4d54, #ea1c24);
+  box-shadow: 0 0 20px rgba(234, 28, 36, 0.6);
+  margin: 0 auto 36px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stats-accent-line.active {
+  width: 100%;
+}
+
+.gsap-clip-reveal {
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+/* Infinite Marquee Styles */
+.marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.marquee-row {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  will-change: transform;
+}
+
+.testimonial-card-marquee {
+  width: 360px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px 22px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.testimonial-card-marquee:hover {
+  transform: translateY(-4px);
+  border-color: rgba(234, 28, 36, 0.45);
+}
+

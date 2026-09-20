@@ -41,15 +41,15 @@ export function VideoReelsSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
+            <div className="gsap-fade-up flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
               <Sparkles size={14} />
               <span>9:16 Portrait Reels</span>
             </div>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="gsap-split-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
               Build Footage &amp; DRL Sound
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
+          <p className="gsap-fade-in-out text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
             Experience our dynamic lighting sequences, exhaust notes, and body transformations in native 9:16 vertical video format.
           </p>
         </div>
