@@ -22,7 +22,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="relative w-full">
       {/* 250-Frame Scroll-Locked Hero Scrubbing Component */}
       <ScrollLockedFrameHero
         frameCount={250}

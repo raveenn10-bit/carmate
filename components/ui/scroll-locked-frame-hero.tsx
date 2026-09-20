@@ -57,6 +57,7 @@ export default function ScrollLockedFrameHero({
   className,
   style,
 }: ScrollLockedFrameHeroProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
@@ -72,19 +73,19 @@ export default function ScrollLockedFrameHero({
   const loadedCountRef = useRef<number>(0)
   const scrubDistRef = useRef<number>(4800)
 
-  // Fallback pattern paths
+  // Primary path uses lightweight 1080p JPGs (~25KB/frame) for instant loading, WebP as fallback
   const getPrimaryUrl = useCallback(
     (index: number) => {
       if (framePattern) return framePattern(index)
       const numStr = String(index + 1).padStart(3, "0")
-      return `/assets/frames-2k/ezgif-frame-${numStr}.webp`
+      return `/assets/frames/ezgif-frame-${numStr}.jpg`
     },
     [framePattern]
   )
 
   const getFallbackUrl = useCallback((index: number) => {
     const numStr = String(index + 1).padStart(3, "0")
-    return `/assets/frames/ezgif-frame-${numStr}.jpg`
+    return `/assets/frames-2k/ezgif-frame-${numStr}.webp`
   }, [])
 
   // Single frame loader with fallback from 2K WebP to JPG
@@ -289,6 +290,9 @@ export default function ScrollLockedFrameHero({
       ctx.imageSmoothingQuality = "high"
 
       scrubDistRef.current = calculateDeviceScrubDistance(scrubDistance)
+      if (containerRef.current) {
+        containerRef.current.style.height = `calc(100vh + ${scrubDistRef.current}px)`
+      }
       drawFrame(currentRenderIndexRef.current)
     }
 
@@ -305,42 +309,40 @@ export default function ScrollLockedFrameHero({
       }
     }
 
-    // Calculate pin scroll distance: must be long enough that all 250 frames
-    // are fully scrubbed before the section unpins and the next section appears.
-    // Desktop: 7.5×vh (≥5600px min), Tablet: 6.0×vh, Mobile: 4.5×vh.
-    const pinDistance = typeof window !== "undefined"
-      ? (() => {
-          const w = window.innerWidth
-          const h = window.innerHeight
-          if (w > 1024) return Math.max(5600, Math.round(h * 7.5))
-          if (w >= 768)  return Math.max(4200, Math.round(h * 6.0))
-          return Math.max(3000, Math.round(h * 4.5))
-        })()
-      : 6000
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger)
+    }
+
+    const container = containerRef.current
+    if (!canvas || !section || !container || !ctx) return
+
+    scrubDistRef.current = calculateDeviceScrubDistance(scrubDistance)
+    if (container) {
+      container.style.height = `calc(100vh + ${scrubDistRef.current}px)`
+    }
+
 
     const heroTrigger = ScrollTrigger.create({
-      trigger: section,
+      trigger: container,
       start: "top top",
-      end: () => `+=${pinDistance}`,
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
+      end: "bottom bottom",
+      scrub: 0.3,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         const p = self.progress
 
-        // Frame rendering
+        // Frame rendering: maps exactly 0.0 -> 0 to 1.0 -> frameCount - 1 (249)
         const targetFrameIndex = Math.min(
           frameCount - 1,
-          Math.max(0, Math.round(p * (frameCount - 1)))
+          Math.max(0, Math.floor(p * frameCount))
         )
         currentRenderIndexRef.current = targetFrameIndex
         requestSlidingWindow(targetFrameIndex)
         drawFrame(targetFrameIndex)
 
-        // 1. Initial Title: visible at start (p=0 to 0.20), fades out and drifts up
+        // 1. Initial Title: visible at start (p=0 to 0.16), fades out and drifts up
         if (titleRef.current) {
-          const tTitle = 1 - Math.min(1, Math.max(0, p / 0.18))
+          const tTitle = 1 - Math.min(1, Math.max(0, p / 0.16))
           titleRef.current.style.opacity = String(tTitle)
           titleRef.current.style.transform = `translateY(${(1 - tTitle) * -32}px) scale(${0.96 + tTitle * 0.04})`
           titleRef.current.style.filter = `blur(${(1 - tTitle) * 10}px)`
@@ -349,28 +351,29 @@ export default function ScrollLockedFrameHero({
 
         // 2. Scroll Hint: fades out immediately once user scrolls
         if (hintRef.current) {
-          const tHint = 1 - Math.min(1, Math.max(0, p / 0.04))
+          const tHint = 1 - Math.min(1, Math.max(0, p / 0.03))
           hintRef.current.style.opacity = String(tHint)
           hintRef.current.style.pointerEvents = tHint < 0.1 ? "none" : "auto"
         }
 
         // 3. Revealed Tagline Info:
-        // - FADES IN: p = 0.55 -> 0.74 (opacity 0 -> 1, floats up into focus)
-        // - HOLDS: p = 0.74 -> 0.85 (opacity 1, crystal clear readability)
-        // - FADES OUT: p = 0.85 -> 0.97 (opacity 1 -> 0, dissolves before unpinning!)
+        // - FADES IN: p = 0.45 -> 0.65 (opacity 0 -> 1, floats up into focus)
+        // - HOLDS: p = 0.65 -> 0.80 (opacity 1, crystal clear readability)
+        // - FADES OUT: p = 0.80 -> 0.92 (opacity 1 -> 0, dissolves before transformation finale!)
+        // - FINALE: p = 0.92 -> 1.00 (Pure frame 230-250 transformation completion!)
         if (taglineRef.current) {
           let tTag = 0
           let yOffset = 0
 
-          if (p >= 0.55 && p < 0.74) {
-            const phaseProgress = (p - 0.55) / 0.19
+          if (p >= 0.45 && p < 0.65) {
+            const phaseProgress = (p - 0.45) / 0.20
             tTag = Math.min(1, Math.max(0, phaseProgress))
             yOffset = (1 - tTag) * 24
-          } else if (p >= 0.74 && p <= 0.85) {
+          } else if (p >= 0.65 && p <= 0.80) {
             tTag = 1
             yOffset = 0
-          } else if (p > 0.85 && p <= 0.97) {
-            const phaseProgress = (p - 0.85) / 0.12
+          } else if (p > 0.80 && p <= 0.92) {
+            const phaseProgress = (p - 0.80) / 0.12
             tTag = Math.max(0, 1 - phaseProgress)
             yOffset = -phaseProgress * 20
           } else {
@@ -406,17 +409,27 @@ export default function ScrollLockedFrameHero({
 
   return (
     <div
-      ref={sectionRef}
+      ref={containerRef}
       className={className}
       style={{
         position: "relative",
-        height: "100dvh",
         width: "100%",
-        overflow: "hidden",
-        background: COL_BG,
+        height: `calc(100vh + ${scrubDistRef.current}px)`,
         ...style,
       }}
     >
+      <div
+        ref={sectionRef}
+        style={{
+          position: "sticky",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          overflow: "hidden",
+          background: COL_BG,
+        }}
+      >
       {/* High-DPI 2K Canvas */}
       <canvas
         ref={canvasRef}
@@ -688,5 +701,6 @@ export default function ScrollLockedFrameHero({
         />
       </div>
     </div>
-  )
+  </div>
+)
 }
