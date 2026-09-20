@@ -24,28 +24,25 @@ const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, 
 const COL_BG = "#05070d"
 const COL_TEXT = "#f2f4f8"
 
-function clamp(v: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, v))
-}
 
 /**
  * Dynamically compute device-tailored scrub distance:
- * - Desktop (> 1024px): ~600vh
- * - Tablet (768px - 1024px): ~460vh
- * - Mobile (< 768px): ~340vh
+ * - Desktop (> 1024px): ~7.5×vh (min 5600px)
+ * - Tablet (768px - 1024px): ~6.0×vh (min 4200px)
+ * - Mobile (< 768px): ~4.5×vh (min 3000px)
  */
 function calculateDeviceScrubDistance(customScrub?: number): number {
   if (customScrub) return customScrub
-  if (typeof window === "undefined") return 4800
+  if (typeof window === "undefined") return 6000
   const w = window.innerWidth
   const h = window.innerHeight
 
   if (w > 1024) {
-    return Math.round(clamp(h * 6.0, 4800, 7200))
+    return Math.round(Math.max(5600, h * 7.5))
   } else if (w >= 768) {
-    return Math.round(clamp(h * 4.6, 3200, 4800))
+    return Math.round(Math.max(4200, h * 6.0))
   } else {
-    return Math.round(clamp(h * 3.4, 1800, 3000))
+    return Math.round(Math.max(3000, h * 4.5))
   }
 }
 
@@ -315,10 +312,18 @@ export default function ScrollLockedFrameHero({
       }
     }
 
-    // Calculate pin scroll distance: tuned to device height for optimal feel
+    // Calculate pin scroll distance: must be long enough that all 250 frames
+    // are fully scrubbed before the section unpins and the next section appears.
+    // Desktop: 7.5×vh (≥5600px min), Tablet: 6.0×vh, Mobile: 4.5×vh.
     const pinDistance = typeof window !== "undefined"
-      ? Math.max(2600, Math.round(window.innerHeight * 3.6))
-      : 3600
+      ? (() => {
+          const w = window.innerWidth
+          const h = window.innerHeight
+          if (w > 1024) return Math.max(5600, Math.round(h * 7.5))
+          if (w >= 768)  return Math.max(4200, Math.round(h * 6.0))
+          return Math.max(3000, Math.round(h * 4.5))
+        })()
+      : 6000
 
     const heroTrigger = ScrollTrigger.create({
       trigger: section,
