@@ -2,10 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Carmate Automotive Theme Variables
+   - Default: Signature Dark Automotive Spec
+   - Light: Ambient Aurora Spec (5 Palette Colors:
+       1. Deep Azure:  #0B1F3B
+       2. Rich Azure:  #1B4965
+       3. Soft Teal:   #62B6CB
+       4. Pale Teal:   #BEE9E8
+       5. Pure White:  #FFFFFF
+     )
+   ========================================================================== */
+
 :root {
   --background: #05070a;
   --foreground: #f4f4f6;
   --carmate-red: #ea1c24;
+  --azure-deep: #0B1F3B;
+  --azure-rich: #1B4965;
+  --teal-soft: #62B6CB;
+  --teal-pale: #BEE9E8;
+  --white: #FFFFFF;
+}
+
+html.light {
+  --background: #f4fafd;
+  --foreground: #0B1F3B;
+  background-color: #f4fafd;
+  color: #0B1F3B;
+}
+
+html.dark {
+  --background: #05070a;
+  --foreground: #f4f4f6;
+  background-color: #05070a;
+  color: #f4f4f6;
 }
 
 * {
@@ -14,8 +45,6 @@
 
 html {
   scroll-behavior: smooth;
-  background: #05070a;
-  color: #f4f4f6;
   overflow-x: clip;
   max-width: 100%;
 }
@@ -37,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   word-break: break-word;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Dark Mode */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -52,7 +81,297 @@ h1, h2, h3, h4, h5, h6 {
   background: #ea1c24;
 }
 
-/* Animation utilities */
+/* ==========================================================================
+   Ambient Aurora Light Theme Engine
+   ========================================================================== */
+
+@keyframes lightAurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+html.light {
+  color-scheme: light;
+  --background: #f0f9ff;
+  --foreground: #0B1F3B;
+  --bg-gradient: linear-gradient(-45deg, #f0f9ff, #BEE9E8, #ffffff, #e0f2fe, #BEE9E8);
+  background: var(--bg-gradient);
+  background-size: 300% 300%;
+  animation: lightAurora 18s ease infinite;
+  background-attachment: fixed;
+  color: #0B1F3B;
+}
+
+html.light body {
+  background: var(--bg-gradient) !important;
+  background-size: 300% 300% !important;
+  animation: lightAurora 18s ease infinite !important;
+  background-attachment: fixed !important;
+  color: #0B1F3B !important;
+}
+
+/* Light Mode Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #EFF8FA;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #BEE9E8;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #62B6CB;
+}
+
+/* ==========================================================================
+   Light Mode Structural & Surface Overrides
+   ========================================================================== */
+
+/* Main section containers become translucent/transparent to reveal animated aurora */
+html.light .bg-\[\#05070a\],
+html.light .bg-\[\#080c12\],
+html.light .bg-\[\#070a0f\],
+html.light .bg-\[\#030508\] {
+  background-color: transparent !important;
+}
+
+/* Glassmorphic Luxury Cards with White (#FFFFFF) & Pale Teal (#BEE9E8) accents */
+html.light .bg-\[\#090d14\],
+html.light .bg-\[\#0e131d\],
+html.light .bg-\[\#0d1117\],
+html.light .testimonial-card-marquee {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(98, 182, 203, 0.35) !important;
+  box-shadow: 0 10px 30px -6px rgba(11, 31, 59, 0.08), 0 0 0 1px rgba(190, 233, 232, 0.5) !important;
+}
+
+html.light .testimonial-card-marquee:hover,
+html.light .bg-\[\#090d14\]:hover {
+  border-color: #62B6CB !important;
+  box-shadow: 0 16px 36px -8px rgba(11, 31, 59, 0.12), 0 0 0 1px #62B6CB !important;
+}
+
+/* Input Fields & Textareas (Contact & Forms) */
+html.light .bg-\[\#121722\],
+html.light input.bg-\[\#121722\],
+html.light textarea.bg-\[\#121722\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(98, 182, 203, 0.45) !important;
+  color: #0B1F3B !important;
+  box-shadow: 0 2px 8px rgba(11, 31, 59, 0.04);
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #648299 !important;
+}
+
+html.light .bg-\[\#121722\]:focus,
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #62B6CB !important;
+  box-shadow: 0 0 0 2px rgba(98, 182, 203, 0.35) !important;
+}
+
+/* ==========================================================================
+   Light Mode Typography (Deep Azure #0B1F3B & Rich Azure #1B4965)
+   ========================================================================== */
+
+/* Headings & Prominent Titles in Deep Azure */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6,
+html.light .gsap-split-heading,
+html.light .gsap-stat-number {
+  color: #0B1F3B !important;
+}
+
+/* Text white override: convert content text to Deep Azure, EXCEPT inside colored buttons & badges */
+html.light .text-white:not(
+  button.bg-\[\#ea1c24\],
+  button.bg-\[\#ea1c24\] *,
+  a.bg-\[\#ea1c24\],
+  a.bg-\[\#ea1c24\] *,
+  span.bg-\[\#ea1c24\],
+  span.bg-\[\#ea1c24\] *,
+  .bg-\[\#ea1c24\],
+  .bg-\[\#ea1c24\] *,
+  .bg-\[\#25d366\],
+  .bg-\[\#25d366\] *,
+  [data-keep-white]
+) {
+  color: #0B1F3B !important;
+}
+
+/* Body copy & descriptions in Rich Azure #1B4965 */
+html.light p,
+html.light .text-zinc-300,
+html.light .text-zinc-200,
+html.light .text-zinc-100 {
+  color: #1B4965 !important;
+}
+
+/* Muted secondary text in Soft Slate/Teal */
+html.light .text-zinc-400,
+html.light .text-zinc-500 {
+  color: #4B6B82 !important;
+}
+
+/* Carmate Red buttons keep ultra-crisp white text */
+html.light .bg-\[\#ea1c24\],
+html.light .bg-\[\#ea1c24\] *,
+html.light button.bg-\[\#ea1c24\],
+html.light a.bg-\[\#ea1c24\],
+html.light span.bg-\[\#ea1c24\] {
+  color: #FFFFFF !important;
+}
+
+/* Image overlay captions and badges retain crisp white text */
+html.light .aspect-\[16\/10\] .text-white,
+html.light .aspect-\[4\/3\] .text-white,
+html.light .aspect-\[16\/9\] .text-white,
+html.light .relative.overflow-hidden .absolute .text-white {
+  color: #FFFFFF !important;
+}
+
+/* WhatsApp buttons keep dark contrast */
+html.light .bg-\[\#25d366\],
+html.light .bg-\[\#25d366\] * {
+  color: #05070a !important;
+}
+
+/* ==========================================================================
+   Light Mode Borders (Soft Teal #62B6CB & Pale Teal #BEE9E8)
+   ========================================================================== */
+
+html.light .border-white\/10,
+html.light .border-white\/5,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .border-y.border-white\/10,
+html.light .border-t.border-white\/10,
+html.light .border-b.border-white\/10 {
+  border-color: rgba(98, 182, 203, 0.3) !important;
+}
+
+/* Stats Accent Line in Light Mode */
+html.light .stats-accent-line {
+  background: linear-gradient(90deg, #62B6CB, #ea1c24, #1B4965) !important;
+  box-shadow: 0 0 16px rgba(98, 182, 203, 0.5) !important;
+}
+
+/* ==========================================================================
+   Light Mode Navbar & Header
+   ========================================================================== */
+
+html.light header {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-bottom-color: rgba(98, 182, 203, 0.3) !important;
+  box-shadow: 0 4px 20px -2px rgba(11, 31, 59, 0.06) !important;
+}
+
+html.light header nav a {
+  color: #1B4965 !important;
+}
+
+html.light header nav a:hover {
+  color: #0B1F3B !important;
+}
+
+html.light header nav a.text-\[\#ea1c24\] {
+  color: #ea1c24 !important;
+}
+
+html.light header button[aria-label="Open navigation menu"] {
+  color: #0B1F3B !important;
+}
+
+/* Mobile Menu Drawer in Light Mode */
+html.light div[role="dialog"],
+html.light .fixed.inset-0.z-\[60\] {
+  background-color: rgba(240, 249, 255, 0.95) !important;
+}
+
+html.light .fixed.inset-0.z-\[60\] a {
+  color: #0B1F3B !important;
+}
+
+html.light .fixed.inset-0.z-\[60\] button {
+  color: #0B1F3B !important;
+}
+
+/* ==========================================================================
+   Light Mode Footer
+   ========================================================================== */
+
+html.light footer {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-top-color: rgba(98, 182, 203, 0.35) !important;
+  color: #1B4965 !important;
+  backdrop-filter: blur(16px);
+}
+
+html.light footer .text-zinc-400,
+html.light footer .text-zinc-300 {
+  color: #1B4965 !important;
+}
+
+html.light footer .text-zinc-500 {
+  color: #4B6B82 !important;
+}
+
+html.light footer .bg-white\/\[0\.05\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(98, 182, 203, 0.35) !important;
+  color: #1B4965 !important;
+  box-shadow: 0 2px 8px rgba(11, 31, 59, 0.05) !important;
+}
+
+html.light footer .bg-white\/\[0\.05\]:hover {
+  background-color: #ea1c24 !important;
+  border-color: #ea1c24 !important;
+  color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   Light Mode Buttons & Filter Chips
+   ========================================================================== */
+
+html.light .bg-white\/5,
+html.light .bg-white\/10,
+html.light .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  color: #1B4965 !important;
+  border-color: rgba(98, 182, 203, 0.35) !important;
+}
+
+html.light button.border-white\/10 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(98, 182, 203, 0.35) !important;
+  color: #1B4965 !important;
+}
+
+html.light button.border-white\/10:hover {
+  background-color: #FFFFFF !important;
+  color: #0B1F3B !important;
+  border-color: #62B6CB !important;
+}
+
+/* ==========================================================================
+   Animation Utilities & Effects
+   ========================================================================== */
+
 @keyframes pulseSlow {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
@@ -142,4 +461,3 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-4px);
   border-color: rgba(234, 28, 36, 0.45);
 }
-
