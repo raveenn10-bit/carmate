@@ -17,9 +17,9 @@ const ScrollLockedFrameHero = dynamic(
 
 export default function HomePage() {
   const stats = [
-    { value: 500, suffix: "+", label: "PROJECTS COMPLETED" },
-    { value: 1200, suffix: "+", label: "HAPPY CUSTOMERS" },
-    { value: 5, suffix: "+", label: "YEARS EXPERIENCE" },
+    { value: 30, suffix: "+", label: "PROJECTS COMPLETED" },
+    { value: 50, suffix: "+", label: "HAPPY CUSTOMERS" },
+    { value: 4, suffix: "+", label: "YEARS EXPERIENCE" },
     { value: 15, suffix: "+", label: "SPECIALIZED SERVICES" },
   ];
 

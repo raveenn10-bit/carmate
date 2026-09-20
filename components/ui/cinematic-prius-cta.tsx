@@ -41,46 +41,40 @@ export function CinematicPriusCta() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[92vh] lg:min-h-screen w-full bg-[#030508] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 py-16 sm:py-24"
+      className="relative min-h-[90vh] lg:min-h-screen w-full bg-[#030508] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 py-16 sm:py-20"
     >
       {/* Background Prius Atmosphere */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {/* Dark Silhouette Base Shot */}
+        {/* Dark Cherry Metallic Prius Shot */}
         <img
-          src="/assets/black-beast-front.webp"
-          alt="Carmate Custom Prius Black Beast"
-          className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity scale-105 transition-transform duration-1000"
+          src="/assets/carmate-prius-cherry.jpg"
+          alt="Carmate Custom Stanced Prius Cherry Edition"
+          className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out ${
+            headlightsOn
+              ? "opacity-60 scale-100 brightness-105 contrast-105"
+              : "opacity-35 scale-105 brightness-75 contrast-95"
+          }`}
         />
 
-        {/* Deep Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030508] via-[#030508]/75 to-[#030508]/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030508] via-transparent to-[#030508]" />
+        {/* Deep Vignette Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030508] via-[#030508]/60 to-[#030508]/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030508]/85 via-transparent to-[#030508]/85" />
 
-        {/* Headlights Lit Layer (Ignites with smooth transition) */}
+        {/* Dynamic Headlight Lit Ambience & Volumetric Cones */}
         <div
           className={`absolute inset-0 transition-opacity duration-700 ease-out ${
             headlightsOn ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Glowing Headlights Image Layer */}
-          <img
-            src="/assets/prius-headlights-lit.png"
-            alt="Prius Bi-LED Illuminated Projectors"
-            className="w-full h-full object-cover object-center opacity-70 mix-blend-screen scale-100 transition-transform duration-1000"
-          />
-
-          {/* Twin Volumetric Headlight Cones / Beams (Shooting forward across the road) */}
-          <div className="absolute bottom-0 left-1/4 -translate-x-1/2 w-[480px] h-[550px] bg-gradient-to-t from-cyan-400/25 via-blue-500/10 to-transparent blur-3xl transform -rotate-12 origin-bottom pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 translate-x-1/2 w-[480px] h-[550px] bg-gradient-to-t from-red-500/30 via-red-600/10 to-transparent blur-3xl transform rotate-12 origin-bottom pointer-events-none" />
-
-          {/* Central Ground Light Bloom */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-white/[0.08] rounded-full blur-[90px] pointer-events-none" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[120px] bg-[#ea1c24]/25 rounded-full blur-[60px] pointer-events-none" />
+          {/* Volumetric DRL Light Cones & Ground Beam Glow */}
+          <div className="absolute bottom-[28%] left-[15%] w-[420px] h-[350px] bg-cyan-300/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-[24%] left-[28%] w-[480px] h-[280px] bg-white/20 rounded-full blur-[90px] pointer-events-none" />
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[750px] h-[160px] bg-[#ea1c24]/20 rounded-full blur-[80px] pointer-events-none" />
         </div>
 
         {/* Light Flash Flare upon ignition */}
         <div
-          className={`absolute inset-0 bg-white/20 transition-opacity duration-300 pointer-events-none ${
+          className={`absolute inset-0 bg-white/15 transition-opacity duration-300 pointer-events-none ${
             headlightsOn && !ignitedOnce ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -113,7 +107,7 @@ export function CinematicPriusCta() {
       </div>
 
       {/* Center: Massive Cinematic Typography */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-12">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-14 sm:py-20">
         {/* Subtle Overline */}
         <p className="text-xs sm:text-sm font-extrabold tracking-[0.3em] sm:tracking-[0.4em] text-zinc-400 uppercase mb-4 sm:mb-6">
           CARMATE BESPOKE MOTORING • MAKULUWA, GALLE
@@ -164,22 +158,6 @@ export function CinematicPriusCta() {
             <span>Explore All Projects</span>
           </Link>
         </div>
-      </div>
-
-      {/* Bottom Status Ticker */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 text-center sm:text-left">
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="text-zinc-400 font-semibold">
-            Workshop Open • Direct WhatsApp Consultations Available
-          </span>
-        </div>
-        <p className="text-[11px] tracking-wider text-zinc-500 uppercase">
-          PRIUS 30 / 50 • AQUA • VITZ • AXIO • CIVIC • BESPOKE BUILDS
-        </p>
       </div>
     </section>
   );
