@@ -16,10 +16,9 @@ const ScrollLockedFrameHero = dynamic(
 
 export default function HomePage() {
   const stats = [
-    { value: 350, suffix: "+", label: "CUSTOM BUILDS DELIVERED", spec: "Prius, Aqua & Civic" },
-    { value: 100, suffix: "%", label: "ZERO-GAP URETHANE FITMENT", spec: "High-flex · No fiberglass" },
-    { value: 5, suffix: "+", label: "YEARS WORKSHOP HERITAGE", spec: "Makuluwa, Galle" },
-    { value: 180, suffix: "+", label: "BI-LED RETROFITS CRAFTED", spec: "Laser cutoffs & flowing DRLs" },
+    { value: 30, suffix: "+", label: "PROJECTS COMPLETED", spec: "Prius, Aqua & Civic Builds" },
+    { value: 50, suffix: "+", label: "HAPPY CUSTOMERS", spec: "Southern Ceylon Atelier" },
+    { value: 4, suffix: "", label: "YEARS EXPERIENCE", spec: "Makuluwa, Galle" },
   ];
 
   return (
@@ -35,9 +34,9 @@ export default function HomePage() {
 
       {/* Stats Bar with ScrollTrigger Animated Counter & Expanding Accent Line */}
       <section className="stats-bar-section bg-[#080c12] border-y border-white/10 py-10 sm:py-14 relative z-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="stats-accent-line"></div>
-          <div className="gsap-stagger grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+          <div className="gsap-stagger grid grid-cols-3 gap-6 sm:gap-8 text-center">
             {stats.map((st) => (
               <div key={st.label} className="p-3">
                 <div className="text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight mb-2 flex items-center justify-center font-heading">

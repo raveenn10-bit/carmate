@@ -123,11 +123,11 @@ export default function ScrollLockedFrameHero({
     [frameCount, getPrimaryUrl, getFallbackUrl]
   )
 
-  // Prioritize sliding window around current frame (currentFrame ± 10)
+  // Prioritize sliding window around current frame (currentFrame ± 25)
   const requestSlidingWindow = useCallback(
     (centerIndex: number) => {
-      const start = Math.max(0, centerIndex - 10)
-      const end = Math.min(frameCount - 1, centerIndex + 10)
+      const start = Math.max(0, centerIndex - 25)
+      const end = Math.min(frameCount - 1, centerIndex + 25)
       for (let i = start; i <= end; i++) {
         if (!imagesRef.current[i]) {
           loadFrame(i, true)
@@ -145,45 +145,38 @@ export default function ScrollLockedFrameHero({
     const ctx = canvas.getContext("2d", { alpha: false })
     if (!ctx) return
 
-    const reduceMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
-
     scrubDistRef.current = calculateDeviceScrubDistance(scrubDistance)
 
-    // Progressive Sliding Window: Preload first 15 frames immediately
-    const immediatePreloadCount = Math.min(15, frameCount)
-    for (let i = 0; i < immediatePreloadCount; i++) {
+    // ── AGGRESSIVE 8-STREAM PARALLEL PRELOAD ─────────────────────────────
+    // Load ALL 250 frames immediately via 8 concurrent streams.
+    // First 30 frames get high priority so frame 0 renders instantly.
+    const STREAMS = 8
+    const activeTimers: ReturnType<typeof setTimeout>[] = []
+
+    for (let i = 0; i < Math.min(30, frameCount); i++) {
       loadFrame(i, true)
     }
 
-    // Background idle loader for remaining frames to avoid saturating initial bandwidth
-    let idleIndex = immediatePreloadCount
-    let idleTimer: any = null
+    const streamQueues: number[][] = Array.from({ length: STREAMS }, () => [])
+    for (let i = 30; i < frameCount; i++) {
+      streamQueues[i % STREAMS].push(i)
+    }
 
-    function preloadNextIdle() {
-      if (idleIndex >= frameCount) return
-      while (idleIndex < frameCount && imagesRef.current[idleIndex]) {
-        idleIndex++
-      }
-      if (idleIndex < frameCount) {
-        loadFrame(idleIndex, false)
-        idleIndex++
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-          // @ts-ignore
-          idleTimer = window.requestIdleCallback(preloadNextIdle, { timeout: 250 })
-        } else {
-          idleTimer = setTimeout(preloadNextIdle, 30)
+    streamQueues.forEach((queue, streamIdx) => {
+      let qIdx = 0
+      function loadNext() {
+        while (qIdx < queue.length && imagesRef.current[queue[qIdx]]) qIdx++
+        if (qIdx >= queue.length) return
+        loadFrame(queue[qIdx], false)
+        qIdx++
+        if (qIdx < queue.length) {
+          const t = setTimeout(loadNext, 0)
+          activeTimers.push(t)
         }
       }
-    }
-
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      // @ts-ignore
-      idleTimer = window.requestIdleCallback(preloadNextIdle, { timeout: 400 })
-    } else {
-      idleTimer = setTimeout(preloadNextIdle, 100)
-    }
+      const t = setTimeout(loadNext, streamIdx * 10)
+      activeTimers.push(t)
+    })
 
     /**
      * Draw frame onto canvas with intelligent focal crop & High-DPI backing.
@@ -330,7 +323,7 @@ export default function ScrollLockedFrameHero({
       start: "top top",
       end: () => `+=${pinDistance}`,
       pin: true,
-      scrub: 0.65,
+      scrub: 1,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
@@ -365,7 +358,6 @@ export default function ScrollLockedFrameHero({
         // - FADES IN: p = 0.55 -> 0.74 (opacity 0 -> 1, floats up into focus)
         // - HOLDS: p = 0.74 -> 0.85 (opacity 1, crystal clear readability)
         // - FADES OUT: p = 0.85 -> 0.97 (opacity 1 -> 0, dissolves before unpinning!)
-        // - At p >= 0.98: completely transparent (opacity 0)
         if (taglineRef.current) {
           let tTag = 0
           let yOffset = 0
@@ -404,14 +396,7 @@ export default function ScrollLockedFrameHero({
     return () => {
       window.removeEventListener("resize", resizeCanvas)
       heroTrigger.kill()
-      if (idleTimer) {
-        if (typeof window !== "undefined" && "cancelIdleCallback" in window) {
-          // @ts-ignore
-          window.cancelIdleCallback(idleTimer)
-        } else {
-          clearTimeout(idleTimer)
-        }
-      }
+      activeTimers.forEach(clearTimeout)
     }
   }, [frameCount, scrubDistance, loadFrame, requestSlidingWindow])
 

@@ -255,13 +255,29 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
               accentLine.classList.add("active");
             }
 
-            statNumbers.forEach((numEl) => {
+            statNumbers.forEach((numEl, i) => {
               const target = parseInt(numEl.dataset.target || "0", 10);
               gsap.to(numEl, {
                 textContent: target,
-                duration: 2.2,
+                duration: 1.8,
                 ease: "power2.out",
                 snap: { textContent: 1 },
+                delay: i * 0.12,
+                onComplete: () => {
+                  // Bounce animation: punch up then elastic settle
+                  gsap.fromTo(
+                    numEl.parentElement,
+                    { y: 0, scale: 1 },
+                    {
+                      keyframes: [
+                        { y: -18, scale: 1.15, duration: 0.18, ease: "power2.out" },
+                        { y: 6,  scale: 0.95, duration: 0.12, ease: "power2.in" },
+                        { y: -8, scale: 1.07, duration: 0.10, ease: "power2.out" },
+                        { y: 0,  scale: 1,    duration: 0.14, ease: "power2.inOut" },
+                      ],
+                    }
+                  );
+                },
               });
             });
           },
