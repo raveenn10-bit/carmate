@@ -1,14 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { CARMATE_ALBUMS, AlbumProject } from "@/lib/albums-data";
-import { AlbumLightboxModal } from "./album-lightbox-modal";
-import { Camera, ArrowUpRight, MessageSquareQuote } from "lucide-react";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CARMATE_ALBUMS } from "@/lib/albums-data";
+import {
+  Gallery,
+  GalleryGrid,
+  GalleryImage,
+} from "@/components/ui/shared-element-gallery";
+import {
+  Camera,
+  MessageSquareQuote,
+  CheckCircle2,
+  ArrowUpRight,
+} from "lucide-react";
+
+interface PhotoItem {
+  id: string;
+  src: string;
+  alt: string;
+  albumId: string;
+  title: string;
+  vehicle: string;
+  category: string;
+  badge: string;
+}
 
 export function ProjectAlbumsSection() {
   const [filter, setFilter] = useState<string>("all");
-  const [activeAlbum, setActiveAlbum] = useState<AlbumProject | null>(null);
-  const [photoIndex, setPhotoIndex] = useState(0);
 
   const filterTabs = [
     { id: "all", label: "All Projects" },
@@ -18,176 +37,247 @@ export function ProjectAlbumsSection() {
     { id: "interior-cockpit", label: "Bespoke Interior" },
   ];
 
-  const filteredAlbums =
-    filter === "all"
-      ? CARMATE_ALBUMS
-      : CARMATE_ALBUMS.filter((a) => a.id === filter);
+  // Flatten all verified Carmate photos with their project context
+  const allPhotos = useMemo<PhotoItem[]>(() => {
+    return CARMATE_ALBUMS.flatMap((album) =>
+      album.photos.map((photoUrl, idx) => ({
+        id: `${album.id}-${idx}`,
+        src: photoUrl,
+        alt: `${album.name} - ${album.vehicle} photo ${idx + 1}`,
+        albumId: album.id,
+        title: album.name,
+        vehicle: album.vehicle,
+        category: album.category,
+        badge: album.name.replace("Project ", ""),
+      }))
+    );
+  }, []);
 
-  const openLightbox = (album: AlbumProject, index = 0) => {
-    setActiveAlbum(album);
-    setPhotoIndex(index);
-  };
+  const filteredPhotos = useMemo(() => {
+    if (filter === "all") return allPhotos;
+    return allPhotos.filter((p) => p.albumId === filter);
+  }, [filter, allPhotos]);
+
+  const activeProject = useMemo(() => {
+    if (filter === "all") return null;
+    return CARMATE_ALBUMS.find((a) => a.id === filter) || null;
+  }, [filter]);
+
+  const whatsappInquiryUrl = useMemo(() => {
+    if (activeProject) {
+      return `https://wa.me/94777177452?text=${encodeURIComponent(
+        `Hello Carmate! I am inquiring about ${activeProject.name} (${activeProject.vehicle}). Could you share package options, schedule & pricing?`
+      )}`;
+    }
+    return `https://wa.me/94777177452?text=${encodeURIComponent(
+      "Hello Carmate! I am viewing your vehicle modification project gallery and would like to get a quote for my vehicle."
+    )}`;
+  }, [activeProject]);
 
   return (
-    <section className="relative py-28 bg-[#05070a] text-white border-y border-white/10" id="albums">
+    <section
+      className="relative py-16 sm:py-28 bg-[#05070a] text-white border-y border-white/10"
+      id="albums"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2">
               <span className="w-2 h-2 rounded-full bg-[#ea1c24] animate-ping" />
               <span>Full Build Chronicles</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
               Project Albums
             </h2>
           </div>
-          <p className="text-sm text-zinc-400 max-w-md">
-            Explore dedicated photo albums for each authentic Carmate modification project. Click any card to inspect full high-resolution galleries.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
+              Shared element photo gallery featuring our authentic build chronicles. Click any photo to inspect in high definition with drag-to-dismiss physics.
+            </p>
+            <a
+              href={whatsappInquiryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="self-start sm:self-auto inline-flex items-center gap-2 bg-[#25d366]/10 hover:bg-[#25d366] text-[#25d366] hover:text-black border border-[#25d366]/30 font-bold text-xs uppercase tracking-wider px-4 py-2.5 min-h-[44px] rounded-full transition-all shrink-0 active:scale-95"
+            >
+              <MessageSquareQuote size={15} />
+              <span>{activeProject ? `Quote: ${activeProject.name.replace("Project ", "")}` : "Get WhatsApp Quote"}</span>
+            </a>
+          </div>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2.5 pb-6 mb-10 border-b border-white/10">
-          {filterTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id)}
-              className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                filter === tab.id
-                  ? "bg-[#ea1c24] text-white shadow-[0_4px_16px_rgba(234,28,36,0.4)]"
-                  : "bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-2 pb-6 mb-8 border-b border-white/10">
+          {filterTabs.map((tab) => {
+            const count =
+              tab.id === "all"
+                ? allPhotos.length
+                : CARMATE_ALBUMS.find((a) => a.id === tab.id)?.photos.length || 0;
+
+            const isActive = filter === tab.id;
+
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setFilter(tab.id)}
+                className={`relative px-4 sm:px-5 py-2.5 min-h-[40px] flex items-center rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  isActive
+                    ? "text-white"
+                    : "text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeAlbumFilterPill"
+                    className="absolute inset-0 bg-[#ea1c24] rounded-full shadow-[0_4px_20px_rgba(234,28,36,0.45)]"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <span>{tab.label}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                      isActive
+                        ? "bg-black/30 text-white"
+                        : "bg-white/10 text-zinc-400"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Albums Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredAlbums.map((alb) => (
-            <div
-              key={alb.id}
-              className="group relative bg-[#090d14] border border-white/10 hover:border-[#ea1c24]/50 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(234,28,36,0.15)] flex flex-col"
+        {/* Dynamic Project Spotlight Banner */}
+        <AnimatePresence mode="wait">
+          {activeProject ? (
+            <motion.div
+              key={activeProject.id}
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              className="mb-8 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#0a0f18] via-[#070b12] to-[#0a0f18] border border-white/15 shadow-2xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
             >
-              {/* Cover Image Wrap */}
-              <div
-                className="relative h-72 sm:h-80 overflow-hidden cursor-pointer"
-                onClick={() => openLightbox(alb, 0)}
+              <div className="max-w-2xl">
+                <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#ea1c24] bg-[#ea1c24]/10 border border-[#ea1c24]/30 px-3 py-1 rounded-full">
+                    {activeProject.category}
+                  </span>
+                  <span className="text-xs text-zinc-300 font-semibold">
+                    {activeProject.vehicle}
+                  </span>
+                  <span className="text-[11px] text-zinc-400 flex items-center gap-1">
+                    <Camera size={12} className="text-[#ea1c24]" />
+                    <span>{activeProject.photos.length} High-Res Photos</span>
+                  </span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
+                  {activeProject.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 mt-1.5 leading-relaxed">
+                  {activeProject.tagline}
+                </p>
+
+                {/* Specs Highlights */}
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                  {activeProject.specs.map((spec) => (
+                    <span
+                      key={spec}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md"
+                    >
+                      <CheckCircle2 size={12} className="text-[#ea1c24]" />
+                      <span>{spec}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* WhatsApp Quote CTA */}
+              <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <a
+                  href={whatsappInquiryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#25d366] hover:bg-[#20ba59] text-black font-extrabold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-[0_4px_20px_rgba(37,211,102,0.35)] transition-all hover:scale-102 active:scale-98"
+                >
+                  <MessageSquareQuote size={17} />
+                  <span>Inquire for {activeProject.name.replace("Project ", "")}</span>
+                </a>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="all-projects-header"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="mb-8 p-4 rounded-xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400"
+            >
+              <div className="flex items-center gap-2">
+                <Camera size={15} className="text-[#ea1c24]" />
+                <span>
+                  Browsing <strong>{allPhotos.length}</strong> verified Carmate modification photographs across all 4 flagship build chronicles. Click any photo to inspect in full-screen with drag-to-dismiss.
+                </span>
+              </div>
+              <a
+                href={whatsappInquiryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#25d366] hover:underline"
               >
-                <img
-                  src={alb.cover}
-                  alt={alb.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                <MessageSquareQuote size={14} />
+                <span>Inquire About Custom Builds ↗</span>
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Shared Element Gallery Component */}
+        <Gallery>
+          <GalleryGrid>
+            <AnimatePresence mode="popLayout">
+              {filteredPhotos.map((photo) => (
+                <GalleryImage
+                  key={photo.id}
+                  id={photo.id}
+                  src={photo.src}
+                  alt={photo.alt}
+                  title={photo.title}
+                  vehicle={photo.vehicle}
+                  category={photo.category}
+                  badge={photo.badge}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090d14] via-transparent to-black/40" />
+              ))}
+            </AnimatePresence>
+          </GalleryGrid>
+        </Gallery>
 
-                {/* Badges */}
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-white bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                    {alb.category}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#ea1c24] px-3 py-1 rounded-full shadow-lg">
-                    <Camera size={13} />
-                    <span>{alb.photos.length} PHOTOS</span>
-                  </span>
-                </div>
-
-                {/* Hover Cue */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity z-10">
-                  <span className="bg-white text-[#05070a] text-xs font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                    View Full Gallery ↗
-                  </span>
-                </div>
-              </div>
-
-              {/* Album Body */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h3 className="text-2xl font-black uppercase text-white tracking-wide group-hover:text-[#ea1c24] transition-colors">
-                        {alb.name}
-                      </h3>
-                      <p className="text-xs text-[#ea1c24] font-semibold mt-0.5">
-                        {alb.vehicle}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-xs text-zinc-400 leading-relaxed mb-4">
-                    {alb.tagline}
-                  </p>
-
-                  {/* Specs Highlights */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {alb.specs.map((spec) => (
-                      <span
-                        key={spec}
-                        className="text-[11px] font-medium text-zinc-300 bg-white/5 border border-white/5 px-2.5 py-1 rounded-md"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Thumbnail Preview Strip */}
-                  <div className="grid grid-cols-4 gap-2 mb-6">
-                    {alb.photos.slice(0, 4).map((p, idx) => (
-                      <div
-                        key={p + idx}
-                        onClick={() => openLightbox(alb, idx)}
-                        className="relative h-14 rounded-lg overflow-hidden border border-white/10 cursor-pointer group/thumb hover:border-[#ea1c24]"
-                      >
-                        <img
-                          src={p}
-                          alt="preview"
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-110"
-                        />
-                        {idx === 3 && alb.photos.length > 4 && (
-                          <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-xs font-bold text-white">
-                            +{alb.photos.length - 4}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                  <button
-                    onClick={() => openLightbox(alb, 0)}
-                    className="flex-1 bg-white hover:bg-zinc-200 text-[#05070a] font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
-                  >
-                    <span>View Album</span>
-                    <ArrowUpRight size={15} />
-                  </button>
-                  <a
-                    href={`https://wa.me/94777177452?text=${encodeURIComponent(
-                      `Hello Carmate! I am inquiring about ${alb.name} (${alb.vehicle}). Could you share details & pricing?`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 bg-[#25d366]/10 hover:bg-[#25d366] text-[#25d366] hover:text-[#05070a] border border-[#25d366]/30 rounded-xl transition-all"
-                    title="Inquire via WhatsApp"
-                  >
-                    <MessageSquareQuote size={18} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Bottom Callout Bar */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-base font-bold text-white uppercase tracking-wide mb-1">
+              Want a Similar Build for Your Vehicle?
+            </h4>
+            <p className="text-xs text-zinc-400">
+              Contact Carmate on WhatsApp with your vehicle model to discuss body kits, lighting, and bespoke interior packages.
+            </p>
+          </div>
+          <a
+            href={whatsappInquiryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#ea1c24] hover:bg-[#ff2d36] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-[0_4px_20px_rgba(234,28,36,0.35)] transition-all shrink-0 active:scale-95"
+          >
+            <span>Start WhatsApp Consultation</span>
+            <ArrowUpRight size={15} />
+          </a>
         </div>
       </div>
-
-      {/* Lightbox Modal */}
-      <AlbumLightboxModal
-        album={activeAlbum}
-        initialIndex={photoIndex}
-        isOpen={!!activeAlbum}
-        onClose={() => setActiveAlbum(null)}
-      />
     </section>
   );
 }

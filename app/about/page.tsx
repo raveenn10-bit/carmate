@@ -22,25 +22,25 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="py-24 bg-[#05070a] text-white">
+    <div className="py-16 sm:py-24 bg-[#05070a] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20 pt-8">
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 pt-6 sm:pt-8">
           <span className="text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-3 block">
             Our Heritage &amp; Ethos
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-6">
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-4 sm:mb-6 leading-tight">
             Bred From Passion.<br />Crafted in Galle.
           </h1>
-          <p className="text-base text-zinc-400 leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-zinc-400 leading-relaxed">
             Operating from Makuluwa in Galle, Carmate is a passionate team of automotive styling craftsmen dedicated to transforming ordinary vehicles into extraordinary rolling art.
           </p>
         </div>
 
         {/* Split Story & Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-28">
-          <div className="space-y-6 text-sm text-zinc-300 leading-relaxed">
-            <h2 className="text-3xl font-black uppercase text-white tracking-tight">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-20 sm:mb-28">
+          <div className="space-y-5 sm:space-y-6 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
               The Carmate Philosophy
             </h2>
             <p>
@@ -49,26 +49,26 @@ export default function AboutPage() {
             <p>
               Whether it’s a high-downforce carbon GT wing on a Toyota Prius, aggressive custom bumpers on an Aqua, or a 64-color fiber-optic cabin, our team treats every project as if it were our own track machine.
             </p>
-            <div className="pt-4 flex flex-wrap gap-6 text-zinc-300">
+            <div className="pt-2 sm:pt-4 flex flex-wrap gap-4 sm:gap-6 text-zinc-300">
               <div className="flex items-center gap-2">
-                <Users className="text-[#ea1c24]" size={20} />
+                <Users className="text-[#ea1c24]" size={18} />
                 <span className="text-xs font-bold uppercase tracking-wider">1.2K+ Community Followers</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="text-[#ea1c24]" size={20} />
+                <MapPin className="text-[#ea1c24]" size={18} />
                 <span className="text-xs font-bold uppercase tracking-wider">197 Hotel Suniru Lanka, Makuluwa</span>
               </div>
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/3]">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-[16/10] sm:aspect-[4/3]">
             <img
               src="/assets/cac-8260-front-lights.jpg"
               alt="Carmate Workshop in Galle"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
               <p className="text-xs font-bold text-white uppercase tracking-wider">
                 Workshop Location · Makuluwa, Galle
               </p>
@@ -80,20 +80,20 @@ export default function AboutPage() {
         </div>
 
         {/* Values Grid */}
-        <div className="mb-24">
-          <h2 className="text-center text-3xl font-black uppercase text-white tracking-tight mb-12">
+        <div className="mb-16 sm:mb-24">
+          <h2 className="text-center text-2xl sm:text-3xl font-black uppercase text-white tracking-tight mb-8 sm:mb-12">
             Our Build Standards
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {values.map((v) => (
               <div
                 key={v.num}
-                className="bg-[#090d14] p-8 rounded-2xl border border-white/10 hover:border-[#ea1c24]/40 transition-colors"
+                className="bg-[#090d14] p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-[#ea1c24]/40 transition-colors"
               >
-                <div className="text-3xl font-black text-[#ea1c24] mb-4">
+                <div className="text-2xl sm:text-3xl font-black text-[#ea1c24] mb-3 sm:mb-4">
                   {v.num}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{v.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{v.title}</h3>
                 <p className="text-xs text-zinc-400 leading-relaxed">{v.desc}</p>
               </div>
             ))}

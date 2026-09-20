@@ -126,29 +126,29 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="py-24 bg-[#05070a] text-white">
+    <div className="py-16 sm:py-24 bg-[#05070a] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20 pt-8">
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 pt-6 sm:pt-8">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-3">
             <span>Specialized Capabilities</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-6">
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-4 sm:mb-6 leading-tight">
             Modification Services
           </h1>
-          <p className="text-base text-zinc-400 leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-zinc-400 leading-relaxed">
             From subtle styling enhancements to complete ground-up automotive transformations, every build at Carmate is executed with millimeter precision and true automotive passion in Makuluwa, Galle.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-20 sm:mb-28">
           {serviceList.map((svc) => (
             <div
               key={svc.title}
               className="bg-[#090d14] border border-white/10 hover:border-[#ea1c24]/50 rounded-2xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:-translate-y-1.5"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-48 sm:h-56 overflow-hidden">
                 <img
                   src={svc.img}
                   alt={svc.title}
@@ -159,9 +159,9 @@ export default function ServicesPage() {
                   {svc.category}
                 </span>
               </div>
-              <div className="p-6 flex-1 flex flex-col justify-between">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{svc.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{svc.title}</h3>
                   <p className="text-xs text-zinc-400 leading-relaxed mb-5">{svc.desc}</p>
                   <ul className="space-y-2 mb-6">
                     {svc.features.map((f) => (
@@ -178,9 +178,9 @@ export default function ServicesPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-white/10 hover:bg-[#ea1c24] text-white font-bold text-xs uppercase tracking-wider py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  className="w-full min-h-[44px] bg-white/10 hover:bg-[#ea1c24] active:bg-[#ea1c24] text-white font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors active:scale-95"
                 >
-                  <MessageSquareQuote size={15} />
+                  <MessageSquareQuote size={16} />
                   <span>Consult on WhatsApp</span>
                 </a>
               </div>
@@ -189,26 +189,26 @@ export default function ServicesPage() {
         </div>
 
         {/* Modification Package Tiers */}
-        <div className="mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="mb-20 sm:mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
             <span className="text-xs font-bold tracking-widest text-[#ea1c24] uppercase mb-2 block">
               Curated Packages
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight mb-3">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-black uppercase text-white tracking-tight mb-3">
               Build Packages
             </h2>
-            <p className="text-sm text-zinc-400">
+            <p className="text-xs sm:text-sm text-zinc-400">
               Select an all-in-one package or customize each individual item to suit your exact vision.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
-                className={`relative bg-[#090d14] rounded-2xl p-8 border flex flex-col justify-between transition-all duration-300 ${
+                className={`relative bg-[#090d14] rounded-2xl p-6 sm:p-8 border flex flex-col justify-between transition-all duration-300 ${
                   pkg.featured
-                    ? "border-[#ea1c24] shadow-[0_0_35px_rgba(234,28,36,0.25)] scale-105 bg-[#0e131d]"
+                    ? "border-[#ea1c24] shadow-[0_0_35px_rgba(234,28,36,0.25)] md:scale-105 bg-[#0e131d] my-2 md:my-0"
                     : "border-white/10"
                 }`}
               >
@@ -220,7 +220,7 @@ export default function ServicesPage() {
 
                 <div>
                   <div className="flex justify-between items-baseline mb-2">
-                    <h3 className="text-2xl font-black uppercase text-white">{pkg.name}</h3>
+                    <h3 className="text-xl sm:text-2xl font-black uppercase text-white">{pkg.name}</h3>
                     <span className="text-xs font-bold text-[#ea1c24] uppercase tracking-wider">{pkg.price}</span>
                   </div>
                   <p className="text-xs text-zinc-400 mb-6">{pkg.desc}</p>
@@ -240,7 +240,7 @@ export default function ServicesPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full text-center font-bold text-xs uppercase tracking-wider py-3 rounded-xl transition-all ${
+                  className={`w-full min-h-[48px] flex items-center justify-center text-center font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-xl transition-all active:scale-95 ${
                     pkg.featured
                       ? "bg-[#ea1c24] hover:bg-[#ff2d36] text-white shadow-lg"
                       : "bg-white/10 hover:bg-white/20 text-white"

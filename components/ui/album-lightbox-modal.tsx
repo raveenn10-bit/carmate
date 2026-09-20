@@ -43,11 +43,12 @@ export function AlbumLightboxModal({
     };
 
     window.addEventListener("keydown", handleKeyDown);
+    const orig = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = orig;
     };
   }, [isOpen, handleNext, handlePrev, onClose]);
 
@@ -59,7 +60,7 @@ export function AlbumLightboxModal({
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 md:p-10">
       {/* Blurred Backdrop */}
       <div
         className="absolute inset-0 bg-black/90 backdrop-blur-2xl transition-opacity"
@@ -67,46 +68,46 @@ export function AlbumLightboxModal({
       />
 
       {/* Lightbox Shell */}
-      <div className="relative z-10 w-full max-w-6xl max-h-[92vh] flex flex-col bg-[#07090d]/95 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative z-10 w-full max-w-6xl max-h-[94vh] flex flex-col bg-[#07090d]/95 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
         {/* Top bar */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-[#0c0f16]/90">
+        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/10 bg-[#0c0f16]/90">
           <div>
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#ea1c24] bg-[#ea1c24]/10 px-2.5 py-0.5 rounded-full">
               {album.category}
             </span>
-            <h3 className="text-lg font-bold text-white mt-1">
+            <h3 className="text-base sm:text-lg font-bold text-white mt-0.5">
               {album.name}
             </h3>
-            <span className="text-xs text-zinc-400">
+            <span className="text-[11px] sm:text-xs text-zinc-400">
               Photo {currentIndex + 1} of {album.photos.length}
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={`https://wa.me/94777177452?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-[#ea1c24] hover:bg-[#ff2d36] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-[#ea1c24] hover:bg-[#ff2d36] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 min-h-[44px] rounded-full transition-colors"
             >
               <MessageSquareQuote size={14} />
               <span>Inquire Build ↗</span>
             </a>
             <button
               onClick={onClose}
-              className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-zinc-400 hover:text-white rounded-lg hover:bg-white/10 active:bg-white/20 transition-colors"
               aria-label="Close modal"
             >
-              <X size={22} />
+              <X size={24} />
             </button>
           </div>
         </div>
 
         {/* Main Viewer */}
-        <div className="relative flex-1 min-h-[380px] max-h-[62vh] flex items-center justify-center bg-[#020406] p-2 sm:p-4">
+        <div className="relative flex-1 min-h-[300px] sm:min-h-[380px] max-h-[62vh] flex items-center justify-center bg-[#020406] p-2 sm:p-4 select-none">
           <button
             onClick={handlePrev}
-            className="absolute left-4 z-20 p-3 text-white bg-black/60 hover:bg-[#ea1c24] rounded-full backdrop-blur-md transition-all transform hover:scale-110"
+            className="absolute left-2 sm:left-4 z-20 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-white bg-black/70 hover:bg-[#ea1c24] active:bg-[#ea1c24] rounded-full backdrop-blur-md transition-all active:scale-95 shadow-lg"
             aria-label="Previous image"
           >
             <ChevronLeft size={24} />
@@ -116,12 +117,12 @@ export function AlbumLightboxModal({
             key={currentPhoto}
             src={currentPhoto}
             alt={`${album.name} photo ${currentIndex + 1}`}
-            className="max-h-[58vh] max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300"
+            className="max-h-[58vh] max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300 pointer-events-none"
           />
 
           <button
             onClick={handleNext}
-            className="absolute right-4 z-20 p-3 text-white bg-black/60 hover:bg-[#ea1c24] rounded-full backdrop-blur-md transition-all transform hover:scale-110"
+            className="absolute right-2 sm:right-4 z-20 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-white bg-black/70 hover:bg-[#ea1c24] active:bg-[#ea1c24] rounded-full backdrop-blur-md transition-all active:scale-95 shadow-lg"
             aria-label="Next image"
           >
             <ChevronRight size={24} />
@@ -129,18 +130,19 @@ export function AlbumLightboxModal({
         </div>
 
         {/* Filmstrip Thumbs */}
-        <div className="p-3 bg-[#0a0d14] border-t border-white/10 overflow-x-auto flex items-center gap-2.5 scrollbar-thin">
+        <div className="p-2.5 sm:p-3 bg-[#0a0d14] border-t border-white/10 overflow-x-auto flex items-center gap-2.5 scrollbar-thin">
           {album.photos.map((src, idx) => (
             <button
               key={src + idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`relative flex-shrink-0 w-16 h-12 rounded-md overflow-hidden border-2 transition-all ${
+              className={`relative flex-shrink-0 w-16 h-12 min-w-[44px] min-h-[44px] rounded-md overflow-hidden border-2 transition-all active:scale-95 ${
                 idx === currentIndex
                   ? "border-[#ea1c24] scale-105 shadow-[0_0_12px_rgba(234,28,36,0.6)]"
                   : "border-transparent opacity-50 hover:opacity-100"
               }`}
+              aria-label={`Go to photo ${idx + 1}`}
             >
-              <img src={src} alt="thumbnail" className="w-full h-full object-cover" />
+              <img src={src} alt="thumbnail" className="w-full h-full object-cover pointer-events-none" />
             </button>
           ))}
         </div>
