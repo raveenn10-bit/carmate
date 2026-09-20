@@ -32,7 +32,7 @@ export default function ServicesPage() {
     {
       title: "Custom Cockpit & Upholstery",
       category: "INTERIOR ARCHITECTURE",
-      img: "/assets/interior/imgi_71_606076893_122172084434392102_6626188684078899595_n.jpeg",
+      img: "/assets/interior/606076893_122172084434392102_6626188684078899595_n.jpg",
       desc: "Complete cabin transformations: custom leather seat sets with diamond stitching, steering wheel leather wraps, and 64-color ambient cabin illumination.",
       features: [
         "Handcrafted premium automotive leather",

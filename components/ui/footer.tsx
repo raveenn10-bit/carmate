@@ -83,13 +83,37 @@ export function Footer() {
             <h4 className="text-xs font-bold tracking-widest text-white uppercase mb-4 sm:mb-5">
               Services
             </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-400">
-              <li className="py-0.5">Custom Body Kits &amp; Styling</li>
-              <li className="py-0.5">Bi-LED &amp; Flowing DRL Lights</li>
-              <li className="py-0.5">Carbon GT Wings &amp; Spoilers</li>
-              <li className="py-0.5">Luxury Interior Upholstery</li>
-              <li className="py-0.5">64-Color Ambient Cabin</li>
-              <li className="py-0.5">Lowering &amp; Stance Fitment</li>
+            <ul className="space-y-1 text-xs sm:text-sm text-zinc-400">
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  Custom Body Kits &amp; Styling
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  Bi-LED &amp; Flowing DRL Lights
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  Carbon GT Wings &amp; Spoilers
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  Luxury Interior Upholstery
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  64-Color Ambient Cabin
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="min-h-[36px] flex items-center hover:text-[#ea1c24] transition-colors py-1">
+                  Lowering &amp; Stance Fitment
+                </Link>
+              </li>
             </ul>
           </div>
 
