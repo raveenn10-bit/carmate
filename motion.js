@@ -164,13 +164,29 @@
             heroHint.style.opacity = p > 0.02 ? '0' : '1';
           }
 
-          // Smooth reveal of tagline at the end of the transformation
+          // Smooth bidirectional fade-in and fade-out for tagline
           if (heroTagline) {
-            const tTag = Math.min(1, Math.max(0, (p - 0.70) / 0.25));
+            let tTag = 0;
+            let yOffset = 0;
+            if (p >= 0.55 && p < 0.74) {
+              const phase = (p - 0.55) / 0.19;
+              tTag = Math.min(1, Math.max(0, phase));
+              yOffset = (1 - tTag) * 24;
+            } else if (p >= 0.74 && p <= 0.85) {
+              tTag = 1;
+              yOffset = 0;
+            } else if (p > 0.85 && p <= 0.97) {
+              const phase = (p - 0.85) / 0.12;
+              tTag = Math.max(0, 1 - phase);
+              yOffset = -phase * 20;
+            } else {
+              tTag = 0;
+              yOffset = 24;
+            }
             heroTagline.style.opacity = tTag;
-            heroTagline.style.transform = `translate(-50%, calc(-50% + ${(1 - tTag) * 24}px)) scale(${0.97 + tTag * 0.03})`;
+            heroTagline.style.transform = `translate(-50%, calc(-50% + ${yOffset}px)) scale(${0.97 + tTag * 0.03})`;
             heroTagline.style.filter = `blur(${(1 - tTag) * 10}px)`;
-            heroTagline.style.pointerEvents = tTag > 0.5 ? 'auto' : 'none';
+            heroTagline.style.pointerEvents = tTag > 0.3 ? 'auto' : 'none';
           }
 
           // Racing red progress bar

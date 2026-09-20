@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useEffect, useRef, useState, useCallback } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 export interface ScrollLockedFrameHeroProps {
   /** Array of image frame URLs or total frame count if standard pattern */
@@ -313,155 +315,90 @@ export default function ScrollLockedFrameHero({
       }
     }
 
-    let rafId = 0
-    let targetProgress = 0
-    let currentProgress = 0
-    let currentFrame = 0
-    let hasStartedScrolling = false
-    let locked = false
-    let lockedScrollY = 0
-    let touchStartY = 0
+    // Calculate pin scroll distance: tuned to device height for optimal feel
+    const pinDistance = typeof window !== "undefined"
+      ? Math.max(2600, Math.round(window.innerHeight * 3.6))
+      : 3600
 
-    function engageLock() {
-      if (locked || typeof document === "undefined") return
-      locked = true
-      lockedScrollY = window.scrollY
-      const b = document.body.style
-      b.position = "fixed"
-      b.top = `-${lockedScrollY}px`
-      b.left = "0"
-      b.right = "0"
-      b.width = "100%"
-      b.height = "100%"
-      b.overscrollBehavior = "none"
-    }
+    const heroTrigger = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: () => `+=${pinDistance}`,
+      pin: true,
+      scrub: 0.65,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const p = self.progress
 
-    function releaseLock() {
-      if (!locked || typeof document === "undefined") return
-      locked = false
-      const y = lockedScrollY
-      const b = document.body.style
-      b.position = ""
-      b.top = ""
-      b.left = ""
-      b.right = ""
-      b.width = ""
-      b.height = ""
-      b.overscrollBehavior = ""
-      window.scrollTo(0, y)
-    }
+        // Frame rendering
+        const targetFrameIndex = Math.min(
+          frameCount - 1,
+          Math.max(0, Math.round(p * (frameCount - 1)))
+        )
+        currentRenderIndexRef.current = targetFrameIndex
+        requestSlidingWindow(targetFrameIndex)
+        drawFrame(targetFrameIndex)
 
-    engageLock()
-
-    function addDelta(deltaY: number): boolean {
-      if (!locked && window.scrollY > 10) return false
-
-      if (!locked && window.scrollY <= 10 && deltaY < 0) {
-        engageLock()
-        targetProgress = 1
-        return true
-      }
-
-      const activeScrub = scrubDistRef.current || 4800
-      const next = clamp(targetProgress + deltaY / activeScrub, 0, 1)
-      targetProgress = next
-      if (targetProgress > 0.001) hasStartedScrolling = true
-
-      // If scrub completed and user continues downward, smoothly release lock
-      if (next >= 0.999 && deltaY > 0) {
-        releaseLock()
-      }
-      return true
-    }
-
-    const onWheel = (e: WheelEvent) => {
-      if (locked) {
-        addDelta(e.deltaY)
-        e.preventDefault()
-      }
-    }
-
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0]?.clientY ?? 0
-    }
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (locked) {
-        const y = e.touches[0]?.clientY ?? touchStartY
-        const deltaY = touchStartY - y
-        touchStartY = y
-        const handled = addDelta(deltaY)
-        if (handled && e.cancelable) {
-          e.preventDefault()
+        // 1. Initial Title: visible at start (p=0 to 0.20), fades out and drifts up
+        if (titleRef.current) {
+          const tTitle = 1 - Math.min(1, Math.max(0, p / 0.18))
+          titleRef.current.style.opacity = String(tTitle)
+          titleRef.current.style.transform = `translateY(${(1 - tTitle) * -32}px) scale(${0.96 + tTitle * 0.04})`
+          titleRef.current.style.filter = `blur(${(1 - tTitle) * 10}px)`
+          titleRef.current.style.pointerEvents = tTitle < 0.1 ? "none" : "auto"
         }
-      }
-    }
 
-    window.addEventListener("wheel", onWheel, { passive: false })
-    window.addEventListener("touchstart", onTouchStart, { passive: true })
-    window.addEventListener("touchmove", onTouchMove, { passive: false })
+        // 2. Scroll Hint: fades out immediately once user scrolls
+        if (hintRef.current) {
+          const tHint = 1 - Math.min(1, Math.max(0, p / 0.04))
+          hintRef.current.style.opacity = String(tHint)
+          hintRef.current.style.pointerEvents = tHint < 0.1 ? "none" : "auto"
+        }
 
-    /**
-     * Cinematic weighted lerp animation loop (~0.07 factor)
-     */
-    function frame() {
-      const targetFrame = targetProgress * (frameCount - 1)
-      // Lerp currentFrame towards targetFrame with weighted cinematic factor 0.07
-      currentFrame += (targetFrame - currentFrame) * 0.07
+        // 3. Revealed Tagline Info:
+        // - FADES IN: p = 0.55 -> 0.74 (opacity 0 -> 1, floats up into focus)
+        // - HOLDS: p = 0.74 -> 0.85 (opacity 1, crystal clear readability)
+        // - FADES OUT: p = 0.85 -> 0.97 (opacity 1 -> 0, dissolves before unpinning!)
+        // - At p >= 0.98: completely transparent (opacity 0)
+        if (taglineRef.current) {
+          let tTag = 0
+          let yOffset = 0
 
-      if (Math.abs(targetFrame - currentFrame) < 0.001) {
-        currentFrame = targetFrame
-      }
+          if (p >= 0.55 && p < 0.74) {
+            const phaseProgress = (p - 0.55) / 0.19
+            tTag = Math.min(1, Math.max(0, phaseProgress))
+            yOffset = (1 - tTag) * 24
+          } else if (p >= 0.74 && p <= 0.85) {
+            tTag = 1
+            yOffset = 0
+          } else if (p > 0.85 && p <= 0.97) {
+            const phaseProgress = (p - 0.85) / 0.12
+            tTag = Math.max(0, 1 - phaseProgress)
+            yOffset = -phaseProgress * 20
+          } else {
+            tTag = 0
+            yOffset = 24
+          }
 
-      const renderIndex = clamp(Math.round(currentFrame), 0, frameCount - 1)
-      currentRenderIndexRef.current = renderIndex
+          taglineRef.current.style.opacity = String(tTag)
+          taglineRef.current.style.transform = `translateY(${yOffset}px) scale(${0.97 + tTag * 0.03})`
+          taglineRef.current.style.filter = `blur(${(1 - tTag) * 8}px)`
+          taglineRef.current.style.pointerEvents = tTag > 0.3 ? "auto" : "none"
+        }
 
-      // Prioritize sliding window around active frame
-      requestSlidingWindow(renderIndex)
+        // 4. Precision Bottom Progress Bar: tracks p exactly (0 -> 100%)
+        if (progressBarRef.current) {
+          progressBarRef.current.style.transform = `scaleX(${p})`
+        }
+      },
+    })
 
-      drawFrame(renderIndex)
-
-      currentProgress = currentFrame / (frameCount - 1)
-
-      // Animate typography and overlay states
-      if (titleRef.current) {
-        const t = 1 - clamp(currentProgress / 0.32, 0, 1)
-        titleRef.current.style.opacity = String(t)
-        titleRef.current.style.transform = `translateY(${(1 - t) * -24}px) scale(${0.96 + t * 0.04})`
-        titleRef.current.style.filter = `blur(${(1 - t) * 8}px)`
-      }
-
-      if (hintRef.current) {
-        hintRef.current.style.opacity = hasStartedScrolling ? "0" : "1"
-        hintRef.current.style.pointerEvents = hasStartedScrolling ? "none" : "auto"
-      }
-
-      if (taglineRef.current) {
-        const t = clamp((currentProgress - 0.72) / 0.25, 0, 1)
-        taglineRef.current.style.opacity = String(t)
-        taglineRef.current.style.transform = `translateY(${(1 - t) * 20}px) scale(${0.97 + t * 0.03})`
-        taglineRef.current.style.filter = `blur(${(1 - t) * 8}px)`
-      }
-
-      if (progressBarRef.current) {
-        progressBarRef.current.style.transform = `scaleX(${currentProgress})`
-      }
-
-      rafId = requestAnimationFrame(frame)
-    }
-
-    if (!reduceMotion) {
-      rafId = requestAnimationFrame(frame)
-    } else {
-      drawFrame(frameCount - 1)
-    }
+    ScrollTrigger.refresh()
 
     return () => {
       window.removeEventListener("resize", resizeCanvas)
-      window.removeEventListener("wheel", onWheel)
-      window.removeEventListener("touchstart", onTouchStart)
-      window.removeEventListener("touchmove", onTouchMove)
-      cancelAnimationFrame(rafId)
+      heroTrigger.kill()
       if (idleTimer) {
         if (typeof window !== "undefined" && "cancelIdleCallback" in window) {
           // @ts-ignore
@@ -470,15 +407,11 @@ export default function ScrollLockedFrameHero({
           clearTimeout(idleTimer)
         }
       }
-      releaseLock()
     }
   }, [frameCount, scrubDistance, loadFrame, requestSlidingWindow])
 
   const handleHintClick = () => {
-    // Smooth user nudge on tap/click
-    const simulatedDelta = (scrubDistRef.current || 4800) * 0.15
-    const wheelEvent = new WheelEvent("wheel", { deltaY: simulatedDelta })
-    window.dispatchEvent(wheelEvent)
+    window.scrollBy({ top: window.innerHeight * 1.5, behavior: "smooth" })
   }
 
   return (
@@ -491,7 +424,6 @@ export default function ScrollLockedFrameHero({
         width: "100%",
         overflow: "hidden",
         background: COL_BG,
-        touchAction: "none",
         ...style,
       }}
     >
@@ -635,7 +567,7 @@ export default function ScrollLockedFrameHero({
         </h1>
       </div>
 
-      {/* Revealed Tagline: Bottom-aligned when scrub reaches completion */}
+      {/* Revealed Tagline: Centered luxury automotive statement */}
       {tagline && (
         <div
           ref={taglineRef}
@@ -645,30 +577,55 @@ export default function ScrollLockedFrameHero({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "flex-end",
-            paddingBottom: "clamp(80px, 15vh, 150px)",
+            justifyContent: "center",
             paddingLeft: "6%",
             paddingRight: "6%",
             textAlign: "center",
             opacity: 0,
             pointerEvents: "none",
+            zIndex: 10,
           }}
         >
-          <p
+          <div
             style={{
-              fontFamily: SANS,
-              fontWeight: 700,
-              fontSize: "clamp(18px, 3.2vw, 36px)",
-              lineHeight: 1.25,
-              letterSpacing: "-0.01em",
-              color: COL_TEXT,
-              textShadow: "0 4px 24px rgba(0,0,0,0.9)",
-              maxWidth: 880,
-              margin: 0,
+              maxWidth: 920,
+              padding: "24px 32px",
+              borderRadius: 24,
+              background: "rgba(5, 7, 13, 0.72)",
+              border: "1px solid rgba(255, 255, 255, 0.14)",
+              backdropFilter: "blur(20px)",
+              boxShadow: "0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(234, 28, 36, 0.2)",
             }}
           >
-            {tagline}
-          </p>
+            <span
+              style={{
+                display: "inline-block",
+                color: "#ea1c24",
+                fontFamily: SANS,
+                fontSize: "clamp(10px, 1.1vw, 12px)",
+                fontWeight: 700,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                marginBottom: 10,
+              }}
+            >
+              BESPOKE CRAFTSMANSHIP // MAKULUWA, GALLE
+            </span>
+            <p
+              style={{
+                fontFamily: SANS,
+                fontWeight: 700,
+                fontSize: "clamp(17px, 2.8vw, 32px)",
+                lineHeight: 1.28,
+                letterSpacing: "-0.01em",
+                color: COL_TEXT,
+                textShadow: "0 2px 16px rgba(0,0,0,0.8)",
+                margin: 0,
+              }}
+            >
+              {tagline}
+            </p>
+          </div>
         </div>
       )}
 

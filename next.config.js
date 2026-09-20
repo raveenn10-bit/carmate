@@ -1,5 +1,21 @@
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' blob: data: https:;
+  font-src 'self' data: https://fonts.gstatic.com;
+  media-src 'self' blob: data: https://cdn.21st.dev;
+  connect-src 'self' https:;
+  frame-src 'self' https://www.google.com https://maps.google.com;
+  frame-ancestors 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self' https://wa.me;
+`.replace(/\s{2,}/g, ' ').trim();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
   images: {
@@ -32,11 +48,15 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
           },
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy,
           },
         ],
       },

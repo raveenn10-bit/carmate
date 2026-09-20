@@ -46,7 +46,7 @@ export function Footer() {
         {/* Deep Dark Radial Highlights */}
         <div className="absolute top-0 right-1/4 w-[700px] h-[500px] bg-[#ea1c24]/[0.035] rounded-full blur-[140px]" />
         <div className="absolute -bottom-20 -left-20 w-[600px] h-[500px] bg-red-900/[0.04] rounded-full blur-[130px]" />
-        <div className="absolute top-1/2 left-1/3 w-[500px] h-[400px] bg-[#62B6CB]/[0.02] rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/3 w-[500px] h-[400px] bg-[#6b111e]/[0.025] rounded-full blur-[150px]" />
 
         {/* Aerodynamic Red Streamers (Coded SVG Curves) */}
         <svg
@@ -74,7 +74,7 @@ export function Footer() {
       <div className="relative w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
         {/* Main 5-Column Responsive Grid */}
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 pb-14 sm:pb-16 border-b ${
-          isDark ? "border-white/10" : "border-[#62B6CB]/30"
+          isDark ? "border-white/10" : "border-[#6b111e]/20"
         }`}>
           
           {/* Column 1: Brand & Automotive Statement (spans 4 cols on lg/xl) */}
@@ -94,14 +94,14 @@ export function Footer() {
             <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] uppercase transition-colors ${
               isDark
                 ? "bg-white/[0.04] border-white/10 text-[#ea1c24]"
-                : "bg-[#BEE9E8]/70 border-[#62B6CB]/40 text-[#0B1F3B]"
+                : "bg-[#6b111e]/10 border-[#6b111e]/25 text-[#6b111e]"
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#ea1c24] animate-pulse" />
               <span>SOUTHERN CEYLON AUTOMOTIVE ATELIER</span>
             </div>
 
             <p className={`text-xs sm:text-sm leading-relaxed max-w-md transition-colors ${
-              isDark ? "text-zinc-400" : "text-[#1B4965]"
+              isDark ? "text-zinc-400" : "text-[#222227]"
             }`}>
               Galle's premier automotive styling workshop. Engineered body kit fitting, custom Bi-LED projector retrofits, 2K baked paint perfection, and bespoke vehicle transformations.
             </p>
@@ -110,7 +110,7 @@ export function Footer() {
             <div className="pt-1">
               <div className="h-[2px] w-12 bg-gradient-to-r from-[#ea1c24] to-transparent mb-2" />
               <p className={`text-[11px] sm:text-xs font-black tracking-[0.22em] uppercase transition-colors ${
-                isDark ? "text-white" : "text-[#0B1F3B]"
+                isDark ? "text-white" : "text-[#0a0a0c]"
               }`}>
                 BUILT DIFFERENT. ALWAYS.
               </p>
@@ -119,7 +119,7 @@ export function Footer() {
             {/* Social Channels Pill Bar */}
             <div className="pt-2">
               <span className={`text-[10px] font-mono uppercase tracking-widest block mb-2 transition-colors ${
-                isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                isDark ? "text-zinc-500" : "text-[#222227]/80"
               }`}>
                 Connect With Workshop
               </span>
@@ -204,7 +204,7 @@ export function Footer() {
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
               <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
-                isDark ? "text-white" : "text-[#0B1F3B]"
+                isDark ? "text-white" : "text-[#0a0a0c]"
               }`}>
                 Explore Carmate
               </h4>
@@ -223,7 +223,7 @@ export function Footer() {
                     className={`inline-flex items-center gap-1.5 transition-all hover:translate-x-1 ${
                       isDark
                         ? "text-zinc-400 hover:text-white"
-                        : "text-[#1B4965] hover:text-[#ea1c24]"
+                        : "text-[#222227] hover:text-[#ea1c24]"
                     }`}
                   >
                     <ChevronRight size={13} className="text-[#ea1c24]" />
@@ -239,7 +239,7 @@ export function Footer() {
             <div className="flex items-center gap-2 mb-4 sm:mb-5">
               <span className="w-1 h-3.5 bg-[#ea1c24] rounded-full" />
               <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
-                isDark ? "text-white" : "text-[#0B1F3B]"
+                isDark ? "text-white" : "text-[#0a0a0c]"
               }`}>
                 Workshop Services
               </h4>
@@ -259,7 +259,7 @@ export function Footer() {
                     className={`inline-flex items-center gap-1.5 transition-all hover:translate-x-1 group ${
                       isDark
                         ? "text-zinc-400 hover:text-white"
-                        : "text-[#1B4965] hover:text-[#ea1c24]"
+                        : "text-[#222227] hover:text-[#ea1c24]"
                     }`}
                   >
                     <span className="text-[#ea1c24]">▪</span>
@@ -274,12 +274,12 @@ export function Footer() {
           <div className={`flex flex-col justify-between space-y-4 lg:col-span-3 xl:col-span-3 border rounded-2xl p-5 sm:p-6 shadow-xl transition-colors ${
             isDark
               ? "bg-white/[0.02] border-white/10"
-              : "bg-white/95 border-[#62B6CB]/35 shadow-[0_8px_30px_rgba(11,31,59,0.06)]"
+              : "bg-white border-[#6b111e]/20 shadow-[0_8px_30px_rgba(10,10,12,0.06)]"
           }`}>
             <div>
               <div className="flex items-center justify-between mb-2">
                 <h4 className={`text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors ${
-                  isDark ? "text-white" : "text-[#0B1F3B]"
+                  isDark ? "text-white" : "text-[#0a0a0c]"
                 }`}>
                   VIP Build Updates
                 </h4>
@@ -288,7 +288,7 @@ export function Footer() {
                 </span>
               </div>
               <p className={`text-xs leading-relaxed mb-4 transition-colors ${
-                isDark ? "text-zinc-400" : "text-[#1B4965]"
+                isDark ? "text-zinc-400" : "text-[#222227]"
               }`}>
                 Be the first to see fresh project rollouts, body kit arrivals and special seasonal offers.
               </p>
@@ -310,7 +310,7 @@ export function Footer() {
                       className={`flex-1 min-w-0 border focus:outline-none text-xs px-3.5 py-2.5 rounded-xl transition-colors ${
                         isDark
                           ? "bg-white/[0.04] border-white/15 text-white placeholder:text-zinc-500 focus:border-[#ea1c24]"
-                          : "bg-white border-[#62B6CB]/45 text-[#0B1F3B] placeholder:text-[#1B4965]/60 focus:border-[#62B6CB] shadow-inner"
+                          : "bg-white border-[#6b111e]/25 text-[#0a0a0c] placeholder:text-[#33333a]/60 focus:border-[#6b111e] shadow-inner"
                       }`}
                     />
                     <button
@@ -331,7 +331,7 @@ export function Footer() {
                       className="mt-0.5 rounded border-white/20 bg-white/[0.05] text-[#ea1c24] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#ea1c24]"
                     />
                     <span className={`text-[11px] select-none leading-tight transition-colors ${
-                      isDark ? "text-zinc-400 group-hover:text-zinc-300" : "text-[#1B4965] group-hover:text-[#0B1F3B]"
+                      isDark ? "text-zinc-400 group-hover:text-zinc-300" : "text-[#222227] group-hover:text-[#0a0a0c]"
                     }`}>
                       I agree to receive automotive project updates.
                     </span>
@@ -341,7 +341,7 @@ export function Footer() {
             </div>
 
             {/* Quick WhatsApp Action Banner inside the card */}
-            <div className={`pt-3 border-t ${isDark ? "border-white/10" : "border-[#62B6CB]/20"}`}>
+            <div className={`pt-3 border-t ${isDark ? "border-white/10" : "border-[#6b111e]/20"}`}>
               <a
                 href="https://wa.me/94777177452?text=Hello%20Carmate!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20vehicle%20build."
                 target="_blank"
@@ -349,7 +349,7 @@ export function Footer() {
                 className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
                   isDark
                     ? "bg-[#25d366]/10 hover:bg-[#25d366] text-[#25d366] hover:text-black border border-[#25d366]/30 hover:border-[#25d366]"
-                    : "bg-[#25d366]/15 hover:bg-[#25d366] text-[#0B1F3B] hover:text-black border border-[#25d366]/40 hover:border-[#25d366]"
+                    : "bg-[#25d366]/15 hover:bg-[#25d366] text-[#0a0a0c] hover:text-black border border-[#25d366]/40 hover:border-[#25d366]"
                 }`}
               >
                 <MessageSquare size={14} />
@@ -370,7 +370,7 @@ export function Footer() {
               className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
-                  : "bg-white hover:bg-[#BEE9E8]/20 border-[#62B6CB]/35 hover:border-[#62B6CB] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+                  : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#6b111e] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
@@ -378,12 +378,12 @@ export function Footer() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
-                  isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                  isDark ? "text-zinc-500" : "text-[#222227]/80"
                 }`}>
                   Workshop Coordinates
                 </p>
                 <p className={`text-xs sm:text-sm font-semibold truncate ${
-                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#ea1c24]"
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#ea1c24]"
                 }`}>
                   197 Hotel Suniru, Makuluwa
                 </p>
@@ -398,7 +398,7 @@ export function Footer() {
               className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] border-white/10"
-                  : "bg-white border-[#62B6CB]/35 shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+                  : "bg-white border-[#6b111e]/20 shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] shrink-0">
@@ -407,7 +407,7 @@ export function Footer() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between">
                   <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
-                    isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                    isDark ? "text-zinc-500" : "text-[#222227]/80"
                   }`}>
                     Workshop Hours
                   </p>
@@ -417,12 +417,12 @@ export function Footer() {
                   </span>
                 </div>
                 <p className={`text-xs sm:text-sm font-semibold truncate ${
-                  isDark ? "text-zinc-100" : "text-[#0B1F3B]"
+                  isDark ? "text-zinc-100" : "text-[#0a0a0c]"
                 }`}>
                   Mon - Sat: 8:30 AM – 6:30 PM
                 </p>
                 <span className={`text-[10px] font-mono mt-0.5 block ${
-                  isDark ? "text-zinc-400" : "text-[#1B4965]"
+                  isDark ? "text-zinc-400" : "text-[#222227]"
                 }`}>
                   Sunday: By Prior Appointment
                 </span>
@@ -435,7 +435,7 @@ export function Footer() {
               className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-white/20"
-                  : "bg-white hover:bg-[#BEE9E8]/20 border-[#62B6CB]/35 hover:border-[#62B6CB] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+                  : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#6b111e] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#ea1c24]/10 border border-[#ea1c24]/30 flex items-center justify-center text-[#ea1c24] group-hover:scale-105 transition-transform shrink-0">
@@ -443,17 +443,17 @@ export function Footer() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
-                  isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                  isDark ? "text-zinc-500" : "text-[#222227]/80"
                 }`}>
                   Direct Hotline
                 </p>
                 <p className={`text-xs sm:text-sm font-semibold truncate ${
-                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#ea1c24]"
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#ea1c24]"
                 }`}>
                   +94 77 717 7452
                 </p>
                 <span className={`text-[10px] font-mono mt-0.5 block ${
-                  isDark ? "text-zinc-400" : "text-[#1B4965]"
+                  isDark ? "text-zinc-400" : "text-[#222227]"
                 }`}>
                   info@carmate.lk • Inquiries
                 </span>
@@ -468,7 +468,7 @@ export function Footer() {
               className={`flex items-center gap-3.5 p-4 rounded-2xl border transition-all duration-200 group shadow-md ${
                 isDark
                   ? "bg-white/[0.02] hover:bg-white/[0.05] border-white/10 hover:border-[#25d366]/50"
-                  : "bg-white hover:bg-[#BEE9E8]/25 border-[#62B6CB]/35 hover:border-[#25d366] shadow-[0_4px_20px_rgba(11,31,59,0.06)]"
+                  : "bg-white hover:bg-[#f7eef0]/50 border-[#6b111e]/20 hover:border-[#25d366] shadow-[0_4px_20px_rgba(10,10,12,0.06)]"
               }`}
             >
               <div className="w-11 h-11 rounded-xl bg-[#25d366]/10 border border-[#25d366]/30 flex items-center justify-center text-[#25d366] group-hover:scale-105 transition-transform shrink-0">
@@ -477,7 +477,7 @@ export function Footer() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between">
                   <p className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
-                    isDark ? "text-zinc-500" : "text-[#1B4965]/80"
+                    isDark ? "text-zinc-500" : "text-[#222227]/80"
                   }`}>
                     WhatsApp Direct
                   </p>
@@ -487,7 +487,7 @@ export function Footer() {
                   </span>
                 </div>
                 <p className={`text-xs sm:text-sm font-semibold truncate ${
-                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0B1F3B] group-hover:text-[#25d366]"
+                  isDark ? "text-zinc-100 group-hover:text-white" : "text-[#0a0a0c] group-hover:text-[#25d366]"
                 }`}>
                   +94 77 717 7452
                 </p>
@@ -528,7 +528,7 @@ export function Footer() {
 
         {/* Bottom Bar: Copyright, Designer Credit & Motorsport Manifesto */}
         <div className={`pt-2 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-center lg:text-left transition-colors ${
-          isDark ? "text-zinc-400" : "text-[#1B4965]"
+          isDark ? "text-zinc-400" : "text-[#222227]"
         }`}>
           {/* Left: Copyright & Designer */}
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
@@ -541,7 +541,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`font-semibold transition-colors underline-offset-4 hover:underline ${
-                  isDark ? "text-white hover:text-[#ea1c24]" : "text-[#0B1F3B] hover:text-[#ea1c24]"
+                  isDark ? "text-white hover:text-[#ea1c24]" : "text-[#0a0a0c] hover:text-[#ea1c24]"
                 }`}
               >
                 Harsh Apex
@@ -553,7 +553,7 @@ export function Footer() {
           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] sm:text-[11px] font-mono transition-colors ${
             isDark
               ? "bg-white/[0.03] border-white/10 text-zinc-400"
-              : "bg-[#BEE9E8]/60 border-[#62B6CB]/40 text-[#0B1F3B]"
+              : "bg-[#6b111e]/10 border-[#6b111e]/25 text-[#6b111e]"
           }`}>
             <ShieldCheck size={12} className="text-[#ea1c24]" />
             <span>Southern Province • Makuluwa, Galle, Sri Lanka</span>
@@ -561,7 +561,7 @@ export function Footer() {
 
           {/* Right: Slogan Motto Badges */}
           <div className={`flex flex-wrap justify-center items-center gap-2 sm:gap-2.5 font-mono font-bold tracking-widest text-[10px] sm:text-[11px] transition-colors ${
-            isDark ? "text-zinc-400" : "text-[#1B4965]"
+            isDark ? "text-zinc-400" : "text-[#222227]"
           }`}>
             <span>CARS</span>
             <span className="text-[#ea1c24]">/</span>
@@ -569,7 +569,7 @@ export function Footer() {
             <span className="text-[#ea1c24]">/</span>
             <span>PASSION</span>
             <span className="text-[#ea1c24]">/</span>
-            <span className={isDark ? "text-white" : "text-[#0B1F3B]"}>FOREVER</span>
+            <span className={isDark ? "text-white" : "text-[#0a0a0c]"}>FOREVER</span>
           </div>
         </div>
       </div>

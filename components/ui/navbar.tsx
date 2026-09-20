@@ -79,8 +79,8 @@ export function Navbar() {
               ? "bg-[#05070a]/95 backdrop-blur-md border-b border-white/10 py-2.5 sm:py-3 shadow-lg"
               : "bg-gradient-to-b from-[#05070a]/90 via-[#05070a]/60 to-transparent py-4 sm:py-5"
             : scrolled
-            ? "bg-white/90 backdrop-blur-md border-b border-[#62B6CB]/30 py-2.5 sm:py-3 shadow-[0_4px_24px_rgba(11,31,59,0.08)]"
-            : "bg-gradient-to-b from-white/90 via-white/60 to-transparent py-4 sm:py-5"
+            ? "bg-white/95 backdrop-blur-md border-b border-[#6b111e]/20 py-2.5 sm:py-3 shadow-[0_4px_24px_rgba(10,10,12,0.06)]"
+            : "bg-gradient-to-b from-white/95 via-white/70 to-transparent py-4 sm:py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -91,7 +91,7 @@ export function Navbar() {
               className={`min-w-[44px] min-h-[44px] p-2 flex items-center justify-center rounded-lg focus:outline-none transition-colors ${
                 isDark
                   ? "text-zinc-300 hover:text-white active:bg-white/10"
-                  : "text-[#0B1F3B] hover:text-[#1B4965] active:bg-[#62B6CB]/15"
+                  : "text-[#0a0a0c] hover:text-[#6b111e] active:bg-[#6b111e]/10"
               }`}
               aria-label="Open navigation menu"
             >
@@ -125,7 +125,7 @@ export function Navbar() {
                       ? "text-[#ea1c24] font-bold"
                       : isDark
                       ? "text-zinc-300 hover:text-white"
-                      : "text-[#1B4965] hover:text-[#0B1F3B]"
+                      : "text-[#222227] hover:text-[#6b111e]"
                   }`}
                 >
                   {name}
@@ -167,7 +167,7 @@ export function Navbar() {
             style={{
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
-              backgroundColor: isDark ? "rgba(5,7,10,0.92)" : "rgba(240,249,255,0.96)",
+              backgroundColor: isDark ? "rgba(5,7,10,0.92)" : "rgba(255, 255, 255, 0.98)",
             }}
           >
             {/* Close button — centered at top */}
@@ -176,7 +176,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close menu"
                 className={`min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors ${
-                  isDark ? "text-white/80 hover:text-white" : "text-[#0B1F3B]/80 hover:text-[#0B1F3B]"
+                  isDark ? "text-white/80 hover:text-white" : "text-[#0a0a0c]/80 hover:text-[#6b111e]"
                 }`}
               >
                 <X size={28} strokeWidth={1.6} />
@@ -205,7 +205,7 @@ export function Navbar() {
                           ? "text-[#ea1c24] font-medium"
                           : isDark
                           ? "text-white/75 hover:text-white active:text-[#ea1c24]"
-                          : "text-[#0B1F3B]/80 hover:text-[#0B1F3B] active:text-[#ea1c24]"
+                          : "text-[#0a0a0c]/85 hover:text-[#6b111e] active:text-[#ea1c24]"
                       }`}
                     >
                       <Icon
@@ -216,7 +216,7 @@ export function Navbar() {
                             ? "text-[#ea1c24]"
                             : isDark
                             ? "text-white/50"
-                            : "text-[#1B4965]/70"
+                            : "text-[#6b111e]/70"
                         }
                       />
                       <span>{name}</span>
@@ -243,7 +243,7 @@ export function Navbar() {
                 className={`w-full max-w-xs min-h-[52px] flex items-center justify-center gap-2 border rounded-full text-sm font-medium tracking-widest uppercase transition-all active:scale-95 ${
                   isDark
                     ? "border-white/30 hover:border-[#ea1c24] text-white hover:text-[#ea1c24]"
-                    : "border-[#1B4965]/40 hover:border-[#ea1c24] text-[#0B1F3B] hover:text-[#ea1c24]"
+                    : "border-[#6b111e]/30 hover:border-[#ea1c24] text-[#0a0a0c] hover:text-[#ea1c24]"
                 }`}
               >
                 <MessageSquare size={16} strokeWidth={1.5} />

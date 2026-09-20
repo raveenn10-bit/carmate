@@ -49,15 +49,15 @@ export function ThemeToggle({
         whileTap={{ scale: 0.9 }}
         aria-label={
           isDark
-            ? "Switch to Ambient Aurora Light Theme"
+            ? "Switch to Luxury Spec Light Theme"
             : "Switch to Signature Automotive Dark Theme"
         }
         title={
           isDark
-            ? "Switch to Ambient Aurora Light Theme"
+            ? "Switch to Luxury Spec Light Theme"
             : "Switch to Signature Automotive Dark Theme"
         }
-        className={`group relative flex items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#62B6CB] cursor-pointer select-none ${
+        className={`group relative flex items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B111E] cursor-pointer select-none ${
           size === "sm"
             ? "w-9 h-9 min-w-[36px] min-h-[36px]"
             : size === "lg"
@@ -66,7 +66,7 @@ export function ThemeToggle({
         } ${
           isDark
             ? "bg-[#090d14]/90 hover:bg-[#0f1420] text-zinc-300 hover:text-white border border-white/15 hover:border-[#ea1c24]/50 shadow-[0_2px_12px_rgba(0,0,0,0.6)] hover:shadow-[0_0_16px_rgba(234,28,36,0.35)]"
-            : "bg-white/90 hover:bg-white text-[#0B1F3B] hover:text-[#1B4965] border border-[#62B6CB]/40 hover:border-[#62B6CB] shadow-[0_2px_12px_rgba(11,31,59,0.08)] hover:shadow-[0_0_18px_rgba(98,182,203,0.45)]"
+            : "bg-white/95 hover:bg-white text-[#0A0A0C] hover:text-[#6B111E] border border-[#6B111E]/40 hover:border-[#6B111E] shadow-[0_2px_12px_rgba(10,10,12,0.08)] hover:shadow-[0_0_18px_rgba(107,17,30,0.35)]"
         }`}
       >
         {/* Subtle interior cockpit radial ring */}
@@ -74,7 +74,7 @@ export function ThemeToggle({
           className={`absolute inset-0.5 rounded-full pointer-events-none transition-opacity duration-300 ${
             isDark
               ? "bg-gradient-to-tr from-white/[0.03] to-transparent opacity-80 group-hover:opacity-100"
-              : "bg-gradient-to-tr from-[#BEE9E8]/30 to-transparent opacity-90 group-hover:opacity-100"
+              : "bg-gradient-to-tr from-[#f7eef0]/80 to-transparent opacity-90 group-hover:opacity-100"
           }`}
         />
 
@@ -83,7 +83,7 @@ export function ThemeToggle({
           className={`absolute top-1 right-1 w-1.5 h-1.5 rounded-full transition-all duration-300 ${
             isDark
               ? "bg-[#ea1c24] shadow-[0_0_6px_#ea1c24]"
-              : "bg-[#62B6CB] shadow-[0_0_6px_#62B6CB]"
+              : "bg-[#6B111E] shadow-[0_0_6px_#6B111E]"
           }`}
         />
 
@@ -123,7 +123,7 @@ export function ThemeToggle({
             >
               <Sun
                 size={currentIconSize}
-                className="text-[#0B1F3B] group-hover:text-[#1B4965] drop-shadow-[0_0_6px_rgba(98,182,203,0.6)]"
+                className="text-[#0A0A0C] group-hover:text-[#6B111E] drop-shadow-[0_0_6px_rgba(107,17,30,0.4)]"
                 strokeWidth={1.85}
               />
             </motion.div>
@@ -137,10 +137,10 @@ export function ThemeToggle({
           className={`text-xs font-mono font-bold tracking-wider uppercase cursor-pointer select-none transition-colors ${
             isDark
               ? "text-zinc-400 hover:text-white"
-              : "text-[#1B4965] hover:text-[#0B1F3B]"
+              : "text-[#222227] hover:text-[#6B111E]"
           }`}
         >
-          {isDark ? "Dark Spec" : "Aurora Light"}
+          {isDark ? "Dark Spec" : "Luxury Spec"}
         </span>
       )}
     </div>

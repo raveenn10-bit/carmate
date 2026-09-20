@@ -2307,9 +2307,9 @@ dialog.album-lightbox:not([open]) {
 }
 
 html.light .testimonials {
-  background: #f4fafd;
-  color: #0B1F3B;
-  border-top: 1px solid rgba(27, 73, 101, 0.15);
+  background: #FAF4F5;
+  color: #0a0a0c;
+  border-top: 1px solid rgba(107, 17, 30, 0.2);
 }
 
 .testimonials-container {
@@ -2344,9 +2344,9 @@ html.light .testimonials {
 }
 
 html.light .testimonials-eyebrow {
-  background: rgba(190, 233, 232, 0.6);
-  color: #0B1F3B;
-  border-color: rgba(27, 73, 101, 0.25);
+  background: rgba(107, 17, 30, 0.1);
+  color: #6b111e;
+  border-color: rgba(107, 17, 30, 0.25);
 }
 
 .testimonials-title {
@@ -2360,7 +2360,7 @@ html.light .testimonials-eyebrow {
 }
 
 html.light .testimonials-title {
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 .testimonials-title span {
@@ -2368,7 +2368,7 @@ html.light .testimonials-title {
 }
 
 html.light .testimonials-title span {
-  color: #1B4965;
+  color: #6b111e;
 }
 
 .testimonials-sub {
@@ -2380,7 +2380,7 @@ html.light .testimonials-title span {
 }
 
 html.light .testimonials-sub {
-  color: #1B4965;
+  color: #222227;
   opacity: 0.85;
 }
 
@@ -2410,9 +2410,9 @@ html.light .testimonials-sub {
 
 html.light .trust-pill {
   background: #ffffff;
-  border: 1px solid rgba(27, 73, 101, 0.15);
-  color: #0B1F3B;
-  box-shadow: 0 4px 14px rgba(11, 31, 59, 0.06);
+  border: 1px solid rgba(107, 17, 30, 0.2);
+  color: #0a0a0c;
+  box-shadow: 0 4px 14px rgba(10, 10, 12, 0.05);
 }
 
 /* Grid of 5 Reviews */
@@ -2443,8 +2443,8 @@ html.light .trust-pill {
 
 html.light .testimonial-card-v2 {
   background: #ffffff;
-  border: 1px solid rgba(27, 73, 101, 0.15);
-  box-shadow: 0 10px 30px rgba(11, 31, 59, 0.07);
+  border: 1px solid rgba(107, 17, 30, 0.2);
+  box-shadow: 0 10px 30px rgba(10, 10, 12, 0.06);
 }
 
 .testimonial-card-v2:hover {
@@ -2454,8 +2454,8 @@ html.light .testimonial-card-v2 {
 }
 
 html.light .testimonial-card-v2:hover {
-  border-color: #62B6CB;
-  box-shadow: 0 15px 40px rgba(98, 182, 203, 0.2);
+  border-color: #6b111e;
+  box-shadow: 0 15px 40px rgba(107, 17, 30, 0.2);
 }
 
 .tc-img-wrap {
@@ -2510,7 +2510,7 @@ html.light .testimonial-card-v2:hover {
 }
 
 html.light .tc-code {
-  color: #1B4965;
+  color: #6b111e;
 }
 
 .tc-stars-v2 {
@@ -2532,9 +2532,9 @@ html.light .tc-code {
 }
 
 html.light .tc-spec-pill {
-  background: rgba(190, 233, 232, 0.4);
-  border-color: rgba(27, 73, 101, 0.15);
-  color: #0B1F3B;
+  background: rgba(107, 17, 30, 0.1);
+  border-color: rgba(107, 17, 30, 0.2);
+  color: #0a0a0c;
 }
 
 .tc-quote-text {
@@ -2547,7 +2547,7 @@ html.light .tc-spec-pill {
 }
 
 html.light .tc-quote-text {
-  color: #1B4965;
+  color: #222227;
 }
 
 .tc-author-box {
@@ -2559,7 +2559,7 @@ html.light .tc-quote-text {
 }
 
 html.light .tc-author-box {
-  border-top: 1px solid rgba(27, 73, 101, 0.12);
+  border-top: 1px solid rgba(107, 17, 30, 0.15);
 }
 
 .tc-avatar-circle {
@@ -2583,7 +2583,7 @@ html.light .tc-author-box {
 }
 
 html.light .tc-author-name {
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 .tc-author-loc {
@@ -2593,8 +2593,8 @@ html.light .tc-author-name {
 }
 
 html.light .tc-author-loc {
-  color: #1B4965;
-  opacity: 0.75;
+  color: #33333a;
+  opacity: 0.85;
 }
 
 /* Bottom CTA */
@@ -2619,8 +2619,8 @@ html.light .tc-author-loc {
 
 html.light .testimonials-cta-box {
   background: #ffffff;
-  border-color: rgba(27, 73, 101, 0.18);
-  box-shadow: 0 10px 30px rgba(11, 31, 59, 0.06);
+  border-color: rgba(107, 17, 30, 0.2);
+  box-shadow: 0 10px 30px rgba(10, 10, 12, 0.05);
 }
 
 .tc-cta-btn {
@@ -2641,7 +2641,7 @@ html.light .testimonials-cta-box {
 }
 
 html.light .tc-cta-btn {
-  background: #0B1F3B;
+  background: #6b111e;
 }
 
 .tc-cta-btn:hover {
@@ -3488,9 +3488,9 @@ html.light .tc-cta-btn {
 }
 
 html.light .carmate-footer {
-  background-color: #f0f9ff;
-  border-top-color: rgba(98, 182, 203, 0.35);
-  color: #1B4965;
+  background-color: #ffffff;
+  border-top-color: rgba(107, 17, 30, 0.18);
+  color: #222227;
 }
 
 .footer-bg-wrapper {
@@ -3512,7 +3512,7 @@ html.light .carmate-footer {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 75% 20%, rgba(234, 28, 36, 0.06), transparent 60%),
-              radial-gradient(circle at 20% 80%, rgba(11, 31, 59, 0.2), transparent 70%);
+              radial-gradient(circle at 20% 80%, rgba(107, 17, 30, 0.15), transparent 70%);
 }
 
 /* Fluid Responsive Container up to 1720px - Fills page beautifully */
@@ -3626,7 +3626,7 @@ html.light .carmate-footer {
 }
 
 html.light .footer-brand-desc {
-  color: #1B4965;
+  color: #222227;
 }
 
 .footer-brand-dash {
@@ -3646,7 +3646,7 @@ html.light .footer-brand-desc {
 }
 
 html.light .footer-brand-slogan {
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 .footer-socials {
@@ -3686,8 +3686,8 @@ html.light .footer-brand-slogan {
 
 html.light .footer-socials a {
   background: #ffffff;
-  border-color: rgba(98, 182, 203, 0.35);
-  color: #0B1F3B;
+  border-color: rgba(107, 17, 30, 0.2);
+  color: #0a0a0c;
 }
 
 html.light .footer-socials a:hover {
@@ -3720,7 +3720,7 @@ html.light .footer-socials a:hover {
 }
 
 html.light .footer-heading {
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 .footer-links {
@@ -3755,12 +3755,12 @@ html.light .footer-heading {
 
 html.light .footer-links li a,
 html.light .footer-links li button {
-  color: #1B4965;
+  color: #222227;
 }
 
 html.light .footer-links li a:hover,
 html.light .footer-links li button:hover {
-  color: #0B1F3B;
+  color: #ea1c24;
 }
 
 /* Newsletter Column Card */
@@ -3777,8 +3777,8 @@ html.light .footer-links li button:hover {
 
 html.light .footer-col-newsletter {
   background: #ffffff;
-  border-color: rgba(98, 182, 203, 0.35);
-  box-shadow: 0 10px 30px rgba(11, 31, 59, 0.06);
+  border-color: rgba(107, 17, 30, 0.2);
+  box-shadow: 0 10px 30px rgba(10, 10, 12, 0.05);
 }
 
 .footer-newsletter-text {
@@ -3789,7 +3789,7 @@ html.light .footer-col-newsletter {
 }
 
 html.light .footer-newsletter-text {
-  color: #1B4965;
+  color: #222227;
 }
 
 .footer-input-box {
@@ -3817,9 +3817,9 @@ html.light .footer-newsletter-text {
 }
 
 html.light .footer-input-box input {
-  background: #f4fafd;
-  border-color: rgba(98, 182, 203, 0.4);
-  color: #0B1F3B;
+  background: #ffffff;
+  border-color: rgba(107, 17, 30, 0.25);
+  color: #0a0a0c;
 }
 
 .footer-input-box button {
@@ -3853,7 +3853,7 @@ html.light .footer-input-box input {
 }
 
 html.light .footer-consent {
-  color: #1B4965;
+  color: #33333a;
 }
 
 /* Middle Contact Cards Row - Spans 100% Full Width */
@@ -3905,13 +3905,13 @@ html.light .footer-consent {
 
 html.light .contact-pill {
   background: #ffffff;
-  border-color: rgba(98, 182, 203, 0.35);
-  box-shadow: 0 4px 14px rgba(11, 31, 59, 0.04);
+  border-color: rgba(107, 17, 30, 0.2);
+  box-shadow: 0 4px 14px rgba(10, 10, 12, 0.04);
 }
 
 html.light .contact-pill:hover {
-  border-color: #62B6CB;
-  box-shadow: 0 8px 24px rgba(11, 31, 59, 0.08);
+  border-color: #6b111e;
+  box-shadow: 0 8px 24px rgba(107, 17, 30, 0.15);
 }
 
 .pill-icon {
@@ -3958,7 +3958,7 @@ html.light .contact-pill:hover {
 }
 
 html.light .pill-value {
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 /* Bottom Bar */
@@ -3987,7 +3987,7 @@ html.light .pill-value {
 }
 
 html.light .copyright-text {
-  color: #1B4965;
+  color: #222227;
 }
 
 .footer-pillars-list {
@@ -4002,7 +4002,7 @@ html.light .copyright-text {
 }
 
 html.light .footer-pillars-list {
-  color: #1B4965;
+  color: #222227;
 }
 
 .pillar-pipe {

@@ -5,12 +5,12 @@
 /* ==========================================================================
    Carmate Automotive Theme Variables
    - Default: Signature Dark Automotive Spec
-   - Light: Ambient Aurora Spec (5 Palette Colors:
-       1. Deep Azure:  #0B1F3B
-       2. Rich Azure:  #1B4965
-       3. Soft Teal:   #62B6CB
-       4. Pale Teal:   #BEE9E8
-       5. Pure White:  #FFFFFF
+   - Light: Prestigious Automotive Luxury Spec (Maroon & Obsidian Palette:
+       1. Obsidian Pitch Black: #0a0a0c, #111114
+       2. Royal Maroon:         #6b111e (Primary), #7a1322 (Vibrant), #500b14 (Deep), #f7eef0 (Light Tint)
+       3. Deep Charcoal/Slate:  #222227, #33333a
+       4. Crisp Pure White:     #FFFFFF
+       5. Workshop Crimson:     #EA1C24
      )
    ========================================================================== */
 
@@ -18,18 +18,23 @@
   --background: #05070a;
   --foreground: #f4f4f6;
   --carmate-red: #ea1c24;
-  --azure-deep: #0B1F3B;
-  --azure-rich: #1B4965;
-  --teal-soft: #62B6CB;
-  --teal-pale: #BEE9E8;
+  --obsidian: #0a0a0c;
+  --obsidian-dark: #111114;
+  --maroon-royal: #6b111e;
+  --maroon-accent: #7a1322;
+  --maroon-deep: #500b14;
+  --maroon-light: #f7eef0;
+  --maroon-glow: rgba(107, 17, 30, 0.25);
+  --charcoal: #222227;
+  --charcoal-muted: #33333a;
   --white: #FFFFFF;
 }
 
 html.light {
-  --background: #f4fafd;
-  --foreground: #0B1F3B;
-  background-color: #f4fafd;
-  color: #0B1F3B;
+  --background: #FAF4F5;
+  --foreground: #0a0a0c;
+  background-color: #FAF4F5;
+  color: #0a0a0c;
 }
 
 html.dark {
@@ -82,16 +87,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Ambient Aurora Light Theme Engine
-   5 Palette Colors:
-     1. Deep Azure:  #0B1F3B (Headings, primary typography, dark icons)
-     2. Rich Azure:  #1B4965 (Subtitles, body copy, borders)
-     3. Soft Teal:   #62B6CB (Accent borders, glows, active pills)
-     4. Pale Teal:   #BEE9E8 (Card background hints, badge backgrounds, subtle tints)
-     5. Pure White:  #FFFFFF (Crisp surfaces, button text)
+   Carmate Prestigious Automotive Luxury Light Theme Engine
+   Palette:
+     1. Obsidian Pitch Black: #0a0a0c / #111114 (Headings, primary typography, dark accents)
+     2. Royal Maroon:         #6b111e (Primary), #7a1322 (Vibrant), #500b14 (Deep), #f7eef0 (Light Tint)
+     3. Deep Charcoal/Slate:  #222227, #33333a (Body copy, subtitles, descriptive text)
+     4. Crisp Pure White:     #FFFFFF (Surfaces, cards, button text)
+     5. Carmate Red:          #EA1C24 (Workshop crimson signature)
    ========================================================================== */
 
-@keyframes lightAuroraShift {
+@keyframes lightLuxuryShift {
   0% {
     background-position: 0% 50%;
   }
@@ -105,43 +110,42 @@ h1, h2, h3, h4, h5, h6 {
 
 html.light {
   color-scheme: light;
-  --background: #F8FDFF;
-  --foreground: #0B1F3B;
-  --bg-aurora: linear-gradient(
+  --background: #FAF4F5;
+  --foreground: #0a0a0c;
+  --bg-luxury: linear-gradient(
     -45deg,
     #FFFFFF 0%,
-    #E8F7F9 22%,
-    #BEE9E8 42%,
-    #FFFFFF 58%,
-    #DEF2F6 78%,
-    #BEE9E8 100%
+    #FAF4F5 25%,
+    #F4E8EA 50%,
+    #FFFFFF 75%,
+    #FDF8F9 100%
   );
-  background: var(--bg-aurora);
+  background: var(--bg-luxury);
   background-size: 260% 260%;
-  animation: lightAuroraShift 18s ease infinite;
+  animation: lightLuxuryShift 18s ease infinite;
   background-attachment: fixed;
-  color: #0B1F3B;
+  color: #0a0a0c;
 }
 
 html.light body {
-  background: var(--bg-aurora) !important;
+  background: var(--bg-luxury) !important;
   background-size: 260% 260% !important;
-  animation: lightAuroraShift 18s ease infinite !important;
+  animation: lightLuxuryShift 18s ease infinite !important;
   background-attachment: fixed !important;
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
   min-height: 100vh;
 }
 
 /* Light Mode Scrollbar */
 html.light ::-webkit-scrollbar-track {
-  background: #F0FAF9;
+  background: #FAF4F5;
 }
 html.light ::-webkit-scrollbar-thumb {
-  background: #BEE9E8;
+  background: rgba(107, 17, 30, 0.25);
   border-radius: 4px;
 }
 html.light ::-webkit-scrollbar-thumb:hover {
-  background: #62B6CB;
+  background: #6b111e;
 }
 
 /* ==========================================================================
@@ -158,7 +162,7 @@ html.light .bg-\[\#07090d\]:not([data-preserve-dark], [data-preserve-dark] *) {
   background-color: transparent !important;
 }
 
-/* Glassmorphic Luxury Cards with White (#FFFFFF) & Pale Teal (#BEE9E8) accents */
+/* Glassmorphic Luxury Cards with Crisp Pure White (#FFFFFF) & Royal Maroon accents */
 html.light .bg-\[\#090d14\],
 html.light .bg-\[\#0e131d\],
 html.light .bg-\[\#0d1117\],
@@ -167,19 +171,19 @@ html.light .bg-\[\#0b0e14\],
 html.light .bg-\[\#0c1017\],
 html.light .testimonial-card-marquee,
 html.light .studio-card {
-  background-color: rgba(255, 255, 255, 0.92) !important;
+  background-color: #ffffff !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(98, 182, 203, 0.35) !important;
-  box-shadow: 0 10px 30px -4px rgba(11, 31, 59, 0.08), 0 0 0 1px rgba(190, 233, 232, 0.6) !important;
+  border-color: rgba(107, 17, 30, 0.2) !important;
+  box-shadow: 0 10px 30px -4px rgba(10, 10, 12, 0.06), 0 0 0 1px rgba(107, 17, 30, 0.1) !important;
 }
 
 html.light .testimonial-card-marquee:hover,
 html.light .bg-\[\#090d14\]:hover,
 html.light .bg-\[\#0a0d14\]:hover,
 html.light .studio-card:hover {
-  border-color: #62B6CB !important;
-  box-shadow: 0 16px 36px -6px rgba(11, 31, 59, 0.12), 0 0 0 1px #62B6CB !important;
+  border-color: #6b111e !important;
+  box-shadow: 0 16px 36px -6px rgba(10, 10, 12, 0.1), 0 0 0 1px rgba(107, 17, 30, 0.4) !important;
 }
 
 /* Input Fields & Textareas (Contact, Newsletter & Forms) */
@@ -188,16 +192,16 @@ html.light textarea,
 html.light select,
 html.light .bg-\[\#121722\],
 html.light footer input {
-  background-color: #FFFFFF !important;
-  border-color: rgba(98, 182, 203, 0.5) !important;
-  color: #0B1F3B !important;
-  box-shadow: 0 2px 8px rgba(11, 31, 59, 0.04) !important;
+  background-color: #ffffff !important;
+  border-color: rgba(107, 17, 30, 0.25) !important;
+  color: #0a0a0c !important;
+  box-shadow: 0 2px 8px rgba(10, 10, 12, 0.04) !important;
 }
 
 html.light input::placeholder,
 html.light textarea::placeholder,
 html.light footer input::placeholder {
-  color: #1B4965 !important;
+  color: #33333a !important;
   opacity: 0.65 !important;
 }
 
@@ -205,15 +209,15 @@ html.light input:focus,
 html.light textarea:focus,
 html.light .bg-\[\#121722\]:focus,
 html.light footer input:focus {
-  border-color: #62B6CB !important;
-  box-shadow: 0 0 0 2px rgba(98, 182, 203, 0.35) !important;
+  border-color: #6b111e !important;
+  box-shadow: 0 0 0 2px rgba(107, 17, 30, 0.25) !important;
 }
 
 /* ==========================================================================
-   Light Mode Typography (Deep Azure #0B1F3B & Rich Azure #1B4965)
+   Light Mode Typography (Obsidian Pitch Black #0a0a0c & Deep Charcoal #222227 / #33333a)
    ========================================================================== */
 
-/* Headings & Prominent Titles in Deep Azure */
+/* Headings & Prominent Titles in Obsidian Pitch Black */
 html.light h1:not([data-preserve-dark], [data-preserve-dark] *),
 html.light h2:not([data-preserve-dark], [data-preserve-dark] *),
 html.light h3:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *),
@@ -222,25 +226,25 @@ html.light h5:not([data-preserve-dark], [data-preserve-dark] *),
 html.light h6:not([data-preserve-dark], [data-preserve-dark] *),
 html.light .gsap-split-heading:not([data-preserve-dark], [data-preserve-dark] *),
 html.light .gsap-stat-number {
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
 }
 
-/* Body copy & descriptions in Rich Azure #1B4965 */
+/* Body copy & descriptions in Deep Charcoal #222227 */
 html.light p:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *),
 html.light .text-zinc-300:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *),
 html.light .text-zinc-200:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *),
 html.light .text-zinc-100:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *) {
-  color: #1B4965 !important;
+  color: #222227 !important;
 }
 
-/* Muted secondary text in Rich Azure with clear contrast */
+/* Muted secondary text in Slate Charcoal #33333a with clear contrast */
 html.light .text-zinc-400:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *),
 html.light .text-zinc-500:not([data-preserve-dark], [data-preserve-dark] *, #reels .aspect-\[9\/16\] *) {
-  color: #1B4965 !important;
-  opacity: 0.82 !important;
+  color: #33333a !important;
+  opacity: 0.88 !important;
 }
 
-/* Text white override: convert content text to Deep Azure, EXCEPT inside colored buttons & badges & media overlays */
+/* Text white override: convert content text to Obsidian Pitch Black, EXCEPT inside colored buttons & badges & media overlays */
 html.light .text-white:not(
   button.bg-\[\#ea1c24\],
   button.bg-\[\#ea1c24\] *,
@@ -250,6 +254,20 @@ html.light .text-white:not(
   span.bg-\[\#ea1c24\] *,
   .bg-\[\#ea1c24\],
   .bg-\[\#ea1c24\] *,
+  button.bg-\[\#6b111e\],
+  button.bg-\[\#6b111e\] *,
+  a.bg-\[\#6b111e\],
+  a.bg-\[\#6b111e\] *,
+  span.bg-\[\#6b111e\],
+  span.bg-\[\#6b111e\] *,
+  .bg-\[\#6b111e\],
+  .bg-\[\#6b111e\] *,
+  button.bg-\[\#7a1322\],
+  button.bg-\[\#7a1322\] *,
+  a.bg-\[\#7a1322\],
+  a.bg-\[\#7a1322\] *,
+  .bg-\[\#7a1322\],
+  .bg-\[\#7a1322\] *,
   .bg-\[\#25d366\],
   .bg-\[\#25d366\] *,
   [data-keep-white],
@@ -266,15 +284,20 @@ html.light .text-white:not(
   .relative.overflow-hidden .absolute *,
   [role="dialog"] *
 ) {
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
 }
 
-/* Carmate Red buttons keep ultra-crisp white text */
+/* Carmate Red & Royal Maroon buttons keep ultra-crisp white text */
 html.light .bg-\[\#ea1c24\],
 html.light .bg-\[\#ea1c24\] *,
 html.light button.bg-\[\#ea1c24\],
 html.light a.bg-\[\#ea1c24\],
 html.light span.bg-\[\#ea1c24\],
+html.light .bg-\[\#6b111e\],
+html.light .bg-\[\#6b111e\] *,
+html.light button.bg-\[\#6b111e\],
+html.light a.bg-\[\#6b111e\],
+html.light span.bg-\[\#6b111e\],
 html.light [data-keep-white],
 html.light [data-keep-white] * {
   color: #FFFFFF !important;
@@ -314,7 +337,7 @@ html.light .bg-\[\#25d366\] * {
 /* Hover state protection: prevent hover:text-white from washing out links in light mode */
 html.light a.hover\:text-white:hover:not([data-preserve-dark] *),
 html.light button.hover\:text-white:hover:not([data-preserve-dark] *) {
-  color: #0B1F3B !important;
+  color: #6b111e !important;
 }
 
 html.light footer a:hover {
@@ -322,7 +345,7 @@ html.light footer a:hover {
 }
 
 /* ==========================================================================
-   Light Mode Borders (Soft Teal #62B6CB & Pale Teal #BEE9E8)
+   Light Mode Borders (Royal Maroon rgba(107, 17, 30, 0.2))
    ========================================================================== */
 
 html.light .border-white\/10:not([data-preserve-dark] *),
@@ -332,13 +355,13 @@ html.light .border-white\/20:not([data-preserve-dark] *),
 html.light .border-y.border-white\/10:not([data-preserve-dark] *),
 html.light .border-t.border-white\/10:not([data-preserve-dark] *),
 html.light .border-b.border-white\/10:not([data-preserve-dark] *) {
-  border-color: rgba(98, 182, 203, 0.35) !important;
+  border-color: rgba(107, 17, 30, 0.2) !important;
 }
 
 /* Stats Accent Line in Light Mode */
 html.light .stats-accent-line {
-  background: linear-gradient(90deg, #62B6CB, #ea1c24, #1B4965) !important;
-  box-shadow: 0 0 16px rgba(98, 182, 203, 0.45) !important;
+  background: linear-gradient(90deg, #6B111E, #EA1C24, #0A0A0C) !important;
+  box-shadow: 0 0 16px rgba(107, 17, 30, 0.45) !important;
 }
 
 /* ==========================================================================
@@ -346,19 +369,19 @@ html.light .stats-accent-line {
    ========================================================================== */
 
 html.light header {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-bottom-color: rgba(98, 182, 203, 0.35) !important;
-  box-shadow: 0 4px 20px -2px rgba(11, 31, 59, 0.06) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: rgba(107, 17, 30, 0.18) !important;
+  box-shadow: 0 4px 20px -2px rgba(10, 10, 12, 0.05) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
 }
 
 html.light header nav a {
-  color: #1B4965 !important;
+  color: #222227 !important;
 }
 
 html.light header nav a:hover {
-  color: #0B1F3B !important;
+  color: #6b111e !important;
 }
 
 html.light header nav a.text-\[\#ea1c24\] {
@@ -366,21 +389,21 @@ html.light header nav a.text-\[\#ea1c24\] {
 }
 
 html.light header button[aria-label="Open navigation menu"] {
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
 }
 
 /* Mobile Menu Drawer in Light Mode */
 html.light div[role="dialog"]:not(.lightbox-modal),
 html.light .fixed.inset-0.z-\[60\] {
-  background-color: rgba(248, 253, 255, 0.97) !important;
+  background-color: rgba(255, 255, 255, 0.98) !important;
 }
 
 html.light .fixed.inset-0.z-\[60\] a {
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
 }
 
 html.light .fixed.inset-0.z-\[60\] button {
-  color: #0B1F3B !important;
+  color: #0a0a0c !important;
 }
 
 /* ==========================================================================
@@ -388,40 +411,40 @@ html.light .fixed.inset-0.z-\[60\] button {
    ========================================================================== */
 
 html.light footer {
-  background-color: rgba(255, 255, 255, 0.88) !important;
-  border-top-color: rgba(98, 182, 203, 0.35) !important;
-  color: #1B4965 !important;
+  background-color: #ffffff !important;
+  border-top-color: rgba(107, 17, 30, 0.18) !important;
+  color: #222227 !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 -10px 40px rgba(11, 31, 59, 0.04);
+  box-shadow: 0 -10px 40px rgba(10, 10, 12, 0.03);
 }
 
 html.light footer .text-zinc-400,
 html.light footer .text-zinc-300 {
-  color: #1B4965 !important;
+  color: #222227 !important;
 }
 
 html.light footer .text-zinc-500 {
-  color: #1B4965 !important;
-  opacity: 0.75 !important;
+  color: #33333a !important;
+  opacity: 0.85 !important;
 }
 
 html.light footer .bg-white\/\[0\.04\],
 html.light footer .bg-white\/\[0\.05\],
 html.light footer .bg-white\/\[0\.02\] {
-  background-color: #FFFFFF !important;
-  border-color: rgba(98, 182, 203, 0.35) !important;
-  color: #1B4965 !important;
-  box-shadow: 0 2px 10px rgba(11, 31, 59, 0.04) !important;
+  background-color: #ffffff !important;
+  border-color: rgba(107, 17, 30, 0.18) !important;
+  color: #222227 !important;
+  box-shadow: 0 2px 10px rgba(10, 10, 12, 0.04) !important;
 }
 
 html.light footer .bg-white\/\[0\.04\]:hover,
 html.light footer .bg-white\/\[0\.05\]:hover,
 html.light footer .bg-white\/\[0\.02\]:hover {
-  background-color: #FFFFFF !important;
-  border-color: #62B6CB !important;
-  color: #0B1F3B !important;
-  box-shadow: 0 4px 16px rgba(11, 31, 59, 0.08) !important;
+  background-color: #ffffff !important;
+  border-color: #6b111e !important;
+  color: #0a0a0c !important;
+  box-shadow: 0 4px 16px rgba(107, 17, 30, 0.15) !important;
 }
 
 /* ==========================================================================
@@ -433,21 +456,21 @@ html.light .bg-white\/10:not([data-preserve-dark] *),
 html.light .bg-white\/\[0\.04\]:not([data-preserve-dark] *),
 html.light .bg-white\/\[0\.03\]:not([data-preserve-dark] *),
 html.light .bg-white\/\[0\.02\]:not([data-preserve-dark] *) {
-  background-color: rgba(255, 255, 255, 0.88) !important;
-  color: #1B4965 !important;
-  border-color: rgba(98, 182, 203, 0.35) !important;
+  background-color: #ffffff !important;
+  color: #222227 !important;
+  border-color: rgba(107, 17, 30, 0.18) !important;
 }
 
 html.light button.border-white\/10:not([data-preserve-dark] *) {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(98, 182, 203, 0.35) !important;
-  color: #1B4965 !important;
+  background-color: #ffffff !important;
+  border-color: rgba(107, 17, 30, 0.18) !important;
+  color: #222227 !important;
 }
 
 html.light button.border-white\/10:hover:not([data-preserve-dark] *) {
-  background-color: #FFFFFF !important;
-  color: #0B1F3B !important;
-  border-color: #62B6CB !important;
+  background-color: #ffffff !important;
+  color: #6b111e !important;
+  border-color: #6b111e !important;
 }
 
 /* ==========================================================================

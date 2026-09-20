@@ -280,20 +280,20 @@ export function SriLankanFeedbackSection() {
       id="feedbacks"
       className={`py-20 sm:py-28 relative overflow-hidden transition-colors duration-500 ${
         isLightMode
-          ? "bg-[#f4fafd] text-[#0B1F3B] border-t border-[#1B4965]/15"
+          ? "bg-[#f4fafd] text-[#0a0a0c] border-t border-[#222227]/15"
           : "bg-[#05070a] text-zinc-100 border-t border-white/10"
       }`}
     >
       {/* Dynamic Background Atmosphere */}
       {isLightMode ? (
         <>
-          <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-[#BEE9E8]/35 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-0 right-10 w-[600px] h-[350px] bg-[#62B6CB]/20 rounded-full blur-[130px] pointer-events-none" />
+          <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-[#f7eef0]/35 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 right-10 w-[600px] h-[350px] bg-[#6b111e]/20 rounded-full blur-[130px] pointer-events-none" />
         </>
       ) : (
         <>
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-[#ea1c24]/[0.035] rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-[#1B4965]/20 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-[#222227]/20 rounded-full blur-[120px] pointer-events-none" />
         </>
       )}
 
@@ -303,11 +303,11 @@ export function SriLankanFeedbackSection() {
           <div
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase border shadow-sm ${
               isLightMode
-                ? "bg-[#BEE9E8]/60 text-[#0B1F3B] border-[#1B4965]/20"
+                ? "bg-[#f7eef0]/60 text-[#0a0a0c] border-[#222227]/20"
                 : "bg-white/[0.04] text-[#ea1c24] border-white/15"
             }`}
           >
-            <Sparkles size={13} className={isLightMode ? "text-[#1B4965]" : "text-[#ea1c24]"} />
+            <Sparkles size={13} className={isLightMode ? "text-[#222227]" : "text-[#ea1c24]"} />
             <span>5 VERIFIED SRI LANKAN OWNER EXPERIENCES • MAKULUWA, GALLE</span>
           </div>
 
@@ -316,15 +316,15 @@ export function SriLankanFeedbackSection() {
             onClick={toggleTheme}
             className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-300 shadow-sm cursor-pointer ${
               isLightMode
-                ? "bg-[#FFFFFF] text-[#0B1F3B] border-[#1B4965]/25 hover:border-[#62B6CB] hover:shadow-md"
+                ? "bg-[#FFFFFF] text-[#0a0a0c] border-[#222227]/25 hover:border-[#6b111e] hover:shadow-md"
                 : "bg-[#0b0e14] text-zinc-300 border-white/15 hover:border-white/30 hover:text-white"
             }`}
             title="Toggle Light/Dark Theme"
           >
             {isLightMode ? (
               <>
-                <Moon size={14} className="text-[#1B4965]" />
-                <span className="font-mono text-[11px]">Theme: <strong className="text-[#0B1F3B]">Azure Light</strong> (Switch to Dark)</span>
+                <Moon size={14} className="text-[#222227]" />
+                <span className="font-mono text-[11px]">Theme: <strong className="text-[#0a0a0c]">Luxury Spec</strong> (Switch to Dark)</span>
               </>
             ) : (
               <>
@@ -339,14 +339,14 @@ export function SriLankanFeedbackSection() {
         <div className="text-center mb-12 sm:mb-16">
           <h2
             className={`text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 ${
-              isLightMode ? "text-[#0B1F3B]" : "text-white"
+              isLightMode ? "text-[#0a0a0c]" : "text-white"
             }`}
           >
             REAL BUILDS.{" "}
             <span
               className={`text-transparent bg-clip-text ${
                 isLightMode
-                  ? "bg-gradient-to-r from-[#0B1F3B] via-[#1B4965] to-[#62B6CB]"
+                  ? "bg-gradient-to-r from-[#0a0a0c] via-[#222227] to-[#6b111e]"
                   : "bg-gradient-to-r from-[#ea1c24] via-[#ff525a] to-white"
               }`}
             >
@@ -356,7 +356,7 @@ export function SriLankanFeedbackSection() {
 
           <p
             className={`text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed ${
-              isLightMode ? "text-[#1B4965]/80 font-medium" : "text-zinc-400"
+              isLightMode ? "text-[#222227]/80 font-medium" : "text-zinc-400"
             }`}
           >
             Real Sri Lankan automotive enthusiasts sharing genuine build experiences. From daily drivers around Galle Fort to custom projects commuting via the Southern Expressway.
@@ -368,7 +368,7 @@ export function SriLankanFeedbackSection() {
             <div
               className={`flex items-center gap-2.5 px-4 py-2 rounded-xl border shadow-sm transition-all ${
                 isLightMode
-                  ? "bg-[#FFFFFF] border-[#1B4965]/15 text-[#0B1F3B]"
+                  ? "bg-[#FFFFFF] border-[#222227]/15 text-[#0a0a0c]"
                   : "bg-[#0d1117] border-white/10 text-white"
               }`}
             >
@@ -384,7 +384,7 @@ export function SriLankanFeedbackSection() {
                   <Star key={i} size={12} fill="currentColor" />
                 ))}
               </div>
-              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"}`}>
+              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#222227]/70" : "text-zinc-500"}`}>
                 • 50+ Verified Reviews
               </span>
             </div>
@@ -393,13 +393,13 @@ export function SriLankanFeedbackSection() {
             <div
               className={`flex items-center gap-2 px-4 py-2 rounded-xl border shadow-sm ${
                 isLightMode
-                  ? "bg-[#FFFFFF] border-[#1B4965]/15 text-[#0B1F3B]"
+                  ? "bg-[#FFFFFF] border-[#222227]/15 text-[#0a0a0c]"
                   : "bg-[#0d1117] border-white/10 text-zinc-200"
               }`}
             >
               <ShieldCheck size={14} className="text-emerald-500" />
               <span className="font-semibold">Socket-to-Socket Wiring</span>
-              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"}`}>
+              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#222227]/70" : "text-zinc-500"}`}>
                 • Zero Wire Cut
               </span>
             </div>
@@ -408,13 +408,13 @@ export function SriLankanFeedbackSection() {
             <div
               className={`flex items-center gap-2 px-4 py-2 rounded-xl border shadow-sm ${
                 isLightMode
-                  ? "bg-[#FFFFFF] border-[#1B4965]/15 text-[#0B1F3B]"
+                  ? "bg-[#FFFFFF] border-[#222227]/15 text-[#0a0a0c]"
                   : "bg-[#0d1117] border-white/10 text-zinc-200"
               }`}
             >
-              <MapPin size={14} className={isLightMode ? "text-[#1B4965]" : "text-[#ea1c24]"} />
+              <MapPin size={14} className={isLightMode ? "text-[#222227]" : "text-[#ea1c24]"} />
               <span className="font-semibold">Makuluwa, Galle</span>
-              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"}`}>
+              <span className={`text-[11px] font-mono ${isLightMode ? "text-[#222227]/70" : "text-zinc-500"}`}>
                 • Southern Province
               </span>
             </div>
@@ -432,10 +432,10 @@ export function SriLankanFeedbackSection() {
                 className={`group inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer border ${
                   isSelected
                     ? isLightMode
-                      ? "bg-[#0B1F3B] text-[#FFFFFF] border-[#0B1F3B] shadow-[0_4px_20px_rgba(11,31,59,0.22)] scale-[1.03]"
+                      ? "bg-[#0a0a0c] text-[#FFFFFF] border-[#0a0a0c] shadow-[0_4px_20px_rgba(11,31,59,0.22)] scale-[1.03]"
                       : "bg-[#ea1c24] text-white border-[#ea1c24] shadow-[0_0_25px_rgba(234,28,36,0.45)] scale-[1.03]"
                     : isLightMode
-                    ? "bg-[#FFFFFF] text-[#1B4965] hover:text-[#0B1F3B] border-[#1B4965]/15 hover:border-[#62B6CB] shadow-sm"
+                    ? "bg-[#FFFFFF] text-[#222227] hover:text-[#0a0a0c] border-[#222227]/15 hover:border-[#6b111e] shadow-sm"
                     : "bg-[#0b0e14]/80 text-zinc-400 hover:text-white border-white/10 hover:border-white/25"
                 }`}
               >
@@ -451,10 +451,10 @@ export function SriLankanFeedbackSection() {
                     className={`block text-[9px] font-mono uppercase tracking-wider ${
                       isSelected
                         ? isLightMode
-                          ? "text-[#62B6CB]"
+                          ? "text-[#6b111e]"
                           : "text-zinc-200"
                         : isLightMode
-                        ? "text-[#1B4965]/70"
+                        ? "text-[#222227]/70"
                         : "text-zinc-500"
                     }`}
                   >
@@ -470,7 +470,7 @@ export function SriLankanFeedbackSection() {
         <div className="flex justify-center mb-8">
           <div
             className={`inline-flex p-1 rounded-xl border text-xs font-semibold ${
-              isLightMode ? "bg-[#FFFFFF] border-[#1B4965]/20 shadow-sm" : "bg-[#0c1017] border-white/10"
+              isLightMode ? "bg-[#FFFFFF] border-[#222227]/20 shadow-sm" : "bg-[#0c1017] border-white/10"
             }`}
           >
             <button
@@ -478,10 +478,10 @@ export function SriLankanFeedbackSection() {
               className={`px-4 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === "split"
                   ? isLightMode
-                    ? "bg-[#0B1F3B] text-white shadow-sm"
+                    ? "bg-[#0a0a0c] text-white shadow-sm"
                     : "bg-white/15 text-white shadow-sm"
                   : isLightMode
-                  ? "text-[#1B4965] hover:text-[#0B1F3B]"
+                  ? "text-[#222227] hover:text-[#0a0a0c]"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -492,10 +492,10 @@ export function SriLankanFeedbackSection() {
               className={`px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === "google"
                   ? isLightMode
-                    ? "bg-[#0B1F3B] text-white shadow-sm"
+                    ? "bg-[#0a0a0c] text-white shadow-sm"
                     : "bg-white/15 text-white shadow-sm"
                   : isLightMode
-                  ? "text-[#1B4965] hover:text-[#0B1F3B]"
+                  ? "text-[#222227] hover:text-[#0a0a0c]"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -506,10 +506,10 @@ export function SriLankanFeedbackSection() {
               className={`px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeTab === "whatsapp"
                   ? isLightMode
-                    ? "bg-[#0B1F3B] text-white shadow-sm"
+                    ? "bg-[#0a0a0c] text-white shadow-sm"
                     : "bg-white/15 text-white shadow-sm"
                   : isLightMode
-                  ? "text-[#1B4965] hover:text-[#0B1F3B]"
+                  ? "text-[#222227] hover:text-[#0a0a0c]"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -522,21 +522,21 @@ export function SriLankanFeedbackSection() {
         <div
           className={`border rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-300 ${
             isLightMode
-              ? "bg-[#FFFFFF] border-[#1B4965]/20 shadow-[0_20px_60px_-15px_rgba(11,31,59,0.12)]"
+              ? "bg-[#FFFFFF] border-[#222227]/20 shadow-[0_20px_60px_-15px_rgba(11,31,59,0.12)]"
               : "bg-[#0b0e14] border-white/15"
           }`}
         >
           {/* Subtle Accent Glow */}
           <div
             className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none ${
-              isLightMode ? "bg-[#62B6CB]/15" : "bg-[#ea1c24]/[0.04]"
+              isLightMode ? "bg-[#6b111e]/15" : "bg-[#ea1c24]/[0.04]"
             }`}
           />
 
           {/* Active Build Header & Navigation Controls */}
           <div
             className={`pb-6 mb-8 border-b flex flex-col md:flex-row md:items-center justify-between gap-4 ${
-              isLightMode ? "border-[#1B4965]/15" : "border-white/10"
+              isLightMode ? "border-[#222227]/15" : "border-white/10"
             }`}
           >
             <div className="flex items-center gap-3.5">
@@ -549,7 +549,7 @@ export function SriLankanFeedbackSection() {
                 <div className="flex items-center gap-2">
                   <h3
                     className={`text-lg sm:text-xl font-black uppercase tracking-tight ${
-                      isLightMode ? "text-[#0B1F3B]" : "text-white"
+                      isLightMode ? "text-[#0a0a0c]" : "text-white"
                     }`}
                   >
                     {activeReview.name}
@@ -558,7 +558,7 @@ export function SriLankanFeedbackSection() {
                 </div>
                 <div
                   className={`flex flex-wrap items-center gap-2 text-xs mt-0.5 ${
-                    isLightMode ? "text-[#1B4965]" : "text-zinc-400"
+                    isLightMode ? "text-[#222227]" : "text-zinc-400"
                   }`}
                 >
                   <span className="font-semibold">{activeReview.vehicle}</span>
@@ -566,7 +566,7 @@ export function SriLankanFeedbackSection() {
                   <span className="font-mono text-[11px]">{activeReview.vehicleCode}</span>
                   <span className="opacity-50">•</span>
                   <span className="flex items-center gap-1 font-mono text-[11px]">
-                    <MapPin size={11} className={isLightMode ? "text-[#1B4965]" : "text-[#ea1c24]"} />
+                    <MapPin size={11} className={isLightMode ? "text-[#222227]" : "text-[#ea1c24]"} />
                     {activeReview.location}
                   </span>
                 </div>
@@ -577,7 +577,7 @@ export function SriLankanFeedbackSection() {
             <div className="flex items-center gap-3 self-end md:self-center">
               <span
                 className={`text-xs font-mono ${
-                  isLightMode ? "text-[#1B4965]/80 font-bold" : "text-zinc-500"
+                  isLightMode ? "text-[#222227]/80 font-bold" : "text-zinc-500"
                 }`}
               >
                 0{selectedIndex + 1} of 0{REVIEWS_5.length}
@@ -588,7 +588,7 @@ export function SriLankanFeedbackSection() {
                   aria-label="Previous Review"
                   className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all active:scale-95 cursor-pointer ${
                     isLightMode
-                      ? "bg-[#BEE9E8]/40 hover:bg-[#BEE9E8] border-[#1B4965]/20 text-[#0B1F3B]"
+                      ? "bg-[#f7eef0]/40 hover:bg-[#f7eef0] border-[#222227]/20 text-[#0a0a0c]"
                       : "bg-white/[0.06] hover:bg-white/[0.12] border-white/15 text-white"
                   }`}
                 >
@@ -599,7 +599,7 @@ export function SriLankanFeedbackSection() {
                   aria-label="Next Review"
                   className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all active:scale-95 cursor-pointer ${
                     isLightMode
-                      ? "bg-[#BEE9E8]/40 hover:bg-[#BEE9E8] border-[#1B4965]/20 text-[#0B1F3B]"
+                      ? "bg-[#f7eef0]/40 hover:bg-[#f7eef0] border-[#222227]/20 text-[#0a0a0c]"
                       : "bg-white/[0.06] hover:bg-white/[0.12] border-white/15 text-white"
                   }`}
                 >
@@ -624,7 +624,7 @@ export function SriLankanFeedbackSection() {
                   activeTab === "split" ? "lg:col-span-6" : "w-full"
                 } ${
                   isLightMode
-                    ? "bg-[#FFFFFF] border-[#1B4965]/20 shadow-md"
+                    ? "bg-[#FFFFFF] border-[#222227]/20 shadow-md"
                     : "bg-[#0e131d] border-white/10 shadow-xl"
                 }`}
               >
@@ -641,14 +641,14 @@ export function SriLankanFeedbackSection() {
                       <div>
                         <span
                           className={`text-xs font-bold block leading-tight ${
-                            isLightMode ? "text-[#0B1F3B]" : "text-white"
+                            isLightMode ? "text-[#0a0a0c]" : "text-white"
                           }`}
                         >
                           Google Maps Review
                         </span>
                         <span
                           className={`text-[10px] font-mono ${
-                            isLightMode ? "text-[#1B4965]/70" : "text-zinc-400"
+                            isLightMode ? "text-[#222227]/70" : "text-zinc-400"
                           }`}
                         >
                           {activeReview.googleReviewLevel}
@@ -659,7 +659,7 @@ export function SriLankanFeedbackSection() {
                     <span
                       className={`text-[11px] font-mono px-2.5 py-1 rounded-md border ${
                         isLightMode
-                          ? "bg-[#BEE9E8]/50 border-[#1B4965]/20 text-[#0B1F3B]"
+                          ? "bg-[#f7eef0]/50 border-[#222227]/20 text-[#0a0a0c]"
                           : "bg-white/[0.05] border-white/10 text-zinc-400"
                       }`}
                     >
@@ -690,18 +690,18 @@ export function SriLankanFeedbackSection() {
                     <div
                       className={`p-2.5 rounded-xl border text-[11px] ${
                         isLightMode
-                          ? "bg-[#f8fcfe] border-[#1B4965]/15"
+                          ? "bg-[#f8fcfe] border-[#222227]/15"
                           : "bg-[#090d14] border-white/10"
                       }`}
                     >
                       <span
                         className={`block text-[9px] font-mono uppercase tracking-wider ${
-                          isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"
+                          isLightMode ? "text-[#222227]/70" : "text-zinc-500"
                         }`}
                       >
                         Paint / Spec
                       </span>
-                      <strong className={isLightMode ? "text-[#0B1F3B]" : "text-white"}>
+                      <strong className={isLightMode ? "text-[#0a0a0c]" : "text-white"}>
                         {activeReview.paintCode}
                       </strong>
                     </div>
@@ -709,18 +709,18 @@ export function SriLankanFeedbackSection() {
                     <div
                       className={`p-2.5 rounded-xl border text-[11px] ${
                         isLightMode
-                          ? "bg-[#f8fcfe] border-[#1B4965]/15"
+                          ? "bg-[#f8fcfe] border-[#222227]/15"
                           : "bg-[#090d14] border-white/10"
                       }`}
                     >
                       <span
                         className={`block text-[9px] font-mono uppercase tracking-wider ${
-                          isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"
+                          isLightMode ? "text-[#222227]/70" : "text-zinc-500"
                         }`}
                       >
                         Fitment Standard
                       </span>
-                      <strong className={isLightMode ? "text-[#0B1F3B]" : "text-emerald-400"}>
+                      <strong className={isLightMode ? "text-[#0a0a0c]" : "text-emerald-400"}>
                         {activeReview.fitmentGuarantee}
                       </strong>
                     </div>
@@ -730,7 +730,7 @@ export function SriLankanFeedbackSection() {
                   <blockquote
                     className={`text-sm sm:text-base leading-relaxed italic pl-4 border-l-3 mb-6 ${
                       isLightMode
-                        ? "text-[#0B1F3B] border-[#1B4965]"
+                        ? "text-[#0a0a0c] border-[#222227]"
                         : "text-zinc-100 border-[#ea1c24]"
                     }`}
                   >
@@ -741,7 +741,7 @@ export function SriLankanFeedbackSection() {
                 {/* Google Review Footer */}
                 <div
                   className={`pt-4 border-t flex items-center justify-between text-xs ${
-                    isLightMode ? "border-[#1B4965]/15 text-[#1B4965]" : "border-white/10 text-zinc-400"
+                    isLightMode ? "border-[#222227]/15 text-[#222227]" : "border-white/10 text-zinc-400"
                   }`}
                 >
                   <div className="flex items-center gap-1.5">
@@ -756,7 +756,7 @@ export function SriLankanFeedbackSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-1 text-[11px] font-semibold hover:underline ${
-                      isLightMode ? "text-[#0B1F3B]" : "text-zinc-300"
+                      isLightMode ? "text-[#0a0a0c]" : "text-zinc-300"
                     }`}
                   >
                     <span>View on Google Maps</span>
@@ -773,14 +773,14 @@ export function SriLankanFeedbackSection() {
                   activeTab === "split" ? "lg:col-span-6" : "w-full"
                 } ${
                   isLightMode
-                    ? "bg-[#efeae2] border-[#1B4965]/25"
+                    ? "bg-[#efeae2] border-[#222227]/25"
                     : "bg-[#0b141a] border-white/10"
                 }`}
               >
                 {/* WhatsApp Chat Top App Bar */}
                 <div
                   className={`px-4 py-3 flex items-center justify-between ${
-                    isLightMode ? "bg-[#1B4965] text-white" : "bg-[#202c33] text-white"
+                    isLightMode ? "bg-[#222227] text-white" : "bg-[#202c33] text-white"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -812,7 +812,7 @@ export function SriLankanFeedbackSection() {
                     <span
                       className={`text-[10px] font-mono px-3 py-1 rounded-full uppercase shadow-xs ${
                         isLightMode
-                          ? "bg-white/80 text-[#1B4965] border border-[#1B4965]/15"
+                          ? "bg-white/80 text-[#222227] border border-[#222227]/15"
                           : "bg-[#182229] text-zinc-400 border border-white/5"
                       }`}
                     >
@@ -825,7 +825,7 @@ export function SriLankanFeedbackSection() {
                     <div
                       className={`rounded-2xl rounded-tl-sm p-3 shadow-md border ${
                         isLightMode
-                          ? "bg-[#FFFFFF] text-[#0B1F3B] border-black/5"
+                          ? "bg-[#FFFFFF] text-[#0a0a0c] border-black/5"
                           : "bg-[#202c33] text-zinc-100 border-white/5"
                       }`}
                     >
@@ -858,7 +858,7 @@ export function SriLankanFeedbackSection() {
                     </div>
                     <span
                       className={`text-[10px] font-mono ml-1 mt-0.5 block ${
-                        isLightMode ? "text-[#1B4965]/70" : "text-zinc-500"
+                        isLightMode ? "text-[#222227]/70" : "text-zinc-500"
                       }`}
                     >
                       From: {activeReview.name} ({activeReview.location})
@@ -870,7 +870,7 @@ export function SriLankanFeedbackSection() {
                     <div
                       className={`rounded-2xl rounded-tr-sm p-3 shadow-md border ${
                         isLightMode
-                          ? "bg-[#D9FDD3] text-[#0B1F3B] border-[#1B4965]/10"
+                          ? "bg-[#D9FDD3] text-[#0a0a0c] border-[#222227]/10"
                           : "bg-[#005c4b] text-white border-white/5"
                       }`}
                     >
@@ -923,14 +923,14 @@ export function SriLankanFeedbackSection() {
           <div className="flex items-center justify-between mb-4">
             <h4
               className={`text-sm font-bold uppercase tracking-wider font-mono ${
-                isLightMode ? "text-[#0B1F3B]" : "text-zinc-300"
+                isLightMode ? "text-[#0a0a0c]" : "text-zinc-300"
               }`}
             >
               All 5 Verified Customer Reviews ({REVIEWS_5.length})
             </h4>
             <span
               className={`text-xs font-mono ${
-                isLightMode ? "text-[#1B4965]" : "text-zinc-500"
+                isLightMode ? "text-[#222227]" : "text-zinc-500"
               }`}
             >
               Click any card to inspect full build
@@ -947,10 +947,10 @@ export function SriLankanFeedbackSection() {
                   className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
                     isSelected
                       ? isLightMode
-                        ? "bg-[#FFFFFF] border-[#0B1F3B] shadow-[0_8px_25px_rgba(11,31,59,0.18)] -translate-y-1 ring-2 ring-[#62B6CB]"
+                        ? "bg-[#FFFFFF] border-[#0a0a0c] shadow-[0_8px_25px_rgba(11,31,59,0.18)] -translate-y-1 ring-2 ring-[#6b111e]"
                         : "bg-[#10141d] border-[#ea1c24] shadow-[0_4px_25px_rgba(234,28,36,0.35)] -translate-y-1 ring-1 ring-[#ea1c24]"
                       : isLightMode
-                      ? "bg-[#FFFFFF]/90 hover:bg-[#FFFFFF] border-[#1B4965]/15 hover:border-[#62B6CB] shadow-xs"
+                      ? "bg-[#FFFFFF]/90 hover:bg-[#FFFFFF] border-[#222227]/15 hover:border-[#6b111e] shadow-xs"
                       : "bg-[#090c12]/75 border-white/[0.08] hover:border-white/20 hover:bg-[#0c1017]"
                   }`}
                 >
@@ -959,7 +959,7 @@ export function SriLankanFeedbackSection() {
                     <div className="flex items-center justify-between gap-1 mb-2.5">
                       <span
                         className={`text-[11px] font-mono font-bold ${
-                          isLightMode ? "text-[#0B1F3B]" : "text-[#ea1c24]"
+                          isLightMode ? "text-[#0a0a0c]" : "text-[#ea1c24]"
                         }`}
                       >
                         0{rev.id}. {rev.vehicleCode}
@@ -986,7 +986,7 @@ export function SriLankanFeedbackSection() {
 
                     <h5
                       className={`text-xs font-bold truncate ${
-                        isLightMode ? "text-[#0B1F3B]" : "text-white"
+                        isLightMode ? "text-[#0a0a0c]" : "text-white"
                       }`}
                     >
                       {rev.name}
@@ -994,16 +994,16 @@ export function SriLankanFeedbackSection() {
 
                     <p
                       className={`text-[10px] font-mono flex items-center gap-1 mt-0.5 mb-2 ${
-                        isLightMode ? "text-[#1B4965]" : "text-zinc-400"
+                        isLightMode ? "text-[#222227]" : "text-zinc-400"
                       }`}
                     >
-                      <MapPin size={9} className={isLightMode ? "text-[#1B4965]" : "text-[#ea1c24]"} />
+                      <MapPin size={9} className={isLightMode ? "text-[#222227]" : "text-[#ea1c24]"} />
                       <span>{rev.location}</span>
                     </p>
 
                     <p
                       className={`text-[11px] line-clamp-2 italic leading-relaxed ${
-                        isLightMode ? "text-[#1B4965]/90" : "text-zinc-300"
+                        isLightMode ? "text-[#222227]/90" : "text-zinc-300"
                       }`}
                     >
                       "{rev.quoteGoogle}"
@@ -1012,17 +1012,17 @@ export function SriLankanFeedbackSection() {
 
                   <div
                     className={`mt-3 pt-2.5 border-t flex items-center justify-between text-[10px] ${
-                      isLightMode ? "border-[#1B4965]/15" : "border-white/[0.08]"
+                      isLightMode ? "border-[#222227]/15" : "border-white/[0.08]"
                     }`}
                   >
                     <span
                       className={`font-mono uppercase font-bold ${
                         isSelected
                           ? isLightMode
-                            ? "text-[#0B1F3B]"
+                            ? "text-[#0a0a0c]"
                             : "text-[#ea1c24]"
                           : isLightMode
-                          ? "text-[#1B4965]/70"
+                          ? "text-[#222227]/70"
                           : "text-zinc-500"
                       }`}
                     >
@@ -1030,7 +1030,7 @@ export function SriLankanFeedbackSection() {
                     </span>
                     <span
                       className={`font-mono ${
-                        isLightMode ? "text-[#1B4965]/60" : "text-zinc-500"
+                        isLightMode ? "text-[#222227]/60" : "text-zinc-500"
                       }`}
                     >
                       {rev.date}
@@ -1046,14 +1046,14 @@ export function SriLankanFeedbackSection() {
         <div
           className={`mt-14 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl p-6 sm:p-8 border shadow-lg transition-all ${
             isLightMode
-              ? "bg-[#FFFFFF] border-[#1B4965]/20"
+              ? "bg-[#FFFFFF] border-[#222227]/20"
               : "bg-white/[0.02] border-white/10"
           }`}
         >
           <div>
             <div
               className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase mb-2 ${
-                isLightMode ? "text-[#1B4965]" : "text-[#ea1c24]"
+                isLightMode ? "text-[#222227]" : "text-[#ea1c24]"
               }`}
             >
               <Wrench size={12} />
@@ -1061,14 +1061,14 @@ export function SriLankanFeedbackSection() {
             </div>
             <h4
               className={`text-lg sm:text-2xl font-bold uppercase tracking-tight ${
-                isLightMode ? "text-[#0B1F3B]" : "text-white"
+                isLightMode ? "text-[#0a0a0c]" : "text-white"
               }`}
             >
               Ready to modify your Prius, Aqua, Civic or Axio?
             </h4>
             <p
               className={`text-xs sm:text-sm mt-1 max-w-xl ${
-                isLightMode ? "text-[#1B4965]/80" : "text-zinc-400"
+                isLightMode ? "text-[#222227]/80" : "text-zinc-400"
               }`}
             >
               Send us your car model & desired build on WhatsApp. Our Makuluwa, Galle workshop team provides exact fitment details, paint codes, and transparent quotations.
@@ -1081,7 +1081,7 @@ export function SriLankanFeedbackSection() {
             rel="noopener noreferrer"
             className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 font-bold text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg transition-all hover:scale-105 shrink-0 active:scale-95 ${
               isLightMode
-                ? "bg-[#0B1F3B] hover:bg-[#1B4965] text-white shadow-[0_4px_25px_rgba(11,31,59,0.3)]"
+                ? "bg-[#0a0a0c] hover:bg-[#222227] text-white shadow-[0_4px_25px_rgba(11,31,59,0.3)]"
                 : "bg-[#ea1c24] hover:bg-[#ff222a] text-white shadow-[0_4px_25px_rgba(234,28,36,0.45)]"
             }`}
           >

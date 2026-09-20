@@ -12,14 +12,14 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        azure: {
-          deep: "#0B1F3B",
-          rich: "#1B4965",
+        maroon: {
+          deep: "#500b14",
+          royal: "#6b111e",
+          accent: "#7a1322",
+          light: "#f7eef0",
+          glow: "rgba(107, 17, 30, 0.25)",
         },
-        teal: {
-          soft: "#62B6CB",
-          pale: "#BEE9E8",
-        },
+        obsidian: "#0a0a0c",
         carmate: {
           red: "#ea1c24",
           redDark: "#b91219",
