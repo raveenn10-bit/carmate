@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "Carmate Modifications — Transforming Cars into Personalized Masterpieces",
   description:
     "Carmate Modifications: Premier automotive body shop in Makuluwa, Galle, Sri Lanka. Body kits, custom lighting, GT wings, luxury upholstery & full project builds.",
+  authors: [{ name: "Harsh Apex", url: "https://www.harshapex.com.lk" }],
+  creator: "Harsh Apex",
   icons: {
     icon: "/assets/carmate-logo.png",
   },

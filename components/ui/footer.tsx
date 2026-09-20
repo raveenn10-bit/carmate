@@ -151,8 +151,23 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400 text-center sm:text-left">
-          <p>© 2026 Carmate Modifications. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-400 text-center md:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <p>© 2026 Carmate Modifications. All rights reserved.</p>
+            <span className="hidden sm:inline text-zinc-700">•</span>
+            <p className="text-zinc-400">
+              Designed by{" "}
+              <a
+                href="https://www.harshapex.com.lk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#ea1c24] font-semibold transition-colors underline-offset-4 hover:underline"
+              >
+                Harsh Apex
+              </a>{" "}
+              <span className="text-zinc-500 text-[11px]">(<a href="https://www.harshapex.com.lk" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300">www.harshapex.com.lk</a>)</span>
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 font-semibold tracking-wider text-zinc-400 text-[10px] sm:text-xs">
             <span>CARS</span>
             <span className="text-zinc-600">|</span>
