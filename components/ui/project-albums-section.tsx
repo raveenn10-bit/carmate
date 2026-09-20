@@ -238,7 +238,7 @@ export function ProjectAlbumsSection() {
         </AnimatePresence>
 
         {/* Shared Element Gallery Component */}
-        <Gallery>
+        <Gallery key={filter}>
           <GalleryGrid>
             <AnimatePresence mode="popLayout">
               {filteredPhotos.map((photo) => (
